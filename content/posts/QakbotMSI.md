@@ -1,7 +1,7 @@
 ---
 title: "QakbotMSI"
 date: 2022-06-21T18:11:53-04:00
-draft: true
+draft: false
 ---
 
 ### Executive Summary

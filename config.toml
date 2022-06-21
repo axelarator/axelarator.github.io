@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "Axelarator Blog"
 theme = "hello-friend"
 paginate = 5
+publishDir = "docs"
 
 [params]
   # dir name of your blog content (default is `content/posts`).
