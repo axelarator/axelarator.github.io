@@ -28,7 +28,7 @@ paginate = 5
 
 [languages]
   [languages.en]
-    title = "Hello Friend"
+    title = "Axelarator Blog"
     subtitle = "A simple theme for Hugo"
     keywords = ""
     copyright = ""

@@ -1,7 +1,7 @@
 ---
 title: "QakbotMSI"
-date: 2022-06-21T17:54:34-04:00
-draft: false
+date: 2022-06-21T18:11:53-04:00
+draft: true
 ---
 
 ### Executive Summary
@@ -139,11 +139,11 @@ The sample is heavily packed with an entropy of 7.69 so I’ll view sandbox deta
 
 Using FakeNetNG, I was able to capture some IPs albeit with different host IDs but sharing the same ASN. So new IOCs!
 
-24.55.67[.]41
-82.152.39[.]49
-92.132.172[.]110
-186.64.67[.]30
-203.122.46[.]188
+- 24.55.67[.]41
+- 82.152.39[.]49
+- 92.132.172[.]110
+- 186.64.67[.]30
+- 203.122.46[.]188
 
 ### Conclusion
 
