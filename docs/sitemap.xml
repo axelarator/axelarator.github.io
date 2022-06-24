@@ -2,14 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://axelarator.github.io/about/</loc>
-    <lastmod>2022-06-21T20:08:55-04:00</lastmod>
-  </url><url>
     <loc>https://axelarator.github.io/</loc>
-    <lastmod>2022-06-21T18:11:53-04:00</lastmod>
+    <lastmod>2022-06-23T20:27:39-04:00</lastmod>
+  </url><url>
+    <loc>https://axelarator.github.io/posts/modification/</loc>
+    <lastmod>2022-06-23T20:27:39-04:00</lastmod>
   </url><url>
     <loc>https://axelarator.github.io/posts/</loc>
-    <lastmod>2022-06-21T18:11:53-04:00</lastmod>
+    <lastmod>2022-06-23T20:27:39-04:00</lastmod>
+  </url><url>
+    <loc>https://axelarator.github.io/posts/unixshell/</loc>
+    <lastmod>2022-06-23T20:17:09-04:00</lastmod>
+  </url><url>
+    <loc>https://axelarator.github.io/posts/ntfs/</loc>
+    <lastmod>2022-06-23T20:11:52-04:00</lastmod>
+  </url><url>
+    <loc>https://axelarator.github.io/projects/</loc>
+    <lastmod>2022-06-23T20:01:10-04:00</lastmod>
+  </url><url>
+    <loc>https://axelarator.github.io/posts/honeypot/</loc>
+    <lastmod>2022-06-23T19:50:38-04:00</lastmod>
+  </url><url>
+    <loc>https://axelarator.github.io/about/</loc>
+    <lastmod>2022-06-21T20:08:55-04:00</lastmod>
   </url><url>
     <loc>https://axelarator.github.io/posts/qakbotmsi/</loc>
     <lastmod>2022-06-21T18:11:53-04:00</lastmod>

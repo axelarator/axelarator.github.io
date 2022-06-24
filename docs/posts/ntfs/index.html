@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Hide Artifacts: NTFS File Attributes (T1564.004) ::
+        Axelarator Blog — A simple theme for Hugo
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Hide Artifacts: NTFS File Attributes #  T1564.004
+Data or executables may be stored in New Technology File System (NTFS) partition metadata instead of directly in files. This may be done to evade some defenses, such as static indicator scanning tools and anti-virus.
+Adversaries may use NTFS file attributes to hide their malicious data in order to evade detection. Every New Technology File System (NTFS) formatted partition contains a Master File Table (MFT) that maintains a record for every file/directory on the partition."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://axelarator.github.io/posts/ntfs/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://axelarator.github.io/assets/style.css" />
+
+<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+
+
+<link href="https://axelarator.github.io/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hide Artifacts: NTFS File Attributes (T1564.004)"/>
+<meta name="twitter:description" content="Hide Artifacts: NTFS File Attributes #  T1564.004
+Data or executables may be stored in New Technology File System (NTFS) partition metadata instead of directly in files. This may be done to evade some defenses, such as static indicator scanning tools and anti-virus.
+Adversaries may use NTFS file attributes to hide their malicious data in order to evade detection. Every New Technology File System (NTFS) formatted partition contains a Master File Table (MFT) that maintains a record for every file/directory on the partition."/>
+
+
+
+<meta property="og:title" content="Hide Artifacts: NTFS File Attributes (T1564.004)" />
+<meta property="og:description" content="Hide Artifacts: NTFS File Attributes #  T1564.004
+Data or executables may be stored in New Technology File System (NTFS) partition metadata instead of directly in files. This may be done to evade some defenses, such as static indicator scanning tools and anti-virus.
+Adversaries may use NTFS file attributes to hide their malicious data in order to evade detection. Every New Technology File System (NTFS) formatted partition contains a Master File Table (MFT) that maintains a record for every file/directory on the partition." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axelarator.github.io/posts/ntfs/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-23T20:11:52-04:00" />
+<meta property="article:modified_time" content="2022-06-23T20:11:52-04:00" /><meta property="og:site_name" content="Axelarator Blog" />
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Hide Artifacts: NTFS File Attributes (T1564.004)</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2022-06-23
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      <h1 id="hide-artifacts-ntfs-file-attributes">
+  Hide Artifacts: NTFS File Attributes
+  <a href="#hide-artifacts-ntfs-file-attributes" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<p><a href="https://attack.mitre.org/techniques/T1564/004/">T1564.004</a></p>
+<p><em>Data or executables may be stored in New Technology File System (NTFS) partition metadata instead of directly in files. This may be done to evade some defenses, such as static indicator scanning tools and anti-virus.</em></p>
+<p><em>Adversaries may use NTFS file attributes to hide their malicious data in order to evade detection. Every New Technology File System (NTFS) formatted partition contains a Master File Table (MFT) that maintains a record for every file/directory on the partition. Within MFT entries are file attributes, such as Extended Attributes (EA) and Data [known as Alternate Data Streams (ADSs) when more than one Data attribute is present], that can be used to store arbitrary data (and even complete files).</em></p>
+<p><em>The NTFS format has a feature called Extended Attributes (EA), which allows data to be stored as an attribute of a file or folder.</em></p>
+<p><strong>Extended Attributes (EA)</strong></p>
+<p>Used to implement the HPFS extended attribute under NTFS. It is a name/value pair where the value has a maximum size of 65536 bytes.</p>
+<p><img src="Ntfs/Untitled.png" alt="$EA attribute structure"></p>
+<p>$EA attribute structure</p>
+<h3 id="ntfs">
+  NTFS
+  <a href="#ntfs" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p><strong>File Attributes</strong></p>
+<p><strong>File Streams</strong></p>
+<ul>
+<li>Streams contain the data that is written to a file which gives more information about a file than its attributes and properties.</li>
+<li>To specify a data stream, use <code>filename::$DATA</code> where <code>$DATA</code> is the stream type.</li>
+<li><code>::$EA</code> is a stream type that contains <strong>Extended Attributes</strong> data.</li>
+</ul>
+<h3 id="alternate-data-streams-ads">
+  Alternate Data Streams (ADS)
+  <a href="#alternate-data-streams-ads" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>A data stream that is alternate to the normal data stream. The data attribute (<code>$DATA</code>) is called the “normal” data stream or “unnamed” data stream since it can be left blank.
+<ul>
+<li>A normal data stream looks like <code>$DATA:&quot;&quot;</code></li>
+<li>An alternate data stream can be <code>$DATA:&quot;SecondStream&quot;</code></li>
+</ul>
+</li>
+<li>To read what’s inside an ADS
+<ul>
+<li><code>Get-Item -path &lt;file&gt; -stream *</code></li>
+<li><code>Get-Content -path &lt;file&gt; -stream &lt;stream name&gt;</code></li>
+</ul>
+</li>
+<li>To add streams to a file
+<ul>
+<li><code>set-content -path &lt;path&gt; -stream &lt;stream name&gt;</code></li>
+</ul>
+</li>
+<li>To search for ADS
+<ul>
+<li><code>gci -recurse | % { gi $_.FullName - stream * } | where stream -ne ':$Data'</code></li>
+</ul>
+</li>
+<li>To remove ADS
+<ul>
+<li><code>remove-item -path &lt;path&gt; -stream &lt;stream name&gt;</code></li>
+</ul>
+</li>
+<li>A sysinternals tool called <code>streams.exe</code> can also enumerate streams
+<ul>
+<li><code>streams &lt;file path&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="hpfs">
+  HPFS
+  <a href="#hpfs" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>A legacy file system unlikely to be used in conjunction with modern operating systems.</li>
+</ul>
+<h3 id="mft">
+  MFT
+  <a href="#mft" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>A metadata structure present on every NTFS formatted partition. It maintains a record for every file on the partition and each record contains file data and metadata.</li>
+<li>Records begin with ASCII string “FILE” (46 49 4C 45)</li>
+<li>Standard Information structure starts with 10 00 00 00
+<ul>
+<li>Contains a creation timestamp in hex.</li>
+</ul>
+</li>
+<li>EA information starts with D0 00 00 00
+<ul>
+<li>The actual start of EA starts with E0 00 00 00
+<ul>
+<li>This is where the attributes are stored</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="enumerate-ea">
+  Enumerate EA
+  <a href="#enumerate-ea" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li><a href="https://community.broadcom.com/symantecenterprise/communities/community-home/librarydocuments/viewdocument?DocumentKey=c5cf3441-25aa-499e-a693-ac48f54d588f&amp;CommunityKey=1ecf5f55-9545-44d6-b0f4-4e4a7f5f5e68&amp;tab=librarydocuments">Zeroaccess trojan</a> used ZwSetEaFile and ZwQueryEaFile to interact with Extended Attributes.</li>
+</ul>
+<h3 id="detection">
+  Detection
+  <a href="#detection" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Attackers are using EA attributes as data storage (PE files) which is not consistent with the key/value pair concept.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Group-Object Name
+</code></pre></div><p>Group-Object can be used to group all EAs based on name.</p>
+<p>When viewing an EA, they have a value related to a .cat file.</p>
+<ul>
+<li>EAs have a value related to a .cat file or “digitally-signed catalog file.” These files verify the digital signature of other files as a collection and alternative to Authenticode singing each individual file.</li>
+</ul>
+<p>By using <code>Get-AuthenticodeSignature</code> cmdlet to check the file signature of the catalog referenced in the EA, the thumbprint should be identical to that of the catalog file.</p>
+<ul>
+<li>C:\Windows\bsfvc.exe thumbprint should match the catalog file
+<ul>
+<li>Filename: bsfvc.exe</li>
+<li>Value: <!-- raw HTML omitted --></li>
+</ul>
+</li>
+</ul>
+<p><code>sigcheck</code> from sysinternals with the <code>-i</code> parameter can resolve what catalog to use for validating a file.</p>
+<h3 id="references">
+  References
+  <a href="#references" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li><a href="https://posts.specterops.io/host-based-threat-modeling-indicator-design-a9dbbb53d5ea">https://posts.specterops.io/host-based-threat-modeling-indicator-design-a9dbbb53d5ea</a></li>
+<li><a href="https://attack.mitre.org/techniques/T1564/004/">https://attack.mitre.org/techniques/T1564/004/</a></li>
+<li><a href="https://community.broadcom.com/symantecenterprise/communities/community-home/librarydocuments/viewdocument?DocumentKey=c5cf3441-25aa-499e-a693-ac48f54d588f&amp;CommunityKey=1ecf5f55-9545-44d6-b0f4-4e4a7f5f5e68&amp;tab=librarydocuments">https://community.broadcom.com/symantecenterprise/communities/community-home/librarydocuments/viewdocument?DocumentKey=c5cf3441-25aa-499e-a693-ac48f54d588f&amp;CommunityKey=1ecf5f55-9545-44d6-b0f4-4e4a7f5f5e68&amp;tab=librarydocuments</a></li>
+<li><a href="https://docs.microsoft.com/en-us/archive/blogs/askcore/ntfs-file-attributes">https://docs.microsoft.com/en-us/archive/blogs/askcore/ntfs-file-attributes</a></li>
+<li><a href="https://docs.microsoft.com/en-us/windows/win32/fileio/file-streams?redirectedfrom=MSDN">https://docs.microsoft.com/en-us/windows/win32/fileio/file-streams?redirectedfrom=MSDN</a></li>
+<li><a href="https://blog.malwarebytes.com/101/2015/07/introduction-to-alternate-data-streams/">https://blog.malwarebytes.com/101/2015/07/introduction-to-alternate-data-streams/</a></li>
+<li><a href="https://docs.microsoft.com/en-us/archive/blogs/askcore/alternate-data-streams-in-ntfs">https://docs.microsoft.com/en-us/archive/blogs/askcore/alternate-data-streams-in-ntfs</a></li>
+<li><a href="https://docs.microsoft.com/en-us/archive/blogs/askcore/alternate-data-streams-in-ntfs">https://docs.microsoft.com/en-us/archive/blogs/askcore/alternate-data-streams-in-ntfs</a></li>
+<li><a href="https://github.com/invoke-ir/powerforensics">https://github.com/invoke-ir/powerforensics</a></li>
+</ul>
+<blockquote>
+<p>All inclusive framework for hard drive forensic analysis supporting NTFS and FAT file systems.</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/mattifestation/PSReflect">https://github.com/mattifestation/PSReflect</a></li>
+</ul>
+<blockquote>
+<p>Easily define in-memory enums, structs, and Win32 functions in PowerShell</p>
+</blockquote>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=l4IphrAjzeY">Anatomy of an NTFS FILE Record - Windows File System Forensics</a></li>
+</ul>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="https://axelarator.github.io/posts/unixshell/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Command and Scripting Interpreter: Unix Shell (T1059.004)</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="https://axelarator.github.io/posts/honeypot/">
+                  <span class="button__text">Honeypot</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2022 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://axelarator.github.io/assets/main.js"></script>
+<script src="https://axelarator.github.io/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
