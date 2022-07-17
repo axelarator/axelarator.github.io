@@ -9,10 +9,58 @@
     <description>Recent content on Axelarator Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jun 2022 20:27:39 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 17 Jul 2022 16:25:20 -0400</lastBuildDate>
     
 	<atom:link href="https://axelarator.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Malicious Word Doc</title>
+      <link>https://axelarator.github.io/posts/minskdoc/</link>
+      <pubDate>Sun, 17 Jul 2022 16:25:20 -0400</pubDate>
+      
+      <guid>https://axelarator.github.io/posts/minskdoc/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Malicious Word Doc #  https://analyze.intezer.com/analyses/1832abdc-0212-4f2b-97af-ec69af2e5a92/genetic-analysis
+https://www.virustotal.com/gui/file/81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
+SHA256:81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
+Malicious Word document referencing Minsk Protocol. #  Uses macros to download a second-stage payload from a server.
+Process Tree #  Uses WINWORD to open the file.
+&amp;#34;C:\Program Files (x86)\Microsoft Office\Office14\WINWORD.EXE&amp;#34; &amp;#34;C:\Users\&amp;lt;USER&amp;gt;\AppData\Local\Temp\&amp;lt;ANALYZED-FILE-NAME&amp;gt;.doc&amp;#34; /q Runs PowerShell base64 encoded command (listed below in a VBA macro)
+Child process from WINWORD launches splwow64
+C:\Windows\splwow64.exe 12288 Details from the file #  Using oleid, VBA macros are found.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Malware Analysis Homelab</title>
+      <link>https://axelarator.github.io/posts/malwarelab/</link>
+      <pubDate>Sun, 17 Jul 2022 16:24:11 -0400</pubDate>
+      
+      <guid>https://axelarator.github.io/posts/malwarelab/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Malware Analysis Homelab #  This guide will serve as a lab for both static and dynamic malware analysis. The dynamic analysis portion will be in its own network that cannot reach out to the host network and vice versa.
+I have to give credit to c3rb3ru5 because her guide is what taught me about being able to create networks within virtual machines and setting up mitmproxy to capture traffic.
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)</title>
