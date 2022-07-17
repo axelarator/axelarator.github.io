@@ -1,5 +1,5 @@
 ---
-title: "Minskdoc"
+title: "Malicious Word Doc"
 date: 2022-07-17T16:25:20-04:00
 draft: false
 ---
