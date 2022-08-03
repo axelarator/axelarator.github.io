@@ -162,6 +162,39 @@
   <div class="posts">
     
     <div class="post on-list">
+      <h1 class="post-title"><a href="https://axelarator.github.io/posts/cloudrecon/">Cloud Recon</a></h1>
+      <div class="post-meta">
+        
+          <span class="post-date">
+            2022-08-03
+          </span>
+
+          
+        
+
+        
+
+        
+      </div>
+
+      
+
+      
+
+      <div class="post-content">
+        
+          
+            Identify the cloud perimeter of a target.
+Identify Service #   Is the target on aws, gcp, or azure? Download corresponding IP ranges  http://ip-ranges.amazonaws.com/ip-ranges.json https://www.gstatic.com/ipranges/cloud.json https://www.microsoft.com/en-us/download/details.aspx?id=56519    Filter list #   GCP: jq '.prefixes[] | .ipv4Prefix' -r AWS: jq '.prefixes[] | .ip_prefix' -r Azure: jq &lt; /path/to/ServiceTags_Public.*.json '.values | [] | .properties.addressPrefixes | []' -r Ex.  wget https://ip-ranges.amazonaws.com/ip-ranges.json cat ip-ranges.json | jq '.prefixes[] | if .
+          
+        
+      </div>
+      
+        <div><a class="read-more button" href="/posts/cloudrecon/">Read more →</a></div>
+      
+    </div>
+    
+    <div class="post on-list">
       <h1 class="post-title"><a href="https://axelarator.github.io/posts/minskdoc/">Malicious Word Doc</a></h1>
       <div class="post-meta">
         
@@ -299,40 +332,6 @@ Invocation #  Interactive Shell #  An interactive shell is one started without n
       </div>
       
         <div><a class="read-more button" href="/posts/unixshell/">Read more →</a></div>
-      
-    </div>
-    
-    <div class="post on-list">
-      <h1 class="post-title"><a href="https://axelarator.github.io/posts/ntfs/">Hide Artifacts: NTFS File Attributes (T1564.004)</a></h1>
-      <div class="post-meta">
-        
-          <span class="post-date">
-            2022-06-23
-          </span>
-
-          
-        
-
-        
-
-        
-      </div>
-
-      
-
-      
-
-      <div class="post-content">
-        
-          
-            Hide Artifacts: NTFS File Attributes #  T1564.004
-Data or executables may be stored in New Technology File System (NTFS) partition metadata instead of directly in files. This may be done to evade some defenses, such as static indicator scanning tools and anti-virus.
-Adversaries may use NTFS file attributes to hide their malicious data in order to evade detection. Every New Technology File System (NTFS) formatted partition contains a Master File Table (MFT) that maintains a record for every file/directory on the partition.
-          
-        
-      </div>
-      
-        <div><a class="read-more button" href="/posts/ntfs/">Read more →</a></div>
       
     </div>
     

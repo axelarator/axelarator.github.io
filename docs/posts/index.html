@@ -150,6 +150,43 @@
   <div class="posts">
     
       <div class="post on-list">
+        <h1 class="post-title"><a href="https://axelarator.github.io/posts/cloudrecon/">Cloud Recon</a></h1>
+        <div class="post-meta">
+          
+            <span class="post-date">
+              2022-08-03
+            </span>
+
+            
+          
+          
+
+
+          
+        </div>
+
+        
+
+        
+
+        <div class="post-content">
+          
+            
+              Identify the cloud perimeter of a target.
+Identify Service #   Is the target on aws, gcp, or azure? Download corresponding IP ranges  http://ip-ranges.amazonaws.com/ip-ranges.json https://www.gstatic.com/ipranges/cloud.json https://www.microsoft.com/en-us/download/details.aspx?id=56519    Filter list #   GCP: jq '.prefixes[] | .ipv4Prefix' -r AWS: jq '.prefixes[] | .ip_prefix' -r Azure: jq &lt; /path/to/ServiceTags_Public.*.json '.values | [] | .properties.addressPrefixes | []' -r Ex.  wget https://ip-ranges.amazonaws.com/ip-ranges.json cat ip-ranges.json | jq '.prefixes[] | if .
+            
+          
+        </div>
+        
+          <div>
+            <a class="read-more button" href="/posts/cloudrecon/"
+              >Read more →</a
+            >
+          </div>
+        
+      </div>
+    
+      <div class="post on-list">
         <h1 class="post-title"><a href="https://axelarator.github.io/posts/minskdoc/">Malicious Word Doc</a></h1>
         <div class="post-meta">
           

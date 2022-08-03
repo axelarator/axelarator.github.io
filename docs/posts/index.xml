@@ -9,10 +9,31 @@
     <description>Recent content in Posts on Axelarator Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Jul 2022 16:25:20 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 03 Aug 2022 16:18:42 -0400</lastBuildDate>
     
 	<atom:link href="https://axelarator.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cloud Recon</title>
+      <link>https://axelarator.github.io/posts/cloudrecon/</link>
+      <pubDate>Wed, 03 Aug 2022 16:18:42 -0400</pubDate>
+      
+      <guid>https://axelarator.github.io/posts/cloudrecon/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Identify the cloud perimeter of a target.
+Identify Service #   Is the target on aws, gcp, or azure? Download corresponding IP ranges  http://ip-ranges.amazonaws.com/ip-ranges.json https://www.gstatic.com/ipranges/cloud.json https://www.microsoft.com/en-us/download/details.aspx?id=56519    Filter list #   GCP: jq &#39;.prefixes[] | .ipv4Prefix&#39; -r AWS: jq &#39;.prefixes[] | .ip_prefix&#39; -r Azure: jq &amp;lt; /path/to/ServiceTags_Public.*.json &#39;.values | [] | .properties.addressPrefixes | []&#39; -r Ex.  wget https://ip-ranges.amazonaws.com/ip-ranges.json cat ip-ranges.json | jq &#39;.prefixes[] | if .
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>Malicious Word Doc</title>
