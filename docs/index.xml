@@ -9,10 +9,31 @@
     <description>Recent content on Axelarator Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Aug 2022 16:18:42 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 25 Aug 2022 16:35:18 -0400</lastBuildDate>
     
 	<atom:link href="https://axelarator.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bumblebee</title>
+      <link>https://axelarator.github.io/posts/bumblebee/</link>
+      <pubDate>Thu, 25 Aug 2022 16:35:18 -0400</pubDate>
+      
+      <guid>https://axelarator.github.io/posts/bumblebee/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Bumblebee Sample #  Bumblebee (Shindig) has been used by TA579 / BazaISO / Exotic Lily / Stolen Images to collect system information and exfil to a C2. Additional second-stage payloads include Cobalt Strike beacons.
+An overlap between Exotic Lily and Wizard Spider is based on both delivering BazarLoader and a unique Cobalt Strike profile. Exotic Lily most likely handles Initial Access, then a second group deploys Conti and Diavol ransomware.
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>Cloud Recon</title>
