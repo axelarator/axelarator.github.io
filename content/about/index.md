@@ -8,4 +8,4 @@ Welcome to my brain dump. I currently work as a CTI Tactial analyst and am using
 
 The blog is built using Hugo and hosted through GitHub Pages because free is the best price.
 
-You can follow me on twitter [@TaylorParizo](https://twitter.com/TaylorParizo)
+You can follow me on Mastodon [@TaylorParizo](https://infosec.exchange/@taylorparizo)
