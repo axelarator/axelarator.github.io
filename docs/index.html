@@ -162,6 +162,38 @@
   <div class="posts">
     
     <div class="post on-list">
+      <h1 class="post-title"><a href="https://axelarator.github.io/posts/codesigningcerts/">Abusing Code Signing Certificates</a></h1>
+      <div class="post-meta">
+        
+          <span class="post-date">
+            2023-02-15
+          </span>
+
+          
+        
+
+        
+
+        
+      </div>
+
+      
+
+      
+
+      <div class="post-content">
+        
+          
+            Authenticode Signature #  The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified.
+          
+        
+      </div>
+      
+        <div><a class="read-more button" href="/posts/codesigningcerts/">Read more →</a></div>
+      
+    </div>
+    
+    <div class="post on-list">
       <h1 class="post-title"><a href="https://axelarator.github.io/posts/bumblebee/">Bumblebee</a></h1>
       <div class="post-meta">
         
@@ -304,39 +336,6 @@ It was inspired by her KVM Malware Lab Guide but I had to make some changes due 
       
     </div>
     
-    <div class="post on-list">
-      <h1 class="post-title"><a href="https://axelarator.github.io/posts/modification/">Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)</a></h1>
-      <div class="post-meta">
-        
-          <span class="post-date">
-            2022-06-23
-          </span>
-
-          
-        
-
-        
-
-        
-      </div>
-
-      
-
-      
-
-      <div class="post-content">
-        
-          
-            Event Triggered Execution: Unix Shell Configuration Modification #  T1546.004
-Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment.
-          
-        
-      </div>
-      
-        <div><a class="read-more button" href="/posts/modification/">Read more →</a></div>
-      
-    </div>
-    
     <div class="pagination">
   <div class="pagination__buttons">
     
@@ -378,7 +377,7 @@ Adversaries may establish persistence through executing malicious commands trigg
 
       <div class="copyright">
         <span
-          >© 2022 Powered by
+          >© 2023 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span

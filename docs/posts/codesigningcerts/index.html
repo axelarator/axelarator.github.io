@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Abusing Code Signing Certificates ::
+        Axelarator Blog — A simple theme for Hugo
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Authenticode Signature #  The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://axelarator.github.io/posts/codesigningcerts/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://axelarator.github.io/assets/style.css" />
+
+<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+
+
+<link href="https://axelarator.github.io/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Abusing Code Signing Certificates"/>
+<meta name="twitter:description" content="Authenticode Signature #  The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified."/>
+
+
+
+<meta property="og:title" content="Abusing Code Signing Certificates" />
+<meta property="og:description" content="Authenticode Signature #  The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axelarator.github.io/posts/codesigningcerts/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-15T09:09:43-07:00" />
+<meta property="article:modified_time" content="2023-02-15T09:09:43-07:00" /><meta property="og:site_name" content="Axelarator Blog" />
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">Abusing Code Signing Certificates</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2023-02-15
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      <h2 id="authenticode-signature">
+  Authenticode Signature
+  <a href="#authenticode-signature" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified. Users or security tools may trust a signed piece of code more than an unsigned piece of code even if they don&rsquo;t know who issued the certificate or who the author is.</p>
+<p>Microsoft implements a form of code signing using Authenticode technology.</p>
+<p>So first, what is an authenticode digital signature? Simply put, it’s a way to identify the publisher of the software. The software publisher signs the driver or driver package, tagging it with a digital certificate that verifies the identity of the publisher. With embedded signatures, a digital signature is embedded within a <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>nonexecution</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> portion of the driver file. This means authenticode code signing does not alter the executable portion of a driver.</p>
+<p>Authenticode isn’t the only way to sign a driver [package]. The Windows Hardware Certification Kit has test categories for various devices types. If the device type has a test category, the publisher can obtain a WHQL release signature for the driver package. A WHQL release signature consists of a digitally signed catalog file. If a test program is not available, then the publisher can resort to signing the driver using Authenticode.</p>
+<p>There are two commands to check / verify a certificate.</p>
+<h3 id="first-tool">
+  First Tool
+  <a href="#first-tool" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>First is the PowerShell cmdlet <code>Get-AuthenticodeSignature</code> which does exactly what it says. It simply gets the authenticode signature. I’ll use the VS Code executable as an example.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
+
+    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code
+
+SignerCertificate                         Status                                Path
+-----------------                         ------                                ----
+8740DF4ACB749640AD318E4BE842F72EC651AD80  Valid                                 Code.exe
+</code></pre></div><p>You can go one step further by piping the output to <code>Format-List</code></p>
+<p>A quick PowerShell tip:</p>
+<p>This is a large output and maybe you only care about the <code>SignerCertificate</code> and <code>Status</code> properties but in more detail. Simply append the <code>-Property</code> parameter after <code>Format-List</code> and specify what properties you want. Example is in the second code block.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span> | Format-List
+
+SignerCertificate      <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">[Subject]</span>
+                           CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+
+                         <span style="color:#66d9ef">[Issuer]</span>
+                           CN=Microsoft Code Signing PCA 2011, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+
+                         <span style="color:#66d9ef">[Serial Number]</span>
+                           33000002528B33AAF895F339DB000000000252
+
+                         <span style="color:#66d9ef">[Not Before]</span>
+                           9/2/2021 11<span style="color:#960050;background-color:#1e0010">:</span>32<span style="color:#960050;background-color:#1e0010">:</span>59 AM
+
+                         <span style="color:#66d9ef">[Not After]</span>
+                           9/1/2022 11<span style="color:#960050;background-color:#1e0010">:</span>32<span style="color:#960050;background-color:#1e0010">:</span>59 AM
+
+                         <span style="color:#66d9ef">[Thumbprint]</span>
+                           8740DF4ACB749640AD318E4BE842F72EC651AD80
+
+TimeStamperCertificate <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">[Subject]</span>
+                           CN=Microsoft Time-Stamp Service, OU=Thales TSS ESN<span style="color:#960050;background-color:#1e0010">:</span>D082-4BFD-EEBA, OU=Microsoft Ireland
+                         Operations Limited, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+
+                         <span style="color:#66d9ef">[Issuer]</span>
+                           CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+
+                         <span style="color:#66d9ef">[Serial Number]</span>
+                           330000018FF351A8EB5A72DDCC00010000018F
+
+                         <span style="color:#66d9ef">[Not Before]</span>
+                           10/28/2021 12<span style="color:#960050;background-color:#1e0010">:</span>27<span style="color:#960050;background-color:#1e0010">:</span>46 PM
+
+                         <span style="color:#66d9ef">[Not After]</span>
+                           1/26/2023 11<span style="color:#960050;background-color:#1e0010">:</span>27<span style="color:#960050;background-color:#1e0010">:</span>46 AM
+
+                         <span style="color:#66d9ef">[Thumbprint]</span>
+                           3E4D2F820476E748070746A02695D1605B419A6A
+
+Status                 <span style="color:#960050;background-color:#1e0010">:</span> Valid
+StatusMessage          <span style="color:#960050;background-color:#1e0010">:</span> Signature verified.
+Path                   <span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
+SignatureType          <span style="color:#960050;background-color:#1e0010">:</span> Authenticode
+IsOSBinary             <span style="color:#960050;background-color:#1e0010">:</span> False
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span> | Format-List -Property Status, SignerCertificate
+
+Status            <span style="color:#960050;background-color:#1e0010">:</span> Valid
+SignerCertificate <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">[Subject]</span>
+                      CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+
+                    <span style="color:#66d9ef">[Issuer]</span>
+                      CN=Microsoft Code Signing PCA 2011, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+
+                    <span style="color:#66d9ef">[Serial Number]</span>
+                      33000002528B33AAF895F339DB000000000252
+
+                    <span style="color:#66d9ef">[Not Before]</span>
+                      9/2/2021 11<span style="color:#960050;background-color:#1e0010">:</span>32<span style="color:#960050;background-color:#1e0010">:</span>59 AM
+
+                    <span style="color:#66d9ef">[Not After]</span>
+                      9/1/2022 11<span style="color:#960050;background-color:#1e0010">:</span>32<span style="color:#960050;background-color:#1e0010">:</span>59 AM
+
+                    <span style="color:#66d9ef">[Thumbprint]</span>
+                      8740DF4ACB749640AD318E4BE842F72EC651AD80
+</code></pre></div><p>For those that like GUIs more, you’re probably more familiar with viewing file properties and seeing the certificate that way.</p>
+<p><img src="/codesign/Untitled.png" alt="Untitled"></p>
+<h3 id="second-tool">
+  Second Tool
+  <a href="#second-tool" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The second tool is <code>SignTool</code> from the Windows SDK. Unlike <code>Get-AuthenticodeSignature</code>, SignTool can verify the certificate of the file by either checking against the Windows driver policy (default) or the Default Authentication Verification Policy. SignTool requires the Windows SDK so download that first.</p>
+<p><a href="https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/">https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/</a></p>
+<p>Using the <code>/pa</code> option specifies that the Default Authentication Verification Policy is used. If it isn’t specified, SignTool defaults to the Windows driver policy for verification but can error out if the signature uses a code signing certificate, which for this file, it did.</p>
+<p>Without <code>/pa</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; &amp; <span style="color:#e6db74">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&#34;</span> verify <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
+File<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
+Index  Algorithm  Timestamp
+========================================
+SignTool Error<span style="color:#960050;background-color:#1e0010">:</span> A certificate chain processed, but terminated <span style="color:#66d9ef">in</span> a root
+        certificate which is not trusted by the trust provider.
+
+Number of errors<span style="color:#960050;background-color:#1e0010">:</span> 1
+</code></pre></div><p>With <code>/pa</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; &amp; <span style="color:#e6db74">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&#34;</span> verify /pa <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
+File<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
+Index  Algorithm  Timestamp
+========================================
+0      sha256     RFC3161
+
+Successfully verified<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
+</code></pre></div><h2 id="abusing-code-signing-certificates">
+  Abusing Code Signing Certificates
+  <a href="#abusing-code-signing-certificates" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p><a href="https://github.com/secretsquirrel/SigThief.git">https://github.com/secretsquirrel/SigThief.git</a></p>
+<p>This is a tool for copying one cert and applying it to another file (.exe, .cab, .dll, .ocx, .msi, .xpi and .xap files) and kernel-mode software. An example could be applying a Microsoft cert to Mimikatz. The tool itself does not append a valid signature to a file and I’ll get to that later, but it’s purpose is to test various AV vendors to see how they prioritize CAs and if they check the validity of the signature or just who it’s signed by.</p>
+<h2 id="using-sigthief">
+  Using SigThief
+  <a href="#using-sigthief" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>The tool itself is very straightforward. Take a signature from one file and add it to another. There are other options like ripping the signature and saving it for later, possibly to append the same signature to multiple files.</p>
+<p>In this example, I’ll show how to take a certificate from VS Code and write it to Mimikatz. Mimikatz initially is not signed at all, so for it to have any chance at staying undetected, supplying a certificate is a good choice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\Downloads\mimikatz_trunk\x64\mimikatz.exe&#34;</span>
+
+    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\Downloads\mimikatz_trunk\x64
+
+SignerCertificate                         Status                            Path
+-----------------                         ------                            ----
+                                          NotSigned                         mimikatz.exe
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Tools\SigThief &gt; python .\sigthief.py -i <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span> -t <span style="color:#e6db74">&#34;C:\Users\User\Downloads\mimikatz_trunk\x64\mimikatz.exe&#34;</span> -o mimicode.exe
+
+!! New Version available now <span style="color:#66d9ef">for</span> Dev Tier Sponsors! Sponsor here<span style="color:#960050;background-color:#1e0010">:</span> https<span style="color:#960050;background-color:#1e0010">:</span>//github.com/sponsors/secretsquirrel
+
+Output file<span style="color:#960050;background-color:#1e0010">:</span> mimicode.exe
+Signature appended.
+FIN.
+
+PS C:\Tools\SigThief &gt; .\mimicode.exe                                                                                                                                                                                                               ...<span style="color:#75715e">#####.   mimikatz 2.2.0 (x64) #19041 Sep 19 2022 17:44:08                                                             ..## ^ ##.  &#34;A La Vie, A L&#39;Amour&#34; - (oe.eo)                                                                               .## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )</span>
+ <span style="color:#75715e">## \ / ##       &gt; https://blog.gentilkiwi.com/mimikatz</span>
+ <span style="color:#e6db74">&#39;## v ##&#39;</span>       Vincent LE TOUX             ( vincent.letoux@gmail.com )
+  <span style="color:#e6db74">&#39;#####&#39;</span>        &gt; https<span style="color:#960050;background-color:#1e0010">:</span>//pingcastle.com / https<span style="color:#960050;background-color:#1e0010">:</span>//mysmartlogon.com ***/
+
+mimikatz <span style="color:#75715e"># exit</span>
+Bye!
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Tools\SigThief &gt; Get-AuthenticodeSignature .\mimicode.exe
+
+    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief
+
+SignerCertificate                         Status                            Path
+-----------------                         ------                            ----
+8740DF4ACB749640AD318E4BE842F72EC651AD80  HashMismatch                      mimicode.exe
+</code></pre></div><p>That’s it. The certificate from <code>code.exe</code> was copied to <code>mimikatz.exe</code> and a new binary was created with a super discrete name.</p>
+<p>Now this file could be uploaded to VT, tested against an AV on your own system, etc. The goal is to see what it can bypass now that a malicious executable is signed from a trusted partner.</p>
+<p>But just because it’s signed from a trusted party doesn’t mean the executable is legit. Similar to HTTPS, just because the site you’re browsing has a lock next to the URL, it just means your connection is private. It doesn’t mean the site you’re visiting is safe.</p>
+<p><img src="/codesign/Untitled.jpeg" alt="Untitled"></p>
+<p>With <code>mimicode.exe</code> now having a VS Code cert, it <em><strong>sort of</strong></em> looks legitimate. Look at the <code>SignerCertificate</code> of <code>mimicode.exe</code> compared to <code>code.exe</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
+
+    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code
+
+SignerCertificate                         Status                                Path
+-----------------                         ------                                ----
+8740DF4ACB749640AD318E4BE842F72EC651AD80  Valid                                 Code.exe
+</code></pre></div><p>I say <em><strong>sort of</strong></em> for multiple reasons. As I mentioned before, the tool itself does not append a valid signature to a file. It’s clear in the Digital Signature Details of the file.</p>
+<p><img src="/codesign/Untitled1.png" alt="Untitled"></p>
+<p>The certificate hash matches the <code>code.exe</code> hash, but that’s just pulling a key from a value. Using SigThief, the same can be seen.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; &amp; <span style="color:#e6db74">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&#34;</span> verify /pa <span style="color:#e6db74">&#34;C:\Tools\SigThief\mimicode.exe&#34;</span>
+File<span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief\mimicode.exe
+Index  Algorithm  Timestamp
+========================================
+SignTool Error<span style="color:#960050;background-color:#1e0010">:</span> WinVerifyTrust returned error<span style="color:#960050;background-color:#1e0010">:</span> 0x80096010
+        The digital signature of the object did not verify.
+
+Number of errors<span style="color:#960050;background-color:#1e0010">:</span> 1
+</code></pre></div><p>Unlike the successful verification from <code>code.exe</code>, an error is thrown mentioning <code>WinVerifyTrust</code>. This is a function within the CryptoAPI that performs a trust verification action on a specified object. This is why SignTool is important as it is actually executing an action, not just getting a value. The data is passed to a trust provider which checks it against the certificate trust list. The reason is the HashMismatch status code when getting the authenticode signature. <strong>The hash of the file does not match the hash stored in the digital signature.</strong> As for a manual way of checking this, I haven’t found one. As for an automated way, this is essentially what the<code>verify</code> command is doing within <code>SignTool</code>.</p>
+<p>In the image above, you might have also noticed the file icon is also the same as Mimikatz.</p>
+<p>The file properties also show a lot of clues:</p>
+<ul>
+<li>File description</li>
+<li>Product name</li>
+<li>Original filename</li>
+</ul>
+<p><img src="/codesign/Untitled2.png" alt="Untitled"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Tools &gt; Get-Item C:\Tools\SigThief\mimicode.exe | select-object -property *
+
+PSPath            <span style="color:#960050;background-color:#1e0010">:</span> Microsoft.PowerShell.Core\FileSystem::C:\Tools\SigThief\mimicode.exe
+PSParentPath      <span style="color:#960050;background-color:#1e0010">:</span> Microsoft.PowerShell.Core\FileSystem::C:\Tools\SigThief
+PSChildName       <span style="color:#960050;background-color:#1e0010">:</span> mimicode.exe
+PSDrive           <span style="color:#960050;background-color:#1e0010">:</span> C
+PSProvider        <span style="color:#960050;background-color:#1e0010">:</span> Microsoft.PowerShell.Core\FileSystem
+PSIsContainer     <span style="color:#960050;background-color:#1e0010">:</span> False
+Mode              <span style="color:#960050;background-color:#1e0010">:</span> -a----
+VersionInfo       <span style="color:#960050;background-color:#1e0010">:</span> File<span style="color:#960050;background-color:#1e0010">:</span>             C:\Tools\SigThief\mimicode.exe
+                    InternalName<span style="color:#960050;background-color:#1e0010">:</span>     mimikatz
+                    OriginalFilename<span style="color:#960050;background-color:#1e0010">:</span> mimikatz.exe
+                    FileVersion<span style="color:#960050;background-color:#1e0010">:</span>      2.2.0.0
+                    FileDescription<span style="color:#960050;background-color:#1e0010">:</span>  mimikatz <span style="color:#66d9ef">for</span> Windows
+                    Product<span style="color:#960050;background-color:#1e0010">:</span>          mimikatz
+                    ProductVersion<span style="color:#960050;background-color:#1e0010">:</span>   2.2.0.0
+                    Debug<span style="color:#960050;background-color:#1e0010">:</span>            False
+                    Patched<span style="color:#960050;background-color:#1e0010">:</span>          False
+                    PreRelease<span style="color:#960050;background-color:#1e0010">:</span>       True
+                    PrivateBuild<span style="color:#960050;background-color:#1e0010">:</span>     True
+                    SpecialBuild<span style="color:#960050;background-color:#1e0010">:</span>     True
+                    Language<span style="color:#960050;background-color:#1e0010">:</span>         English (United States)
+
+BaseName          <span style="color:#960050;background-color:#1e0010">:</span> mimicode
+Target            <span style="color:#960050;background-color:#1e0010">:</span> {}
+LinkType          <span style="color:#960050;background-color:#1e0010">:</span>
+Name              <span style="color:#960050;background-color:#1e0010">:</span> mimicode.exe
+Length            <span style="color:#960050;background-color:#1e0010">:</span> 1365416
+DirectoryName     <span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief
+Directory         <span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief
+IsReadOnly        <span style="color:#960050;background-color:#1e0010">:</span> False
+Exists            <span style="color:#960050;background-color:#1e0010">:</span> True
+FullName          <span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief\mimicode.exe
+Extension         <span style="color:#960050;background-color:#1e0010">:</span> .exe
+CreationTime      <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 10<span style="color:#960050;background-color:#1e0010">:</span>18<span style="color:#960050;background-color:#1e0010">:</span>09 AM
+CreationTimeUtc   <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 6<span style="color:#960050;background-color:#1e0010">:</span>18<span style="color:#960050;background-color:#1e0010">:</span>09 PM
+LastAccessTime    <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 6<span style="color:#960050;background-color:#1e0010">:</span>38<span style="color:#960050;background-color:#1e0010">:</span>31 PM
+LastAccessTimeUtc <span style="color:#960050;background-color:#1e0010">:</span> 2/14/2023 2<span style="color:#960050;background-color:#1e0010">:</span>38<span style="color:#960050;background-color:#1e0010">:</span>31 AM
+LastWriteTime     <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 10<span style="color:#960050;background-color:#1e0010">:</span>18<span style="color:#960050;background-color:#1e0010">:</span>09 AM
+LastWriteTimeUtc  <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 6<span style="color:#960050;background-color:#1e0010">:</span>18<span style="color:#960050;background-color:#1e0010">:</span>09 PM
+Attributes        <span style="color:#960050;background-color:#1e0010">:</span> Archive
+</code></pre></div><h2 id="whos-using-this-technique">
+  Who’s Using This Technique
+  <a href="#whos-using-this-technique" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="mitre-technique">
+  MITRE Technique
+  <a href="#mitre-technique" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p><a href="https://attack.mitre.org/techniques/T1588/003/">T1588.003 - Obtain Capabilities: Code Signing Certificates</a></p>
+<p>I covered a lot of ways to check if signatures are valid and easy giveaways that the “trustworthy” executable being run is actually malicious, but that doesn’t mean this technique is easy to mitigate. Stolen certificates are gathered from trusted parties and then sometimes sold on the Dark Web via e-commerce sites. Other times, it’s the result of improperly storing certificates which can be be publicly available.</p>
+<h3 id="lapsus">
+  LAPSUS$
+  <a href="#lapsus" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>In March 2022, LAPSUS$ was using stolen Nvidia code signing certificates to sign malware to appear trustworthy and allow malicious drivers to be loaded in Windows. These certificates were expired, but Windows still allowed them to be used for driver signing purposes. Some malware used in this operation included CS beacons, Mimikatz, backdoors, and RATs. All legitimately signed.</p>
+<p>A provided mitigation involves configuring <a href="https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/select-types-of-rules-to-create">Windows Defender Application Control</a> policies to control what drivers can be loaded.</p>
+<h3 id="palmerworm">
+  Palmerworm
+  <a href="#palmerworm" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Palmerworm (BlackTech) is an espionage group that has used stolen code-signing certificates to sign its payloads.</p>
+<p>In another campaign, BlackTech used the Plead backdoor that digitally signs files using a valid D-Link Corporation code signing certificate. This same certificate was used to sign non-malicious D-Link software, indicating the certificate was stolen. Other samples used expired certificates belonging to a Taiwanese company named Changing Information Technology Inc. This company was initially compromised first to obtain the certificates.</p>
+<h3 id="megacortex">
+  MegaCortex
+  <a href="#megacortex" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>MegaCortex ransomware was very busy in 2019 with four versions being developed between January and November. They use code signing certificates issued to fake companies.</p>
+<ul>
+<li>MegaCortex v1: “3AN LIMITED”</li>
+<li>MegaCortex v2: “ABADAN PIZZA LTD”</li>
+<li>MegaCortex v3: “LYUKS ELIT, LTD” and “FELIX MEDIA PTY LTD”</li>
+<li>MegaCortex v4: “MURSA PTY LTD”</li>
+</ul>
+<h3 id="ryuk">
+  Ryuk
+  <a href="#ryuk" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>TheDFIRReport wrote about a Ryuk campaign in November 2020 where Ryuk would send a phishing email containing a Google Drive link that downloads a Bazar Loader backdoor. The loader used a code signing certificate signed by Digicert under the organization NOSOV SP Z O O.</p>
+<h3 id="outsteel">
+  OutSteel
+  <a href="#outsteel" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>An email subject translates from Ukrainian to “Report on the commission of crime &lt;targeted individual’s name&gt;”. When a victim clicks the icons over the redacted lines, it runs malicious JavaScript embedded within the document. The executable downloaded by the JavaScript is an initial loader Trojan, whose developers signed using a certificate that has “Electrum Technologies GmbH” within the organization field. This organization is related to the Electrum Bitcoin wallet. The first stage loader is a wrapper for the next few stages that decrypt a DLL. The packer allows a user to clone .NET assemblies from other .NET binaries, as well as from cloning certificates.</p>
+<h3 id="stuxnet">
+  Stuxnet
+  <a href="#stuxnet" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Yes, hop in the time machine and go back to 2010 when Stuxnet used digital certificates stolen from RealTek and JMicron, two Taiwanese-based companies.</p>
+<h2 id="finding-certs">
+  Finding Certs
+  <a href="#finding-certs" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Most threat actors compromise a company and steal certificates and sometimes re-sell the certificates on underground sites. In 2018, TrendMicro reported that fraudulent EV (Extended Validation) certificates were for sale on forums and marketplaces. As of writing, I searched on Ahmia[.]fi for code signing certificates, EV certs, really any keywords pertaining to software certificates but couldn’t come across any forums advertising the sale of such. Fake certificates are also supplied by legitimate CAs that mimic a legitimate organization. One example was a Russian financial broker who became a target of cybercriminals using fraudulent certificates for Razy ransomware. The financial broker in question never requested the certificate. That’s a lot of heavy work before the main campaign can begin and not everyone has the ability to do that level of resource development. So what about OSINT? There was a great open-source technique mentioned by Bill Demirkapi in his <a href="https://youtu.be/1H9tEfkjFXs?t=321">BH/DC talk</a>. He used <a href="https://buckets.grayhatwarfare.com/">GrayhatWarfare</a> to search for public leaked certificates from S3 buckets by filtering for PFX and P12 file extensions and at the time, he found over 6,000 results.</p>
+<h2 id="conclusion">
+  Conclusion
+  <a href="#conclusion" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Abusing code signing certificates is not new. In the past few years alone, it has proven to be an effective method of bypassing certain security controls to allow malicious software to run and look seemingly benign. SigThief is a great testing tool to validate the correct policies are in place for allowing specific drivers to run. It is imperative to secure private keys within HSMs to hide and protect cryptographic material as they require physical access to steal keys. Validate certificates prior to using them for code signing and check that the code you’re signing is null of vulnerabilities or malware. Lastly, implement a certificate lifecycle management process. This is a lengthy process but ensures missing, expired, compromised or unused certificates are revoked, renewed or replaced.</p>
+<h2 id="references">
+  References
+  <a href="#references" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<ul>
+<li><a href="https://github.com/secretsquirrel/SigThief">https://github.com/secretsquirrel/SigThief</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/install/authenticode">https://learn.microsoft.com/en-us/windows-hardware/drivers/install/authenticode</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows/win32/seccrypto/signtool">https://learn.microsoft.com/en-us/windows/win32/seccrypto/signtool</a></li>
+<li><a href="https://attack.mitre.org/techniques/T1588/003/">https://attack.mitre.org/techniques/T1588/003/</a></li>
+<li><a href="https://www.bleepingcomputer.com/news/security/malware-now-using-nvidias-stolen-code-signing-certificates/">https://www.bleepingcomputer.com/news/security/malware-now-using-nvidias-stolen-code-signing-certificates/</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/select-types-of-rules-to-create">https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-defender-application-control/select-types-of-rules-to-create</a></li>
+<li><a href="https://securityintelligence.com/certificates-as-a-service-code-signing-certs-become-popular-cybercrime-commodity/">https://securityintelligence.com/certificates-as-a-service-code-signing-certs-become-popular-cybercrime-commodity/</a></li>
+<li><a href="https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/">https://thedfirreport.com/2020/11/05/ryuk-speed-run-2-hours-to-ransom/</a></li>
+<li><a href="https://www.trendmicro.com/en_us/research/18/d/understanding-code-signing-abuse-in-malware-campaigns.html">https://www.trendmicro.com/en_us/research/18/d/understanding-code-signing-abuse-in-malware-campaigns.html</a></li>
+<li><a href="https://www.encryptionconsulting.com/a-detailed-guide-to-code-signing-abuse/">https://www.encryptionconsulting.com/a-detailed-guide-to-code-signing-abuse/</a></li>
+</ul>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="https://axelarator.github.io/posts/bumblebee/">
+                  <span class="button__text">Bumblebee</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2023 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://axelarator.github.io/assets/main.js"></script>
+<script src="https://axelarator.github.io/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

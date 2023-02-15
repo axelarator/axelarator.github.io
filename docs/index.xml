@@ -9,10 +9,30 @@
     <description>Recent content on Axelarator Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Aug 2022 16:35:18 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 15 Feb 2023 09:09:43 -0700</lastBuildDate>
     
 	<atom:link href="https://axelarator.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Abusing Code Signing Certificates</title>
+      <link>https://axelarator.github.io/posts/codesigningcerts/</link>
+      <pubDate>Wed, 15 Feb 2023 09:09:43 -0700</pubDate>
+      
+      <guid>https://axelarator.github.io/posts/codesigningcerts/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Authenticode Signature #  The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified.
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>Bumblebee</title>
