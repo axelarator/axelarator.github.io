@@ -1,5 +1,5 @@
 ---
-title: "BLE / NFC Threat Model"
+title: "BLE / NFC Threats"
 date: 2023-03-17T11:22:25-06:00
 draft: false
 ---
