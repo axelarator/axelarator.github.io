@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        BLE / NFC Threat Model ::
+        Axelarator Blog — A simple theme for Hugo
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Bluetooth Low Energy #  Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://axelarator.github.io/posts/blenfc/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://axelarator.github.io/assets/style.css" />
+
+<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+
+
+<link href="https://axelarator.github.io/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="BLE / NFC Threat Model"/>
+<meta name="twitter:description" content="Bluetooth Low Energy #  Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability."/>
+
+
+
+<meta property="og:title" content="BLE / NFC Threat Model" />
+<meta property="og:description" content="Bluetooth Low Energy #  Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://axelarator.github.io/posts/blenfc/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-17T11:22:25-06:00" />
+<meta property="article:modified_time" content="2023-03-17T11:22:25-06:00" /><meta property="og:site_name" content="Axelarator Blog" />
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">BLE / NFC Threat Model</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2023-03-17
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      <h1 id="bluetooth-low-energy">
+  Bluetooth Low Energy
+  <a href="#bluetooth-low-energy" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<p>Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability.</p>
+<p><img src="/blenfc/Untitled.png" alt="Untitled"></p>
+<h2 id="protocol-stack">
+  Protocol Stack
+  <a href="#protocol-stack" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Within the <strong>physical</strong> layer, version 4.2 operates at 1Mbps and version 5.0 operates at 2Mbps.</p>
+<p>The <strong>link</strong> layer is responsible for advertising, scanning, and creating/maintaining connections.</p>
+<p>There are six states within the link layer:</p>
+<ul>
+<li>Standby
+<ul>
+<li>No transmission or reception of packets.</li>
+</ul>
+</li>
+<li>Advertising
+<ul>
+<li>The link layer starts advertising packets and listens for responses.</li>
+</ul>
+</li>
+<li>Scanning
+<ul>
+<li>In this state, the link layer listens for advertising packets from other advertising devices.</li>
+</ul>
+</li>
+<li>Initiating
+<ul>
+<li>The link layer responds to advertising packets to initiate a connection.</li>
+</ul>
+</li>
+<li>Connection
+<ul>
+<li>This comes after the initializing or advertising state. When coming from the former, it enters a master role. When coming from the latter, it enters a slave role.</li>
+</ul>
+</li>
+<li>Synchronization
+<ul>
+<li>This state can be entered from the standby state. The link layer listens for periodic channel packets from specific devices advertising.</li>
+</ul>
+</li>
+</ul>
+<p><strong>HCI</strong> uses standard interface types like UART/SPI/USB or by using an API to communicate between the controller and host.</p>
+<p><strong>L2CAP</strong> encapsulates data to upper layers.</p>
+<p><strong>SMP</strong> provides methods for device pairing and key distribution.</p>
+<p>The <strong>application</strong> layer uses Bluetooth profiles to interact with applications. The profile defines the vertical interactions between the layers and P2P interactions of specific layers between devices.</p>
+<p>The other layers within the host are explained below in more detail as they are the prime components of BLE connectivity.</p>
+<p><strong>GAP</strong></p>
+<p>The Generic Access Profile (GAP) controls connections and advertising in Bluetooth. It’s what determines how two devices can or cannot interact with each other.</p>
+<p>Two roles exist within GAP:</p>
+<ul>
+<li>Peripheral
+<ul>
+<li>These are small, low power devices that connect to a more powerful central device. Peripheral devices can be heart rate monitors, a proximity tag, etc.</li>
+</ul>
+</li>
+<li>Central
+<ul>
+<li>Central devices are usually the mobile phone or tablet that peripheral devices connect to.</li>
+</ul>
+</li>
+</ul>
+<p>For Bluetooth devices to announce themselves, two payloads exist within GAP.</p>
+<ul>
+<li>Advertising Data payload
+<ul>
+<li>This payload is mandatory. It contains up to 31 bytes of data and constantly transmits out from the device to let central devices in range know that it exists.</li>
+</ul>
+</li>
+<li>Scan Response payload
+<ul>
+<li>Although optional, central devices can request a scan response payload. This allows device designers to fit more information in the advertising payload like strings for a device name.</li>
+</ul>
+</li>
+</ul>
+<p>So, when a peripheral wants to announce itself for a central device to connect to it, an advertising interval is set and every time the interval passes, it retransmits its main advertising packet. The listening device can request the scan response payload which tells the advertising payload to send additional data.</p>
+<p><strong>GATT</strong></p>
+<p>The Generic ATTribute Profile defines the way two BLE devices transfer data back and forth using Services and Characteristics. The Attribute Protocol (<strong>ATT</strong>) stores the services, characteristics and related data in a lookup table using 16-bit IDs for each entry.</p>
+<ul>
+<li>Services
+<ul>
+<li>Services contain chunks of data called characteristics. Each service is distinguished by a UUID in either 16-bit for BLE or 128-bit for custom services.</li>
+<li>For example, the Heart Rate Service has a 16-bit UUID of 0x180D and contains up to three characteristics. Heart rate measurement, body sensor location, and heart rate control point.</li>
+</ul>
+</li>
+<li>Characteristics
+<ul>
+<li>Like services, characteristics distinguish themselves by a 16-bit or 128-bit UUID.</li>
+<li>Characteristics encapsulate a single data point (like the heart rate measurement).</li>
+</ul>
+</li>
+</ul>
+<p>GATT transactions operate through a server/client relationship. The peripheral is the GATT server which holds the ATT lookup data and service/characteristic definitions. The GATT client is the central device (phone/tablet) that sends requests to the server.</p>
+<h2 id="broadcasting">
+  Broadcasting
+  <a href="#broadcasting" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Sometimes, peripheral devices will only need to advertise data without requesting a scan response from a central device. The main reason may be that a peripheral device needs to send data to multiple devices at once. Broadcasting uses a custom payload in the advertising packet using the <strong>Manufacturer Specific Data</strong> field and sends it to central devices. After the connection is established, the BLE peripheral will stop sending packets and move to GATT services to communicate in both directions.</p>
+<p>One peripheral device → One central device</p>
+<p>One central device → Multiple peripherals</p>
+<h2 id="association-methods">
+  Association Methods
+  <a href="#association-methods" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Latest versions of BLE (4.2 and 5.x) introduced four association methods:</p>
+<ul>
+<li>Just Works
+<ul>
+<li>Uses a plain Elliptic-curve Diffie-Hellman key exchange without authentication of exchanged public keys.</li>
+</ul>
+</li>
+<li>Out of Band
+<ul>
+<li>This requires a non-Bluetooth channel such as NFC for key exchanging. If the OOB channel is secure, passive eavesdropping and MITM attacks are mitigated. Due to requiring a non-Bluetooth channel, it is rarely used.</li>
+</ul>
+</li>
+<li>Passkey Entry
+<ul>
+<li>Prompts the user to input a passkey. Then, the central device generates an Mconfirm and the peripheral generates an Sconfirm. Once the values are checked and matched, the link is encrypted using STK.</li>
+</ul>
+</li>
+<li>Numeric Comparison
+<ul>
+<li>A user is given a 6-digit confirmation value and either states they match or not. A simple yes or no prompt without requiring the user to enter a code.</li>
+</ul>
+</li>
+</ul>
+<h1 id="nfc">
+  NFC
+  <a href="#nfc" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<p>NFC is a short-range low data rate wireless communication technology that operates at 13.56 MHz. These are known as high frequency tags since they are used with more complex readers to provide a cryptographic two-way data transfer. Low frequency RFID tags operate at 125 kHz and are used in systems that don’t require high security. These tags are used for things like parking deck entrances due to their longer range. The downside to low frequency tags is the low data transfer rate which hinders the use of complex two-way data transfer. They also only transmit a short ID without a means of authentication. Unlike Bluetooth, NFC is a contactless mode of communication that uses electromagnetic waves, and its distance is less than 10 cm.</p>
+<p>The NFC network consists of an initiator device and target device. They can operate in either active-active or active-passive modes, but the NFC reader will always operate in active mode. Passive devices derive their power from received electromagnetic waves of the active device. An example of active-active mode is tapping your phone on the card reader at a store. An example of passive-active mode is using your work badge to enter a building. The badge does not have power until it is within range of the reader.</p>
+<h2 id="protocol-stack-1">
+  Protocol Stack
+  <a href="#protocol-stack-1" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>The <strong>application</strong> layer formats the data to be exchanged between NFC devices using the NFC Data Exchange Format (NDEF).</p>
+<p>The <strong>data link</strong> layer takes care of different modes of operation and anti-collision mechanisms.</p>
+<p>The <strong>physical</strong> layer takes care of modulation, coding and RF related parameters like frequency and power.</p>
+<h2 id="nfc-tags">
+  NFC Tags
+  <a href="#nfc-tags" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>These tags can be used within applications where small amounts of data can be stored and transferred to NFC devices.</p>
+<p>Three modes exist in which NFC tag and readers work:</p>
+<ul>
+<li>Card Emulation
+<ul>
+<li>An NFC tag is read by an NFC compliant active reader.</li>
+<li>The reader sends commands to the tag using an RF field.</li>
+<li>The card responds to the reader as requested.</li>
+</ul>
+</li>
+<li>Reader/Writer
+<ul>
+<li>One device is in read mode while the other is in write mode. This is used during product authentication, smart advertising, or device pairing.</li>
+<li>The NFC reader reads NFC tags that are either passive or active.</li>
+<li>In write mode, one NFC device writes to another.</li>
+</ul>
+</li>
+<li>Point to Point
+<ul>
+<li>Any device can become the initiator and the other device(s) will act as the target to complete the connection.</li>
+<li>This mode requires active devices on both ends.</li>
+<li>The initiator sends commands by modulating the RF field and switches it off.</li>
+<li>The target responds to the initiator using its own RF field modulation.</li>
+</ul>
+</li>
+</ul>
+<p>There are four types of tags to ensure interoperability between tag providers and NFC device manufacturers.</p>
+<ul>
+<li>Type 1
+<ul>
+<li>Cost effective and ideal for many NFC applications.</li>
+<li>Based on ISO-14443A standard.</li>
+<li>Read/write capable and users can configure the tag to be read-only.</li>
+<li>96 bytes of memory expandable up to 2KB.</li>
+<li>No data collision protection.</li>
+</ul>
+</li>
+<li>Type 2
+<ul>
+<li>Like type 1 tags but with collision support.</li>
+<li>Based on ISO-14443A standard.</li>
+</ul>
+</li>
+<li>Type 3
+<ul>
+<li>Derived from the non-secure parts of Sony FeliCa tags.</li>
+<li>Costlier than type 1 and 2 tags.</li>
+<li>Based on the Japanese Industrial Standard X 6319-4.</li>
+<li>Pre-configured at the manufacturer to either be read/write or read-only.</li>
+<li>Variable memory up to 1MB per service.</li>
+<li>Anti-collision support.</li>
+</ul>
+</li>
+<li>Type 4
+<ul>
+<li>Based on ISO-14443A standard.</li>
+<li>Pre-configured at the manufacturer to either be read/write or read-only.</li>
+<li>Variable memory up to 32KB per service.</li>
+<li>Anti-collision support.</li>
+<li>Supports three different speeds of 106, 212, or 424 Kbits/s.</li>
+</ul>
+</li>
+</ul>
+<h2 id="nfc-forum-standards">
+  NFC Forum Standards
+  <a href="#nfc-forum-standards" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<ul>
+<li>NDEF
+<ul>
+<li>NFC Data Exchange Format ensures interoperability when transferring data to and from tags and between NFC devices. NDEF is exchanged in messages which consist of a sequence of records, with each record carrying a payload. The payload can include URLs, MIME media, or NFC-specific data types.</li>
+</ul>
+</li>
+<li>RTD
+<ul>
+<li>Each NFC record type is specified in a Record Type Definition document.
+<ul>
+<li>NFC Text RTD</li>
+<li>NFC URI RTD</li>
+<li>NFC Smart Poster RTD</li>
+<li>NFC Generic Control RTD</li>
+<li>NFC Signature RTD</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LLCP
+<ul>
+<li>The Logical Link Control Protocol is a link layer protocol to enhance P2P mode of operation.</li>
+<li>It introduces a two-way link-level connection.</li>
+<li>Connection-oriented transfer acknowledges data exchange</li>
+<li>Connectionless transfer is use for data exchanges that are unacknowledged.</li>
+</ul>
+</li>
+</ul>
+<h1 id="attack-vector-examples">
+  Attack Vector Examples
+  <a href="#attack-vector-examples" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<h3 id="automotive">
+  Automotive
+  <a href="#automotive" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p><strong>Bluetooth</strong></p>
+<p>An attacker could use a Bluetooth connection to:</p>
+<ul>
+<li>Execute code on the infotainment unit.</li>
+<li>Exploit a flaw in the Bluetooth stack of the infotainment unit.</li>
+<li>Upload malformed information, such as a corrupted address book designed to execute code.</li>
+<li>Access the vehicle from close ranges (less than 300 feet).</li>
+<li>Jam the Bluetooth device.</li>
+</ul>
+<p>A specific use case is using Bluetooth enabled ODB device to sniff CAN bus traffic and intercept packets. An Arduino-based ODB-II Bluetooth adapter kit contains a data logger, GPS, accelerometer, and gyro and temperature sensors.</p>
+<p>The CrossChasm C5 data logger can convert proprietary CAN packets into a generic format to send over Bluetooth.</p>
+<ul>
+<li>CAN is a simple protocol used in manufacturing and in the automobile industry. Your ECU communicates using the CAN protocol.</li>
+</ul>
+<p><strong>Bluez (Bluetooth daemon)</strong></p>
+<p>Older or unpatched versions of the Bluez daemon:</p>
+<ul>
+<li>May be exploitable.</li>
+<li>May be unable to handle corrupt address books.</li>
+<li>May not be configured to ensure proper encryption.</li>
+<li>May not be configured to handle secure handshaking.</li>
+<li>May use default passkeys.</li>
+</ul>
+<h3 id="bluesmacking">
+  BlueSmacking
+  <a href="#bluesmacking" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>BlueSmacking is a way to execute DoS attacks against Bluetooth enabled devices. It uses the L2CAP layer of Bluetooth’s network stack to send oversized data packets.</p>
+<h3 id="bluejacking">
+  BlueJacking
+  <a href="#bluejacking" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>BlueJacking is when one Bluetooth device hijacks another with spam advertising. This could include links to malicious sites or phishing campaigns to steal user data.</p>
+<h3 id="bluesnarfing">
+  BlueSnarfing
+  <a href="#bluesnarfing" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Like BlueJacking, BlueSnarfing can send data but also take it. Attackers can obtain texts, emails, photos, and the UUID of the victim device.</p>
+<h3 id="bluebugging">
+  BlueBugging
+  <a href="#bluebugging" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>BlueBugging is an exploit that uses Bluetooth to establish a backdoor on a victim’s device.</p>
+<h3 id="ble-relay">
+  BLE Relay
+  <a href="#ble-relay" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Between versions 4.0 and 5.3, BLE was found to be vulnerable to relay attacks by forwarding GATT requests and responses. A new tool by NCC Group was developed to conduct a relay attack at the link layer level and is capable of relaying encrypted link layer communications. The added latency stays within the range of normal GATT response timing variations, bypassing current mitigations some products have in place. The latency introduced is as little as 8ms round-trip beyond normal operations. BLE devices have variable response times which is why the added 8ms stays within desired range. Given this attack can detect encrypted changes to connection parameters like intervals, WinOffset, PHY mode (physical layer), and channel map, it doesn’t matter if the link layer is encrypted or not.</p>
+<h3 id="downgrade-attack">
+  Downgrade Attack
+  <a href="#downgrade-attack" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>BLE added a new Secure Connections Only (SCO) mode to address vulnerabilities found in previous versions of Bluetooth. The flaw is that the SCO mode only specifies that a BLE device needs to authenticate the mobile device, but the mobile device is not required to authenticate to the BLE device. So, an attacker can spoof a victim BLE device’s MAC address to create a fake BLE device and attack the initiator. A blocker launches a DoS attack and blocks a victim BLE device from connecting to a victim mobile device so that the fake device can connect instead. Sometimes a victim device only allows one connection. When one device connects, others are blocked out. To maintain hierarchy, the fake BLE deice can increase its advertising frequency so that it connects first.</p>
+<h3 id="nfc-eavesdropping">
+  NFC Eavesdropping
+  <a href="#nfc-eavesdropping" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>An attacker uses an antenna to record communication between NFC devices. The attacker still needs to be in range, but if the channel is unencrypted, it makes it easy to corrupt information between the data exchange.</p>
+<h3 id="nfc-data-modification">
+  NFC Data Modification
+  <a href="#nfc-data-modification" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Data exchanged is captured and modified by an attacker’s RFID device using a jammer.</p>
+<h3 id="nfc-relay-attack">
+  NFC Relay Attack
+  <a href="#nfc-relay-attack" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>By exploiting the ISO-14333 protocol, the attacker forwards the request of the reader to the victim and relays the answer back to the attacker device. The data is relayed over another communication channel (Bluetooth / WiFi) to a second NFC reader placed in proximity to the legit reader.</p>
+<p>In the case of a Google Wallet relay attack, a relay reader (Mole) and card emulator (Proxy) were placed in between the smartcard and smartcard reader. Every command that the card emulator receives from the actual reader is forwarded to the mole that then forwards the command to the victim card. The card’s response is sent back by the mole to the actual reader through the proxy.</p>
+<h1 id="vulnerabilities">
+  Vulnerabilities
+  <a href="#vulnerabilities" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<h3 id="bleedingtooth">
+  BleedingTooth
+  <a href="#bleedingtooth" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>BleedingTooth is a set of zero-click vulnerabilities in the Linux Bluetooth subsystem that can allow an unauthenticated remote attacker in short distance to execute arbitrary code with kernel privileges on vulnerable devices. Higher level protocols such as A2MP or SMP are built on top of L2CAP. These protocols are exposed without authentication and live inside the kernel.</p>
+<ul>
+<li>BadVibes (CVE-2020-24490) is a heap-based buffer overflow that affects devices with Bluetooth version 5.</li>
+<li>BadChoice (CVE-2020-12352) is a stack-based information leak that allows an attacker to leak memory addresses of the victim.</li>
+<li>BadKarma (CVE-2020-12351) is a heap-based type confusion.</li>
+</ul>
+<p>BadChoice can be chained with BadVibes and BadKarma to achieve RCE. BadKarma is the only vulnerability not limited to Bluetooth 5.</p>
+<p>A proof of concept is available here:</p>
+<p><a href="https://github.com/google/security-research/tree/master/pocs/linux/bleedingtooth">https://github.com/google/security-research/tree/master/pocs/linux/bleedingtooth</a></p>
+<h3 id="bleedingbit">
+  BleedingBit
+  <a href="#bleedingbit" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>BleedingBit consists of two vulnerabilities affecting chips made by Texas Instruments. These chips are embedded in access points that deliver WiFi to enterprise networks. Successful exploitation allows unauthenticated attackers to break into enterprise networks undetected.</p>
+<ul>
+<li>CVE-2018-16986 is an RCE vulnerability triggered by an attacker sending advertising packets that contain malicious code stored on the memory of the BLE chip. An overflow packet is sent that allocates additional space, allowing the attacker to modify function pointers to point to their malicious code.</li>
+<li>CVE-2018-7080 is an over the air firmware download RCE vulnerability allowing attackers to rewrite the operating system on the BLE chip. The OAD feature does not address secure firmware updates, so a simple update mechanism is sent over a GATT transaction.</li>
+</ul>
+<h3 id="sweyntooth">
+  SweynTooth
+  <a href="#sweyntooth" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>SweynTooth is a vulnerability family consisting of 12 vulnerabilities. They expose flaws in BLE SoC implementations that allow attackers in radio range to trigger deadlocks, crashes, buffer overflows, or bypass security.</p>
+<p>A PoC is available here: <a href="https://asset-group.github.io/disclosures/sweyntooth/">https://asset-group.github.io/disclosures/sweyntooth/</a></p>
+<table>
+<thead>
+<tr>
+<th>Vulnerability Type</th>
+<th>Exploitable Remotely</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crash from Link Layer Length Overflow CVE-2019-16336</td>
+<td>No</td>
+<td>An attacker can crash the device by triggering hard faults. If crash occurs, device may restart. The capability to restart depends on correct hard-fault handling mechanisms being implemented in the product using devices with the vulnerable BLE System on Chip (SoC).</td>
+</tr>
+<tr>
+<td>Crash from Link Layer Length Overflow CVE-2019-17519</td>
+<td>No</td>
+<td>An attacker can crash the device by triggering hard faults. This could initially result in a denial-of-service condition.</td>
+</tr>
+<tr>
+<td>Crash from Truncated L2CAP CVE-2019-17517</td>
+<td>No</td>
+<td>An attacker in radio range can use this attack to cause a denial-of-service condition and crash the device.</td>
+</tr>
+<tr>
+<td>Crash from Silent Length Overflow CVE-2019-17518</td>
+<td>No</td>
+<td>An attacker in radio range can use this attack to cause a denial-of-service condition and crash the device.</td>
+</tr>
+<tr>
+<td>Unexpected Public Key Crash CVE-2019-17520</td>
+<td>No</td>
+<td>An attacker in radio range can exploit this vulnerability to cause a denial-of-service condition. The product may not properly handle hard faults and enter a deadlock state. This may require a manual restart.</td>
+</tr>
+<tr>
+<td>Crash from Invalid L2CAP Fragment CVE-2019-19195</td>
+<td>No</td>
+<td>An attacker can crash the device by triggering hard faults. If crash occurs, device may restart. The capability to restart depends on correct hard-fault handling mechanisms being implemented in the product using the vulnerable BLE SoC.</td>
+</tr>
+<tr>
+<td>Crash from Key Size Overflow CVE-2019-19196</td>
+<td>No</td>
+<td>This vulnerability allows an attacker in radio range to perform buffer overflow and crash products with pairing support enabled, which is common practice in several BLE products. In the worst case, it could be possible to overwrite buffers that store encryption nonce, which could allow the attacker to bypass encryption and leak user information.</td>
+</tr>
+<tr>
+<td>Link Layer LLID deadlock CVE-2019-17061</td>
+<td>No</td>
+<td>The availability of the BLE connection can be affected without causing a hard fault or memory corruption and can result in deadlock. Crashes originating from hard faults, if not properly handled, can become a deadlock if the device is not automatically restarted. In most cases, when a deadlock occurs, the user is required to manually power off and power on the device to re-establish proper BLE communication.</td>
+</tr>
+<tr>
+<td>Link Layer LLID deadlock CVE-2019-17060</td>
+<td>No</td>
+<td>The availability of BLE products could be critically impaired, likely requiring the user to manually perform a power cycle on the product to re-establish BLE communication.</td>
+</tr>
+<tr>
+<td>Sequential ATT Deadlock CVE-2019-19192</td>
+<td>No</td>
+<td>This vulnerability can leave the product in a deadlock state and would require a restart either manually or by mechanisms built into the firmware.</td>
+</tr>
+<tr>
+<td>Deadlock from Invalid Connection Request CVE-2019-19193</td>
+<td>No</td>
+<td>An attacker in radio range can cause a denial-of-service condition in the affected products using the vulnerable SoCs. Crashes originating from hard faults, if not properly handled, can become a deadlock if the device is not automatically restarted. In most cases, when a deadlock occurs, the user is required to manually power off and power on the device to re-establish proper BLE communication.</td>
+</tr>
+<tr>
+<td>Security bypass from Zero LTK Installation CVE-2019-19194</td>
+<td>No</td>
+<td>Allows attackers in radio range to bypass the latest secure pairing mode of BLE, i.e., the Secure Connections pairing mode. An attacker in radio range may have arbitrary read or write access to the device’s functions.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="tools">
+  Tools
+  <a href="#tools" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<ul>
+<li><a href="https://github.com/AdamLaurie/RFIDIOt">RFIDIot</a> is a collection of tools and libraries for exploring RFID technology.</li>
+<li><a href="https://github.com/AdamLaurie/RFIDIOt/blob/master/pn532mitm.py">pn532mitm.py</a> is a script within RFIDIot to create a MiTM attack.</li>
+<li><a href="https://linux.die.net/man/1/hcitool">hcitool</a> makes use of the host controller interface in a laptop to communicate and read/write changes to BLE devices.
+<ul>
+<li>In order to change data, the attacker needs to know the service and characteristic the data is coming from. To find that, use gatttool.</li>
+</ul>
+</li>
+<li><a href="https://manpages.ubuntu.com/manpages/bionic/man1/gatttool.1.html">gatttool</a> is used for finding out the services and characteristics of an available BLE device.</li>
+<li><a href="https://github.com/bettercap/bettercap">Bettercap</a> is a framework to perform attacks against WiFi networks, BLE devices, wireless HID devices and ethernet networks.</li>
+<li>Flipper Zero is a multipurpose tool with the ability to interact with both low frequency (125 kHz) and high frequency (13.56 MHz) tags.</li>
+</ul>
+<h1 id="references">
+  References
+  <a href="#references" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<ul>
+<li><a href="https://learn.adafruit.com/introduction-to-bluetooth-low-energy/introduction">Intro to BLE</a></li>
+<li><a href="https://www.rfwireless-world.com/Tutorials/Bluetooth_tutorial.html">BlueTooth Tutorial</a></li>
+<li><a href="https://www.rfwireless-world.com/Tutorials/NFC-Near-Field-Communication-tutorial.html">NFC Tutorial</a></li>
+<li><a href="https://www.bluetooth.com/specifications/specs/">BLE profiles and services</a></li>
+<li><a href="https://www.bluetooth.com/specifications/assigned-numbers/">BLE characteristics</a></li>
+<li><a href="https://research.nccgroup.com/2022/05/15/technical-advisory-ble-proximity-authentication-vulnerable-to-relay-attacks/">BLE Relay Attack</a></li>
+<li><a href="https://www.usenix.org/system/files/sec20-zhang-yue.pdf">BLE Downgrade Attacks</a></li>
+<li><a href="https://resources.infosecinstitute.com/topic/near-field-communication-nfc-technology-vulnerabilities-and-principal-attack-schema/">NFC Vulnerabilities</a></li>
+<li><a href="https://blog.attify.com/the-practical-guide-to-hacking-bluetooth-low-energy/">Guide to BLE Hacking</a></li>
+<li><a href="https://asset-group.github.io/disclosures/sweyntooth/">Sweyntooth</a></li>
+<li><a href="https://www.armis.com/research/bleedingbit/">Bleedingbit</a></li>
+<li><a href="https://google.github.io/security-research/pocs/linux/bleedingtooth/writeup.html#badvibes-heap-based-buffer-overflow-cve-2020-24490">BleedingTooth</a></li>
+</ul>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="https://axelarator.github.io/posts/codesigningcerts/">
+                  <span class="button__text">Abusing Code Signing Certificates</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2023 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://axelarator.github.io/assets/main.js"></script>
+<script src="https://axelarator.github.io/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
