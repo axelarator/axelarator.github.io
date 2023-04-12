@@ -162,6 +162,46 @@
   <div class="posts">
     
     <div class="post on-list">
+      <h1 class="post-title"><a href="https://axelarator.github.io/posts/minskdoc/">Malicious Word Doc</a></h1>
+      <div class="post-meta">
+        
+          <span class="post-date">
+            2022-07-17
+          </span>
+
+          
+        
+
+        
+
+        
+      </div>
+
+      
+
+      
+
+      <div class="post-content">
+        
+          
+            https://analyze.intezer.com/analyses/1832abdc-0212-4f2b-97af-ec69af2e5a92/genetic-analysis
+https://www.virustotal.com/gui/file/81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
+SHA256:81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
+Malicious Word document referencing Minsk Protocol. #  Uses macros to download a second-stage payload from a server.
+Process Tree #  Uses WINWORD to open the file.
+&#34;C:\Program Files (x86)\Microsoft Office\Office14\WINWORD.EXE&#34; &#34;C:\Users\&lt;USER&gt;\AppData\Local\Temp\&lt;ANALYZED-FILE-NAME&gt;.doc&#34; /q Runs PowerShell base64 encoded command (listed below in a VBA macro)
+Child process from WINWORD launches splwow64
+C:\Windows\splwow64.exe 12288 Details from the file #  Using oleid, VBA macros are found.
+Next is to use olevba to get more information about the VBA and view the macro code
+          
+        
+      </div>
+      
+        <div><a class="read-more button" href="/posts/minskdoc/">Read more →</a></div>
+      
+    </div>
+    
+    <div class="post on-list">
       <h1 class="post-title"><a href="https://axelarator.github.io/posts/malwarelab/">Malware Analysis Homelab</a></h1>
       <div class="post-meta">
         
@@ -293,44 +333,6 @@ Adversaries may use NTFS file attributes to hide their malicious data in order t
       </div>
       
         <div><a class="read-more button" href="/posts/ntfs/">Read more →</a></div>
-      
-    </div>
-    
-    <div class="post on-list">
-      <h1 class="post-title"><a href="https://axelarator.github.io/posts/honeypot/">Honeypot</a></h1>
-      <div class="post-meta">
-        
-          <span class="post-date">
-            2022-06-23
-          </span>
-
-          
-        
-
-        
-
-        
-      </div>
-
-      
-
-      
-
-      <div class="post-content">
-        
-          
-            Honeypot #  https://sysdig.com/blog/triaging-malicious-docker-container/
-https://www.intezer.com/blog/malware-analysis/how-to-make-malware-honeypot/
-https://medium.com/@riccardo.ancarani94/attacking-docker-exposed-api-3e01ffc3c124
-https://hub.docker.com/_/alpine
-EC2 Instance running Ubuntu Server 18.04 w/ Docker running an Alpine Linux container.
- Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer.  Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
-Activity between 10pm 2/9 and 04:32 2/10
-          
-        
-      </div>
-      
-        <div><a class="read-more button" href="/posts/honeypot/">Read more →</a></div>
       
     </div>
     

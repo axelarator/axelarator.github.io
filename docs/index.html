@@ -162,6 +162,38 @@
   <div class="posts">
     
     <div class="post on-list">
+      <h1 class="post-title"><a href="https://axelarator.github.io/posts/mozi/">Mozi</a></h1>
+      <div class="post-meta">
+        
+          <span class="post-date">
+            2023-04-11
+          </span>
+
+          
+        
+
+        
+
+        
+      </div>
+
+      
+
+      
+
+      <div class="post-content">
+        
+          
+            Discovered in 2019, Mozi is a P2P botnet using the DHT protocol that spreads via Telnet with weak passwords and known exploits. Evolved from the source code of several known malware families; Gafgyt, Mirai and IoT Reaper, Mozi is capable of DDoS attacks, data exfiltration and command or payload execution. The malware targets IoT devices, predominantly routers and DVRs that are either unpatched or have weak telnet passwords. In a report from IBM, Mozi accounted for 90% of IoT network traffic between October 2019 and June 2020.
+          
+        
+      </div>
+      
+        <div><a class="read-more button" href="/posts/mozi/">Read more →</a></div>
+      
+    </div>
+    
+    <div class="post on-list">
       <h1 class="post-title"><a href="https://axelarator.github.io/posts/blenfc/">BLE / NFC Threats</a></h1>
       <div class="post-meta">
         
@@ -291,46 +323,6 @@ Identify Service #   Use OSINT to determine the provider and region your target 
       </div>
       
         <div><a class="read-more button" href="/posts/cloudrecon/">Read more →</a></div>
-      
-    </div>
-    
-    <div class="post on-list">
-      <h1 class="post-title"><a href="https://axelarator.github.io/posts/minskdoc/">Malicious Word Doc</a></h1>
-      <div class="post-meta">
-        
-          <span class="post-date">
-            2022-07-17
-          </span>
-
-          
-        
-
-        
-
-        
-      </div>
-
-      
-
-      
-
-      <div class="post-content">
-        
-          
-            https://analyze.intezer.com/analyses/1832abdc-0212-4f2b-97af-ec69af2e5a92/genetic-analysis
-https://www.virustotal.com/gui/file/81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
-SHA256:81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
-Malicious Word document referencing Minsk Protocol. #  Uses macros to download a second-stage payload from a server.
-Process Tree #  Uses WINWORD to open the file.
-&#34;C:\Program Files (x86)\Microsoft Office\Office14\WINWORD.EXE&#34; &#34;C:\Users\&lt;USER&gt;\AppData\Local\Temp\&lt;ANALYZED-FILE-NAME&gt;.doc&#34; /q Runs PowerShell base64 encoded command (listed below in a VBA macro)
-Child process from WINWORD launches splwow64
-C:\Windows\splwow64.exe 12288 Details from the file #  Using oleid, VBA macros are found.
-Next is to use olevba to get more information about the VBA and view the macro code
-          
-        
-      </div>
-      
-        <div><a class="read-more button" href="/posts/minskdoc/">Read more →</a></div>
       
     </div>
     

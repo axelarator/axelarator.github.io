@@ -9,10 +9,30 @@
     <description>Recent content on Axelarator Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Mar 2023 11:22:25 -0600</lastBuildDate>
+    <lastBuildDate>Tue, 11 Apr 2023 18:50:05 -0600</lastBuildDate>
     
 	<atom:link href="https://axelarator.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mozi</title>
+      <link>https://axelarator.github.io/posts/mozi/</link>
+      <pubDate>Tue, 11 Apr 2023 18:50:05 -0600</pubDate>
+      
+      <guid>https://axelarator.github.io/posts/mozi/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Discovered in 2019, Mozi is a P2P botnet using the DHT protocol that spreads via Telnet with weak passwords and known exploits. Evolved from the source code of several known malware families; Gafgyt, Mirai and IoT Reaper, Mozi is capable of DDoS attacks, data exfiltration and command or payload execution. The malware targets IoT devices, predominantly routers and DVRs that are either unpatched or have weak telnet passwords. In a report from IBM, Mozi accounted for 90% of IoT network traffic between October 2019 and June 2020.
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>BLE / NFC Threats</title>
