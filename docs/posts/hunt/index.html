@@ -284,41 +284,41 @@
   Nimplant C2 Template
   <a href="#nimplant-c2-template" class="h-anchor" aria-hidden="true">#</a>
 </h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">id: nimplant-c2
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">id</span>: <span style="color:#ae81ff">nimplant-c2</span>
 
-info:
-    name: Uncover Nimplant C2 Servers
-    author: Taylor
-    severity: low
-    description: Searches <span style="color:#66d9ef">for</span> a specific content-length, server header, and status codes.
-    reference: Knowledge
-    tags: c2, http
+<span style="color:#f92672">info</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Uncover Nimplant C2 Servers</span>
+    <span style="color:#f92672">author</span>: <span style="color:#ae81ff">Taylor</span>
+    <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">low</span>
+    <span style="color:#f92672">description</span>: <span style="color:#ae81ff">Searches for a specific content-length, server header, and status codes.</span>
+    <span style="color:#f92672">reference</span>: <span style="color:#ae81ff">Knowledge</span>
+    <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">c2, http</span>
 
-http:
-  - method: GET
-    path:
+<span style="color:#f92672">http</span>:
+  - <span style="color:#f92672">method</span>: <span style="color:#ae81ff">GET</span>
+    <span style="color:#f92672">path</span>:
       - <span style="color:#e6db74">&#34;{{BaseURL}}&#34;</span>
-    matchers-condition: and
-    matchers:
-      - type: dsl
-        name: content-length
-        dsl:
+    <span style="color:#f92672">matchers-condition</span>: <span style="color:#ae81ff">and</span>
+    <span style="color:#f92672">matchers</span>:
+      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">dsl</span>
+        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">content-length</span>
+        <span style="color:#f92672">dsl</span>:
           - <span style="color:#e6db74">&#34;content_length == 23&#34;</span>
 
-      - type: word
-        name: nimplant
-        words: 
+      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">word</span>
+        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nimplant</span>
+        <span style="color:#f92672">words</span>: 
           - <span style="color:#e6db74">&#34;NimPlant C2 Server&#34;</span>
           - <span style="color:#e6db74">&#34;Apache/2.4.29 (Ubuntu)&#34;</span>
-        condition: or
-        part: header
+        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">or</span>
+        <span style="color:#f92672">part</span>: <span style="color:#ae81ff">header</span>
 
-      - type: status
-        name: status
-        status: 
+      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">status</span>
+        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">status</span>
+        <span style="color:#f92672">status</span>: 
           - <span style="color:#ae81ff">404</span>
           - <span style="color:#ae81ff">500</span>
-        condition: or
+        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">or</span>
 </code></pre></div><p><img src="/hunt/Untitled.png" alt="Untitled"></p>
 <h3 id="nimplant-ssl-template">
   Nimplant SSL Template
