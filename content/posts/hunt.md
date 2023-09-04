@@ -69,7 +69,7 @@ Sidenote: DSL is an engine that provides a set of helper functions.
 
 ### Nimplant C2 Template
 
-```bash
+```yaml
 id: nimplant-c2
 
 info:
