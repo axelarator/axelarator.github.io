@@ -9,10 +9,30 @@
     <description>Recent content on Axelarator Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Sep 2023 14:55:00 -0600</lastBuildDate>
+    <lastBuildDate>Mon, 11 Mar 2024 13:13:39 -0600</lastBuildDate>
     
 	<atom:link href="https://axelarator.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A CTI Analyst Homelab</title>
+      <link>https://axelarator.github.io/posts/ctihomelab/</link>
+      <pubDate>Mon, 11 Mar 2024 13:13:39 -0600</pubDate>
+      
+      <guid>https://axelarator.github.io/posts/ctihomelab/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Intro #  As career plans, personal interests and the overall curiosity of exploring new technologies change, so does a homelab. It has been a few years since my last homelab writeup and at the time, the focus was geared towards malware analysis without much else. Career goals have shifted to more of a defensive side towards threat hunting and detection engineering so I wanted to build something to support those two fields.
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>Hunting C2s with Nuclei</title>
