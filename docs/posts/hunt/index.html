@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Overview #  For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring."
+  content="Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring."
 />
 <meta
   name="keywords"
@@ -45,19 +45,17 @@
 <link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Hunting C2s with Nuclei"/>
-<meta name="twitter:description" content="Overview #  For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring."/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Hunting C2s with Nuclei"/>
+<meta name="twitter:description" content="Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring."/>
 
 
 
 <meta property="og:title" content="Hunting C2s with Nuclei" />
-<meta property="og:description" content="Overview #  For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring." />
+<meta property="og:description" content="Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://axelarator.github.io/posts/hunt/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-09-04T14:55:00-06:00" />
 <meta property="article:modified_time" content="2023-09-04T14:55:00-06:00" /><meta property="og:site_name" content="Axelarator Blog" />
-
 
 
 
@@ -284,42 +282,42 @@
   Nimplant C2 Template
   <a href="#nimplant-c2-template" class="h-anchor" aria-hidden="true">#</a>
 </h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">id</span>: <span style="color:#ae81ff">nimplant-c2</span>
-
-<span style="color:#f92672">info</span>:
-    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Uncover Nimplant C2 Servers</span>
-    <span style="color:#f92672">author</span>: <span style="color:#ae81ff">Taylor</span>
-    <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">low</span>
-    <span style="color:#f92672">description</span>: <span style="color:#ae81ff">Searches for a specific content-length, server header, and status codes.</span>
-    <span style="color:#f92672">reference</span>: <span style="color:#ae81ff">Knowledge</span>
-    <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">c2, http</span>
-
-<span style="color:#f92672">http</span>:
-  - <span style="color:#f92672">method</span>: <span style="color:#ae81ff">GET</span>
-    <span style="color:#f92672">path</span>:
-      - <span style="color:#e6db74">&#34;{{BaseURL}}&#34;</span>
-    <span style="color:#f92672">matchers-condition</span>: <span style="color:#ae81ff">and</span>
-    <span style="color:#f92672">matchers</span>:
-      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">dsl</span>
-        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">content-length</span>
-        <span style="color:#f92672">dsl</span>:
-          - <span style="color:#e6db74">&#34;content_length == 23&#34;</span>
-
-      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">word</span>
-        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nimplant</span>
-        <span style="color:#f92672">words</span>: 
-          - <span style="color:#e6db74">&#34;NimPlant C2 Server&#34;</span>
-          - <span style="color:#e6db74">&#34;Apache/2.4.29 (Ubuntu)&#34;</span>
-        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">or</span>
-        <span style="color:#f92672">part</span>: <span style="color:#ae81ff">header</span>
-
-      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">status</span>
-        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">status</span>
-        <span style="color:#f92672">status</span>: 
-          - <span style="color:#ae81ff">404</span>
-          - <span style="color:#ae81ff">500</span>
-        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">or</span>
-</code></pre></div><p><img src="/hunt/Untitled.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">id</span>: <span style="color:#ae81ff">nimplant-c2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">info</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Uncover Nimplant C2 Servers</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">author</span>: <span style="color:#ae81ff">Taylor</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">low</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">description</span>: <span style="color:#ae81ff">Searches for a specific content-length, server header, and status codes.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">reference</span>: <span style="color:#ae81ff">Knowledge</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">c2, http</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">http</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">method</span>: <span style="color:#ae81ff">GET</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;{{BaseURL}}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchers-condition</span>: <span style="color:#ae81ff">and</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">dsl</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">content-length</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">dsl</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#e6db74">&#34;content_length == 23&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">word</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nimplant</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">words</span>: 
+</span></span><span style="display:flex;"><span>          - <span style="color:#e6db74">&#34;NimPlant C2 Server&#34;</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#e6db74">&#34;Apache/2.4.29 (Ubuntu)&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">or</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">part</span>: <span style="color:#ae81ff">header</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">status</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">status</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">status</span>: 
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">404</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">500</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">or</span>
+</span></span></code></pre></div><p><img alt="Untitled" src="/hunt/Untitled.png"></p>
 <h3 id="nimplant-ssl-template">
   Nimplant SSL Template
   <a href="#nimplant-ssl-template" class="h-anchor" aria-hidden="true">#</a>
@@ -327,120 +325,120 @@
 <p>This is where templates get a bit complex and I’ll introduce workflows. Nimplant servers used to use self-signed certs with <code>issuer_cn: operator</code> and <code>subject_cn: multiplayer</code> but that has since changed. What I’ve noticed now is they’re using valid certificates signed by Let’s Encrypt with <code>subject_cn</code> values containing the resolved domain. For example, <code>123.456.789.100</code> resolves to <code>domain.com</code> and <code>domain.com</code> is also the value of <code>subject_cn</code>. I wanted to write a rule that finds any certs matching this condition. The difficulty was I needed a way to resolve a host, save it somewhere and use it within another helper function. If I understand correctly, until multi protocol support is added, these checks need to be in separate templates which is fine because Nuclei uses extractors. Extractors can be used to extract and display results in a match from the response returned by a module.</p>
 <p>Luckily, a template already exists within the SSL folder called <code>ssl-dns-names.yaml</code> which takes a host:port as input and extracts the <code>.subject_an[]</code>. The dot is because extractors with a <code>type: json</code> use Jquery syntax to format output.</p>
 <p>I modified the below template to include <code>name: extracted_san</code> so I can use that value elsewhere.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">id</span>: <span style="color:#ae81ff">ssl-dns-names</span>
-
-<span style="color:#f92672">info</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">SSL DNS Names</span>
-  <span style="color:#f92672">author</span>: <span style="color:#ae81ff">pdteam</span>
-  <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">info</span>
-  <span style="color:#f92672">description</span>: |<span style="color:#e6db74">
-</span><span style="color:#e6db74">    </span>    <span style="color:#ae81ff">Extract the Subject Alternative Name (SAN) from the target&#39;s certificate. SAN facilitates the usage of additional hostnames with the same certificate.</span>
-  <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">c2,ssl,dns,nimplant</span>
-  <span style="color:#f92672">metadata</span>:
-    <span style="color:#f92672">max-request</span>: <span style="color:#ae81ff">1</span>
-
-<span style="color:#f92672">ssl</span>:
-  - <span style="color:#f92672">address</span>: <span style="color:#e6db74">&#34;{{Host}}:{{Port}}&#34;</span>
-
-    <span style="color:#f92672">extractors</span>:
-      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">json</span>
-        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">extracted_san</span>
-        <span style="color:#f92672">json</span>:
-          - <span style="color:#e6db74">&#34;.subject_an[]&#34;</span>
-</code></pre></div><p><img src="/hunt/Untitled%201.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">id</span>: <span style="color:#ae81ff">ssl-dns-names</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">info</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">SSL DNS Names</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">author</span>: <span style="color:#ae81ff">pdteam</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">info</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">description</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Extract the Subject Alternative Name (SAN) from the target&#39;s certificate. SAN facilitates the usage of additional hostnames with the same certificate.</span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">c2,ssl,dns,nimplant</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">max-request</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">ssl</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">address</span>: <span style="color:#e6db74">&#34;{{Host}}:{{Port}}&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">extractors</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">json</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">extracted_san</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">json</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#e6db74">&#34;.subject_an[]&#34;</span>
+</span></span></code></pre></div><p><img alt="Untitled" src="/hunt/Untitled%201.png"></p>
 <p>Since the above extractor has a name and is now a variable, it can be referenced directly in the DSL helper function. The <code>matchers-condition</code> is set to OR because this template needs to both be self sufficient and work within a workflow. The reason being is the first matcher will only work when run after <code>ssl-dns-names</code> because it takes a passed variable as input to the contains() function. If you were to run this by itself, that matcher would always fail. So another pattern I noticed within the certificate is they all contain a <code>mismatched: true</code> pair.</p>
 <p>The contains() function works like you’d think. It verifies if a string contains a substring. So in this case, I’m checking if “officemobsync[.]com” (subject_cn) is within “officemobsync[.]com” (extracted_san).</p>
 <p>As an output, I decided to include the <code>subject_cn</code> and value of <code>mismatched</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">id</span>: <span style="color:#ae81ff">nimplant-c2-ssl</span>
-
-<span style="color:#75715e"># Uses extractor to take subject_cn from ssl/ssl-dns-names.yaml</span>
-<span style="color:#75715e"># Input variable here to match subject_cn of cert to domain name</span>
-<span style="color:#75715e"># https://docs.nuclei.sh/template-guide/workflows</span>
-
-<span style="color:#f92672">info</span>:
-    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Nimplant SSL Discovery</span>
-    <span style="color:#f92672">author</span>: <span style="color:#ae81ff">axelarator</span>
-    <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">low</span>
-    <span style="color:#f92672">description</span>: <span style="color:#ae81ff">Finding Nimplant C2 servers based on SSL attributes</span>
-    <span style="color:#f92672">reference</span>: <span style="color:#ae81ff">blank for now</span>
-    <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">c2,nimplant,ssl</span>
-
-<span style="color:#f92672">ssl</span>:
-  - <span style="color:#f92672">address</span>: <span style="color:#e6db74">&#34;{{Host}}:{{Port}}&#34;</span>
-    <span style="color:#f92672">matchers-condition</span>: <span style="color:#ae81ff">or</span>
-    <span style="color:#f92672">matchers</span>:
-      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">dsl</span>
-        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">contains</span>
-        <span style="color:#f92672">dsl</span>:
-          - <span style="color:#ae81ff">contains(extracted_san, subject_cn)</span>
-
-      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">dsl</span>
-        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mismatch</span>
-        <span style="color:#f92672">dsl</span>:
-          - <span style="color:#e6db74">&#34;mismatched == true&#34;</span>
-    
-    <span style="color:#f92672">extractors</span>:
-      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">json</span>
-        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">host</span>
-        <span style="color:#f92672">json</span>:
-          - <span style="color:#e6db74">&#34;.subject_cn, .mismatched&#34;</span>
-</code></pre></div><p>I mentioned I’d introduce workflows. They’re actually very simple and only require a few lines of code. The <code>-w</code> flag is for workflows while <code>-t</code> is for templates. As I’m taking a value from one and passing to another, the second template is defined as a subtemplate. Nuclei calls this a “shared execution context”. The template:subtemplate pairs can be stacked into a hierarchal tree for numerous conditional matchings too.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">id</span>: <span style="color:#ae81ff">nimplant-workflow</span>
-
-<span style="color:#f92672">info</span>: 
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nimplant-workflow</span>
-  <span style="color:#f92672">author</span>: <span style="color:#ae81ff">axelarator</span>
-  <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">info</span>
-  <span style="color:#f92672">description</span>: <span style="color:#ae81ff">takes resolved DNS name to compare to certificate subject_cn value</span>
-
-<span style="color:#f92672">workflows</span>:
-  - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">ssl/ssl-dns-names.yaml</span>
-    <span style="color:#f92672">subtemplates</span>:
-      - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">nimplant-c2-ssl.yaml</span>
-</code></pre></div><p><img src="/hunt/Untitled%202.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">id</span>: <span style="color:#ae81ff">nimplant-c2-ssl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Uses extractor to take subject_cn from ssl/ssl-dns-names.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Input variable here to match subject_cn of cert to domain name</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://docs.nuclei.sh/template-guide/workflows</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">info</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Nimplant SSL Discovery</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">author</span>: <span style="color:#ae81ff">axelarator</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">low</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">description</span>: <span style="color:#ae81ff">Finding Nimplant C2 servers based on SSL attributes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">reference</span>: <span style="color:#ae81ff">blank for now</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">c2,nimplant,ssl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">ssl</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">address</span>: <span style="color:#e6db74">&#34;{{Host}}:{{Port}}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchers-condition</span>: <span style="color:#ae81ff">or</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">dsl</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">contains</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">dsl</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">contains(extracted_san, subject_cn)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">dsl</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mismatch</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">dsl</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#e6db74">&#34;mismatched == true&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">extractors</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">json</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">host</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">json</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#e6db74">&#34;.subject_cn, .mismatched&#34;</span>
+</span></span></code></pre></div><p>I mentioned I’d introduce workflows. They’re actually very simple and only require a few lines of code. The <code>-w</code> flag is for workflows while <code>-t</code> is for templates. As I’m taking a value from one and passing to another, the second template is defined as a subtemplate. Nuclei calls this a “shared execution context”. The template:subtemplate pairs can be stacked into a hierarchal tree for numerous conditional matchings too.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">id</span>: <span style="color:#ae81ff">nimplant-workflow</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">info</span>: 
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nimplant-workflow</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">author</span>: <span style="color:#ae81ff">axelarator</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">info</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">description</span>: <span style="color:#ae81ff">takes resolved DNS name to compare to certificate subject_cn value</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">workflows</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">ssl/ssl-dns-names.yaml</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">subtemplates</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">nimplant-c2-ssl.yaml</span>
+</span></span></code></pre></div><p><img alt="Untitled" src="/hunt/Untitled%202.png"></p>
 <p>Workflows don’t require subtemplates. Instead, you could add different groups of templates or even tags specified in each template. Here’s an example they share:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">workflows</span>:
-  - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">cves/</span>
-  - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">exposed-tokens/</span>
-  - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">exposures/</span>
-  - <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">exposures</span>
-</code></pre></div><h3 id="nimplant-jarm-template">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">workflows</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">cves/</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">exposed-tokens/</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">template</span>: <span style="color:#ae81ff">exposures/</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">exposures</span>
+</span></span></code></pre></div><h3 id="nimplant-jarm-template">
   Nimplant JARM Template
   <a href="#nimplant-jarm-template" class="h-anchor" aria-hidden="true">#</a>
 </h3>
 <p>Lastly, this one is very simple. I send some hex data to a server in order to get a response and complete the handshake process for calculating a JARM signature. Again, using a DSL helper function <code>jarm</code>, I can match the calculated signature.</p>
 <p>A quick way to calculate a JARM is pass the host:port to tlsx. This is how the helper function in the code block below works.</p>
-<p><img src="/hunt/Untitled%203.png" alt="Untitled"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">id</span>: <span style="color:#ae81ff">nimplant-c2-jarm</span>
-
-<span style="color:#f92672">info</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Nimplant C2 JARM - Detect</span>
-  <span style="color:#f92672">author</span>: <span style="color:#ae81ff">axelarator</span>
-  <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">info</span>
-  <span style="color:#f92672">description</span>: <span style="color:#ae81ff">Calculating the JARM and comparing it to a known Nimplant JARM signature</span>
-  <span style="color:#f92672">reference</span>:
-    - <span style="color:#ae81ff">https://github.com/cedowens/C2-JARM</span>
-    - <span style="color:#ae81ff">https://github.com/chvancooten/NimPlant</span>
-  <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">c2,ir,osint,nimplant,jarm</span>
-
-<span style="color:#f92672">tcp</span>:
-  - <span style="color:#f92672">inputs</span>:
-      - <span style="color:#f92672">data</span>: <span style="color:#ae81ff">2E</span>
-        <span style="color:#f92672">type</span>: <span style="color:#ae81ff">hex</span>
-
-    <span style="color:#f92672">host</span>:
-      - <span style="color:#e6db74">&#34;{{Hostname}}&#34;</span>
-
-    <span style="color:#f92672">matchers</span>:
-      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">dsl</span>
-        <span style="color:#f92672">dsl</span>:
-          - <span style="color:#e6db74">&#34;jarm(Hostname) == &#39;28d28d28d00028d00042d42d000000ad9bf51cc3f5a1e29eecb81d0c7b06eb&#39;&#34;</span>
-</code></pre></div><p>Both outputs below achieve the same effect. Due to how the hostname is formatted, a port is required. The first option is fine if you know the host is running an HTTPS service on a specific port.</p>
-<p><img src="/hunt/Untitled%204.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/hunt/Untitled%203.png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">id</span>: <span style="color:#ae81ff">nimplant-c2-jarm</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">info</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Nimplant C2 JARM - Detect</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">author</span>: <span style="color:#ae81ff">axelarator</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">severity</span>: <span style="color:#ae81ff">info</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">description</span>: <span style="color:#ae81ff">Calculating the JARM and comparing it to a known Nimplant JARM signature</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">reference</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">https://github.com/cedowens/C2-JARM</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">https://github.com/chvancooten/NimPlant</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tags</span>: <span style="color:#ae81ff">c2,ir,osint,nimplant,jarm</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">tcp</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">inputs</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">data</span>: <span style="color:#ae81ff">2E</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">type</span>: <span style="color:#ae81ff">hex</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">host</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;{{Hostname}}&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">type</span>: <span style="color:#ae81ff">dsl</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">dsl</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#e6db74">&#34;jarm(Hostname) == &#39;28d28d28d00028d00042d42d000000ad9bf51cc3f5a1e29eecb81d0c7b06eb&#39;&#34;</span>
+</span></span></code></pre></div><p>Both outputs below achieve the same effect. Due to how the hostname is formatted, a port is required. The first option is fine if you know the host is running an HTTPS service on a specific port.</p>
+<p><img alt="Untitled" src="/hunt/Untitled%204.png"></p>
 <p>This option is useful if you’re unsure what ports the HTTPS service(s) may be running on. Running tlsx on it’s own, you see it found a service on 443.</p>
-<p><img src="/hunt/Untitled%205.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/hunt/Untitled%205.png"></p>
 <p>I can use the output from tlsx, pipe it to nuclei and run against the JARM template.</p>
-<p><img src="/hunt/Untitled%206.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/hunt/Untitled%206.png"></p>
 <h1 id="no-ips-no-problem">
   No IPs? No Problem
   <a href="#no-ips-no-problem" class="h-anchor" aria-hidden="true">#</a>
@@ -450,7 +448,7 @@
 <li>7eb6defb76a241bfb20d19837bb46276cbd368e18b0c463aa5a1f181d0bfad75</li>
 </ul>
 <p>I supplied a Censys query that searches for any other hosts using this cert and piped it to Nuclei without any template definition to see what it could uncover about the hosts. Unfortunately, only one host is using it but that’s ok.</p>
-<p><img src="/hunt/Untitled%207.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/hunt/Untitled%207.png"></p>
 <p>It matched some of my rules along with some default ones. Since I knew Nimplant <strong><strong>used</strong></strong> to use multiplayer as their subject_cn, I checked VT just as a sanity check and look at that, it’s actually a Sliver C2.</p>
 <ul>
 <li><a href="https://www.virustotal.com/gui/ip-address/138.197.36.34/community">https://www.virustotal.com/gui/ip-address/138.197.36.34/community</a></li>

@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Intro #  As career plans, personal interests and the overall curiosity of exploring new technologies change, so does a homelab. It has been a few years since my last homelab writeup and at the time, the focus was geared towards malware analysis without much else. Career goals have shifted to more of a defensive side towards threat hunting and detection engineering so I wanted to build something to support those two fields."
+  content="Intro # As career plans, personal interests and the overall curiosity of exploring new technologies change, so does a homelab. It has been a few years since my last homelab writeup and at the time, the focus was geared towards malware analysis without much else. Career goals have shifted to more of a defensive side towards threat hunting and detection engineering so I wanted to build something to support those two fields."
 />
 <meta
   name="keywords"
@@ -45,19 +45,17 @@
 <link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="A CTI Analyst Homelab"/>
-<meta name="twitter:description" content="Intro #  As career plans, personal interests and the overall curiosity of exploring new technologies change, so does a homelab. It has been a few years since my last homelab writeup and at the time, the focus was geared towards malware analysis without much else. Career goals have shifted to more of a defensive side towards threat hunting and detection engineering so I wanted to build something to support those two fields."/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="A CTI Analyst Homelab"/>
+<meta name="twitter:description" content="Intro # As career plans, personal interests and the overall curiosity of exploring new technologies change, so does a homelab. It has been a few years since my last homelab writeup and at the time, the focus was geared towards malware analysis without much else. Career goals have shifted to more of a defensive side towards threat hunting and detection engineering so I wanted to build something to support those two fields."/>
 
 
 
 <meta property="og:title" content="A CTI Analyst Homelab" />
-<meta property="og:description" content="Intro #  As career plans, personal interests and the overall curiosity of exploring new technologies change, so does a homelab. It has been a few years since my last homelab writeup and at the time, the focus was geared towards malware analysis without much else. Career goals have shifted to more of a defensive side towards threat hunting and detection engineering so I wanted to build something to support those two fields." />
+<meta property="og:description" content="Intro # As career plans, personal interests and the overall curiosity of exploring new technologies change, so does a homelab. It has been a few years since my last homelab writeup and at the time, the focus was geared towards malware analysis without much else. Career goals have shifted to more of a defensive side towards threat hunting and detection engineering so I wanted to build something to support those two fields." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://axelarator.github.io/posts/ctihomelab/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-03-11T13:13:39-06:00" />
 <meta property="article:modified_time" content="2024-03-11T13:13:39-06:00" /><meta property="og:site_name" content="Axelarator Blog" />
-
 
 
 
@@ -188,14 +186,14 @@
 </h1>
 <p>Similar to my last writeup, I’ll explain each system I have and why. This won’t be a walkthrough guide of installing and configuring everything though as all hypervisors are unique in their own way.</p>
 <p>Within the Proxmox webui is where you manage the environment. To connect to each VM, I use <a href="https://www.spice-space.org/index.html">SPICE</a> to remote into each machine which is OS agnostic making it a single click to connect to.</p>
-<p><img src="/CTIHomelab/Untitled.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/CTIHomelab/Untitled.png"></p>
 <p>Now onto everything installed.</p>
 <h2 id="pfsense">
   PfSense
   <a href="#pfsense" class="h-anchor" aria-hidden="true">#</a>
 </h2>
 <p>PfSense is an open-source router and firewall that offers more features than I know what to do with. I used to run it on VirtualBox but knew it’d be a lot more efficient on dedicated hardware someday. The intended configuration was going to be way more complex with multiple LAN interfaces to segment management machines, a sandbox, SOC environment, attacker machines, etc. You know, a true network. That all became too much at once and I didn’t really have a set goal at the time so then I thought:</p>
-<p><img src="/CTIHomelab/Untitled1.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/CTIHomelab/Untitled1.png"></p>
 <p>I ended up creating one WAN and one LAN interface and called it there. If it ever got to the point where segmenting would be beneficial, I could add it.</p>
 <p><em>Narrator’s voice</em>: <em>“He didn’t”</em></p>
 <p>The sole reason I needed a router/firewall was to separate my VMs to their own network so that nothing on my main network could communicate with the lab. Realistically, I wasn’t going to be setting up anything that actually required all that segmentation.</p>
@@ -206,14 +204,14 @@
 <li>bridge=vmbr0 is for the WAN interface</li>
 <li>bridge=vmbr1 is for the LAN interface</li>
 </ul>
-<p><img src="/CTIHomelab/Untitled2.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/CTIHomelab/Untitled2.png"></p>
 <h2 id="windows-10">
   Windows 10
   <a href="#windows-10" class="h-anchor" aria-hidden="true">#</a>
 </h2>
 <p>We all need a machine to blow stuff up, right? Hello Windows 10 box! This machine only has enough tools to clone GitHub repos, remote to other machines, extract archive files, and any dependencies required to run certain malware or play with PoCs. The more important parts installed are Sysmon with the <a href="https://github.com/SwiftOnSecurity/sysmon-config">SwiftOnSecurity</a> config and a LimaCharlie EDR agent. I made a snapshot of the machine once all prerequisites were met so that any time I execute malware or break something beyond repair, I can revert back to the base system state.</p>
 <p>LimaCharlie is a SecOps Cloud Platform that I honestly hadn’t heard of until late 2023. Never really thought twice about it until I found Eric Capuano’s blog series, <a href="https://blog.ecapuano.com/p/so-you-want-to-be-a-soc-analyst-intro">So you want to be a SOC Analyst?</a> where he goes through setting up an environment to emulate adversary behavior, block the attack with Sigma, tune false positives and write YARA signatures to automatically scan files or processes. Although LimaCharlie isn’t required, it’s much easier to follow a guide covering some areas of interest using the same tools as the author. I haven’t had much experience with the EDR but something that immediately caught my attention was the built-in Atomic Red Team extension. This makes it extremely easy to run Atomic tests and triage detections.</p>
-<p><img src="/CTIHomelab/Untitled3.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/CTIHomelab/Untitled3.png"></p>
 <h2 id="flare">
   Flare
   <a href="#flare" class="h-anchor" aria-hidden="true">#</a>
@@ -241,7 +239,7 @@
 </h2>
 <p>I’m going to switch subjects here. Another hobby of mine is music, an audiophile if you will, and something lacking on most apps is a vast amount of metadata to learn even more about artists. When listening to a song, it’s nice to look through the credits and see everyone involved beyond producer and artist, read a bio about the artist or reasoning behind a song or album and get better curated stations based on your music. Roon is the ultimate metadata addition to a music collection and allows you to control any Roon-enabled device across the house via its app. As it’s a Bring-Your-Own-Music type platform, they only support three streaming platforms; Tidal, Qobuz, and KKBOX along with any locally stored music and internet radio. I use Tidal as my source of music. The other mainstream streaming platforms aren’t supported because they don’t support anywhere near lossless quality. Apple Music is an exception because they use their own ALAC codec which is lossless but their API was just released and will only allow it to be used on Apple hardware. As a large majority of audiophiles (which is still a very small market) don’t use Apple Music anyway, it’s not something I’d expect to see anytime soon. Roon also uses it’s own audio engine, MUSE, which handles up to <a href="https://roon.app/en/sound-quality">768kHz/32-bit PCM and DSD512 (stereo and multi-channel) in WAV, WAV64, AIFF, FLAC, ALAC (Apple Lossless), DFF, DSF, OGG, MP3, and AAC</a>.</p>
 <p>The short description is Roon organizes your music library into a beautiful interface with a rich amount of detail about the music and streams at the best available quality to get the most out of your equipment.</p>
-<p><img src="/CTIHomelab/Untitled4.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/CTIHomelab/Untitled4.png"></p>
 <p>My setup now is:</p>
 <ul>
 <li>Desk: Audeze LCD-X with an iFi Neo iDSD</li>
@@ -254,7 +252,7 @@
 </h2>
 <p>This is actually a mounted NFS drive from my Synology NAS. That drive also has separate permissions to connect to my main desktop so I can move files across hosts easily. Creating a folder within my NAS separate from my media seemed like a simple solution as I can also mount this drive within VMs too and use it as a sort of shared drive between the NAS and Proxmox.</p>
 <p>The local drive is where ISOs and container templates are stored. Proxmox supports LXC containers to be specific. local-lvm is the second partition where your VM disks and CT volumes reside.</p>
-<p><img src="/CTIHomelab/Untitled5.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/CTIHomelab/Untitled5.png"></p>
 <h1 id="summary">
   Summary
   <a href="#summary" class="h-anchor" aria-hidden="true">#</a>
@@ -273,6 +271,13 @@
             <hr />
           </div>
           <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="https://axelarator.github.io/posts/cti/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">The A in CTI Stands for Actionable</span>
+                </a>
+              </span>
             
             
               <span class="button next">

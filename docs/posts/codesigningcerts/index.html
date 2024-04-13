@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Authenticode Signature #  The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified."
+  content="Authenticode Signature # The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified."
 />
 <meta
   name="keywords"
@@ -45,19 +45,17 @@
 <link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Abusing Code Signing Certificates"/>
-<meta name="twitter:description" content="Authenticode Signature #  The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified."/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Abusing Code Signing Certificates"/>
+<meta name="twitter:description" content="Authenticode Signature # The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified."/>
 
 
 
 <meta property="og:title" content="Abusing Code Signing Certificates" />
-<meta property="og:description" content="Authenticode Signature #  The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified." />
+<meta property="og:description" content="Authenticode Signature # The point of code signing certificates is to verify the file came from a trusted source, the file was not tampered with prior to receiving it, and the file’s origin can be validated. Code signing creates a hash of the code and encrypts it with a private key adding its signature. During execution, this signature is validated and if the hash matches, it gives assurance that the code has not been modified." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://axelarator.github.io/posts/codesigningcerts/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-02-15T09:09:43-07:00" />
 <meta property="article:modified_time" content="2023-02-15T09:09:43-07:00" /><meta property="og:site_name" content="Axelarator Blog" />
-
 
 
 
@@ -190,82 +188,82 @@
   <a href="#first-tool" class="h-anchor" aria-hidden="true">#</a>
 </h3>
 <p>First is the PowerShell cmdlet <code>Get-AuthenticodeSignature</code> which does exactly what it says. It simply gets the authenticode signature. I’ll use the VS Code executable as an example.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
-
-    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code
-
-SignerCertificate                         Status                                Path
------------------                         ------                                ----
-8740DF4ACB749640AD318E4BE842F72EC651AD80  Valid                                 Code.exe
-</code></pre></div><p>You can go one step further by piping the output to <code>Format-List</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SignerCertificate                         Status                                Path
+</span></span><span style="display:flex;"><span>-----------------                         ------                                ----
+</span></span><span style="display:flex;"><span>8740DF4ACB749640AD318E4BE842F72EC651AD80  Valid                                 Code.exe
+</span></span></code></pre></div><p>You can go one step further by piping the output to <code>Format-List</code></p>
 <p>A quick PowerShell tip:</p>
 <p>This is a large output and maybe you only care about the <code>SignerCertificate</code> and <code>Status</code> properties but in more detail. Simply append the <code>-Property</code> parameter after <code>Format-List</code> and specify what properties you want. Example is in the second code block.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span> | Format-List
-
-SignerCertificate      <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">[Subject]</span>
-                           CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-                         <span style="color:#66d9ef">[Issuer]</span>
-                           CN=Microsoft Code Signing PCA 2011, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-                         <span style="color:#66d9ef">[Serial Number]</span>
-                           33000002528B33AAF895F339DB000000000252
-
-                         <span style="color:#66d9ef">[Not Before]</span>
-                           9/2/2021 11<span style="color:#960050;background-color:#1e0010">:</span>32<span style="color:#960050;background-color:#1e0010">:</span>59 AM
-
-                         <span style="color:#66d9ef">[Not After]</span>
-                           9/1/2022 11<span style="color:#960050;background-color:#1e0010">:</span>32<span style="color:#960050;background-color:#1e0010">:</span>59 AM
-
-                         <span style="color:#66d9ef">[Thumbprint]</span>
-                           8740DF4ACB749640AD318E4BE842F72EC651AD80
-
-TimeStamperCertificate <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">[Subject]</span>
-                           CN=Microsoft Time-Stamp Service, OU=Thales TSS ESN<span style="color:#960050;background-color:#1e0010">:</span>D082-4BFD-EEBA, OU=Microsoft Ireland
-                         Operations Limited, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-                         <span style="color:#66d9ef">[Issuer]</span>
-                           CN=Microsoft Time-Stamp PCA 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-                         <span style="color:#66d9ef">[Serial Number]</span>
-                           330000018FF351A8EB5A72DDCC00010000018F
-
-                         <span style="color:#66d9ef">[Not Before]</span>
-                           10/28/2021 12<span style="color:#960050;background-color:#1e0010">:</span>27<span style="color:#960050;background-color:#1e0010">:</span>46 PM
-
-                         <span style="color:#66d9ef">[Not After]</span>
-                           1/26/2023 11<span style="color:#960050;background-color:#1e0010">:</span>27<span style="color:#960050;background-color:#1e0010">:</span>46 AM
-
-                         <span style="color:#66d9ef">[Thumbprint]</span>
-                           3E4D2F820476E748070746A02695D1605B419A6A
-
-Status                 <span style="color:#960050;background-color:#1e0010">:</span> Valid
-StatusMessage          <span style="color:#960050;background-color:#1e0010">:</span> Signature verified.
-Path                   <span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
-SignatureType          <span style="color:#960050;background-color:#1e0010">:</span> Authenticode
-IsOSBinary             <span style="color:#960050;background-color:#1e0010">:</span> False
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span> | Format-List -Property Status, SignerCertificate
-
-Status            <span style="color:#960050;background-color:#1e0010">:</span> Valid
-SignerCertificate <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">[Subject]</span>
-                      CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-                    <span style="color:#66d9ef">[Issuer]</span>
-                      CN=Microsoft Code Signing PCA 2011, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
-
-                    <span style="color:#66d9ef">[Serial Number]</span>
-                      33000002528B33AAF895F339DB000000000252
-
-                    <span style="color:#66d9ef">[Not Before]</span>
-                      9/2/2021 11<span style="color:#960050;background-color:#1e0010">:</span>32<span style="color:#960050;background-color:#1e0010">:</span>59 AM
-
-                    <span style="color:#66d9ef">[Not After]</span>
-                      9/1/2022 11<span style="color:#960050;background-color:#1e0010">:</span>32<span style="color:#960050;background-color:#1e0010">:</span>59 AM
-
-                    <span style="color:#66d9ef">[Thumbprint]</span>
-                      8740DF4ACB749640AD318E4BE842F72EC651AD80
-</code></pre></div><p>For those that like GUIs more, you’re probably more familiar with viewing file properties and seeing the certificate that way.</p>
-<p><img src="/codesign/Untitled.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span> | Format-List
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SignerCertificate      <span style="color:#960050;background-color:#1e0010">:</span> [<span style="color:#66d9ef">Subject</span>]
+</span></span><span style="display:flex;"><span>                           CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Issuer</span>]
+</span></span><span style="display:flex;"><span>                           CN=Microsoft Code Signing PCA <span style="color:#ae81ff">2011</span>, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Serial Number</span>]
+</span></span><span style="display:flex;"><span>                           33000002528B33AAF895F339DB000000000252
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Not Before</span>]
+</span></span><span style="display:flex;"><span>                           <span style="color:#ae81ff">9</span>/<span style="color:#ae81ff">2</span>/<span style="color:#ae81ff">2021</span> <span style="color:#ae81ff">11</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">32</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">59</span> AM
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Not After</span>]
+</span></span><span style="display:flex;"><span>                           <span style="color:#ae81ff">9</span>/<span style="color:#ae81ff">1</span>/<span style="color:#ae81ff">2022</span> <span style="color:#ae81ff">11</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">32</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">59</span> AM
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Thumbprint</span>]
+</span></span><span style="display:flex;"><span>                           8740DF4ACB749640AD318E4BE842F72EC651AD80
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TimeStamperCertificate <span style="color:#960050;background-color:#1e0010">:</span> [<span style="color:#66d9ef">Subject</span>]
+</span></span><span style="display:flex;"><span>                           CN=Microsoft Time-Stamp Service, OU=Thales TSS ESN<span style="color:#960050;background-color:#1e0010">:</span>D082-4BFD-EEBA, OU=Microsoft Ireland
+</span></span><span style="display:flex;"><span>                         Operations Limited, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Issuer</span>]
+</span></span><span style="display:flex;"><span>                           CN=Microsoft Time-Stamp PCA <span style="color:#ae81ff">2010</span>, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Serial Number</span>]
+</span></span><span style="display:flex;"><span>                           330000018FF351A8EB5A72DDCC00010000018F
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Not Before</span>]
+</span></span><span style="display:flex;"><span>                           <span style="color:#ae81ff">10</span>/<span style="color:#ae81ff">28</span>/<span style="color:#ae81ff">2021</span> <span style="color:#ae81ff">12</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">27</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">46</span> PM
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Not After</span>]
+</span></span><span style="display:flex;"><span>                           <span style="color:#ae81ff">1</span>/<span style="color:#ae81ff">26</span>/<span style="color:#ae81ff">2023</span> <span style="color:#ae81ff">11</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">27</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">46</span> AM
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                         [<span style="color:#66d9ef">Thumbprint</span>]
+</span></span><span style="display:flex;"><span>                           3E4D2F820476E748070746A02695D1605B419A6A
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Status                 <span style="color:#960050;background-color:#1e0010">:</span> Valid
+</span></span><span style="display:flex;"><span>StatusMessage          <span style="color:#960050;background-color:#1e0010">:</span> Signature verified.
+</span></span><span style="display:flex;"><span>Path                   <span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
+</span></span><span style="display:flex;"><span>SignatureType          <span style="color:#960050;background-color:#1e0010">:</span> Authenticode
+</span></span><span style="display:flex;"><span>IsOSBinary             <span style="color:#960050;background-color:#1e0010">:</span> False
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span> | Format-List -Property Status, SignerCertificate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Status            <span style="color:#960050;background-color:#1e0010">:</span> Valid
+</span></span><span style="display:flex;"><span>SignerCertificate <span style="color:#960050;background-color:#1e0010">:</span> [<span style="color:#66d9ef">Subject</span>]
+</span></span><span style="display:flex;"><span>                      CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    [<span style="color:#66d9ef">Issuer</span>]
+</span></span><span style="display:flex;"><span>                      CN=Microsoft Code Signing PCA <span style="color:#ae81ff">2011</span>, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    [<span style="color:#66d9ef">Serial Number</span>]
+</span></span><span style="display:flex;"><span>                      33000002528B33AAF895F339DB000000000252
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    [<span style="color:#66d9ef">Not Before</span>]
+</span></span><span style="display:flex;"><span>                      <span style="color:#ae81ff">9</span>/<span style="color:#ae81ff">2</span>/<span style="color:#ae81ff">2021</span> <span style="color:#ae81ff">11</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">32</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">59</span> AM
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    [<span style="color:#66d9ef">Not After</span>]
+</span></span><span style="display:flex;"><span>                      <span style="color:#ae81ff">9</span>/<span style="color:#ae81ff">1</span>/<span style="color:#ae81ff">2022</span> <span style="color:#ae81ff">11</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">32</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">59</span> AM
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    [<span style="color:#66d9ef">Thumbprint</span>]
+</span></span><span style="display:flex;"><span>                      8740DF4ACB749640AD318E4BE842F72EC651AD80
+</span></span></code></pre></div><p>For those that like GUIs more, you’re probably more familiar with viewing file properties and seeing the certificate that way.</p>
+<p><img alt="Untitled" src="/codesign/Untitled.png"></p>
 <h3 id="second-tool">
   Second Tool
   <a href="#second-tool" class="h-anchor" aria-hidden="true">#</a>
@@ -274,23 +272,23 @@ SignerCertificate <span style="color:#960050;background-color:#1e0010">:</span> 
 <p><a href="https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/">https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/</a></p>
 <p>Using the <code>/pa</code> option specifies that the Default Authentication Verification Policy is used. If it isn’t specified, SignTool defaults to the Windows driver policy for verification but can error out if the signature uses a code signing certificate, which for this file, it did.</p>
 <p>Without <code>/pa</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; &amp; <span style="color:#e6db74">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&#34;</span> verify <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
-File<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
-Index  Algorithm  Timestamp
-========================================
-SignTool Error<span style="color:#960050;background-color:#1e0010">:</span> A certificate chain processed, but terminated <span style="color:#66d9ef">in</span> a root
-        certificate which is not trusted by the trust provider.
-
-Number of errors<span style="color:#960050;background-color:#1e0010">:</span> 1
-</code></pre></div><p>With <code>/pa</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; &amp; <span style="color:#e6db74">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&#34;</span> verify /pa <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
-File<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
-Index  Algorithm  Timestamp
-========================================
-0      sha256     RFC3161
-
-Successfully verified<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
-</code></pre></div><h2 id="abusing-code-signing-certificates">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Users\User &gt; &amp; <span style="color:#e6db74">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&#34;</span> verify <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
+</span></span><span style="display:flex;"><span>File<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
+</span></span><span style="display:flex;"><span>Index  Algorithm  Timestamp
+</span></span><span style="display:flex;"><span>========================================
+</span></span><span style="display:flex;"><span>SignTool Error<span style="color:#960050;background-color:#1e0010">:</span> A certificate chain processed, but terminated <span style="color:#66d9ef">in</span> a root
+</span></span><span style="display:flex;"><span>        certificate which is not trusted by the trust provider.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Number of errors<span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>With <code>/pa</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Users\User &gt; &amp; <span style="color:#e6db74">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&#34;</span> verify /pa <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
+</span></span><span style="display:flex;"><span>File<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
+</span></span><span style="display:flex;"><span>Index  Algorithm  Timestamp
+</span></span><span style="display:flex;"><span>========================================
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span>      sha256     RFC3161
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Successfully verified<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe
+</span></span></code></pre></div><h2 id="abusing-code-signing-certificates">
   Abusing Code Signing Certificates
   <a href="#abusing-code-signing-certificates" class="h-anchor" aria-hidden="true">#</a>
 </h2>
@@ -302,59 +300,59 @@ Successfully verified<span style="color:#960050;background-color:#1e0010">:</spa
 </h2>
 <p>The tool itself is very straightforward. Take a signature from one file and add it to another. There are other options like ripping the signature and saving it for later, possibly to append the same signature to multiple files.</p>
 <p>In this example, I’ll show how to take a certificate from VS Code and write it to Mimikatz. Mimikatz initially is not signed at all, so for it to have any chance at staying undetected, supplying a certificate is a good choice.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\Downloads\mimikatz_trunk\x64\mimikatz.exe&#34;</span>
-
-    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\Downloads\mimikatz_trunk\x64
-
-SignerCertificate                         Status                            Path
------------------                         ------                            ----
-                                          NotSigned                         mimikatz.exe
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Tools\SigThief &gt; python .\sigthief.py -i <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span> -t <span style="color:#e6db74">&#34;C:\Users\User\Downloads\mimikatz_trunk\x64\mimikatz.exe&#34;</span> -o mimicode.exe
-
-!! New Version available now <span style="color:#66d9ef">for</span> Dev Tier Sponsors! Sponsor here<span style="color:#960050;background-color:#1e0010">:</span> https<span style="color:#960050;background-color:#1e0010">:</span>//github.com/sponsors/secretsquirrel
-
-Output file<span style="color:#960050;background-color:#1e0010">:</span> mimicode.exe
-Signature appended.
-FIN.
-
-PS C:\Tools\SigThief &gt; .\mimicode.exe                                                                                                                                                                                                               ...<span style="color:#75715e">#####.   mimikatz 2.2.0 (x64) #19041 Sep 19 2022 17:44:08                                                             ..## ^ ##.  &#34;A La Vie, A L&#39;Amour&#34; - (oe.eo)                                                                               .## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )</span>
- <span style="color:#75715e">## \ / ##       &gt; https://blog.gentilkiwi.com/mimikatz</span>
- <span style="color:#e6db74">&#39;## v ##&#39;</span>       Vincent LE TOUX             ( vincent.letoux@gmail.com )
-  <span style="color:#e6db74">&#39;#####&#39;</span>        &gt; https<span style="color:#960050;background-color:#1e0010">:</span>//pingcastle.com / https<span style="color:#960050;background-color:#1e0010">:</span>//mysmartlogon.com ***/
-
-mimikatz <span style="color:#75715e"># exit</span>
-Bye!
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Tools\SigThief &gt; Get-AuthenticodeSignature .\mimicode.exe
-
-    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief
-
-SignerCertificate                         Status                            Path
------------------                         ------                            ----
-8740DF4ACB749640AD318E4BE842F72EC651AD80  HashMismatch                      mimicode.exe
-</code></pre></div><p>That’s it. The certificate from <code>code.exe</code> was copied to <code>mimikatz.exe</code> and a new binary was created with a super discrete name.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\Downloads\mimikatz_trunk\x64\mimikatz.exe&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\Downloads\mimikatz_trunk\x64
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SignerCertificate                         Status                            Path
+</span></span><span style="display:flex;"><span>-----------------                         ------                            ----
+</span></span><span style="display:flex;"><span>                                          NotSigned                         mimikatz.exe
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Tools\SigThief &gt; python .\sigthief.py -i <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span> -t <span style="color:#e6db74">&#34;C:\Users\User\Downloads\mimikatz_trunk\x64\mimikatz.exe&#34;</span> -o mimicode.exe
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>!! New Version available now <span style="color:#66d9ef">for</span> Dev Tier Sponsors! Sponsor here<span style="color:#960050;background-color:#1e0010">:</span> https<span style="color:#960050;background-color:#1e0010">:</span>//github.com/sponsors/secretsquirrel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Output file<span style="color:#960050;background-color:#1e0010">:</span> mimicode.exe
+</span></span><span style="display:flex;"><span>Signature appended.
+</span></span><span style="display:flex;"><span>FIN.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PS C:\Tools\SigThief &gt; .\mimicode.exe                                                                                                                                                                                                               ...<span style="color:#75715e">#####.   mimikatz 2.2.0 (x64) #19041 Sep 19 2022 17:44:08                                                             ..## ^ ##.  &#34;A La Vie, A L&#39;Amour&#34; - (oe.eo)                                                                               .## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )</span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">## \ / ##       &gt; https://blog.gentilkiwi.com/mimikatz</span>
+</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#39;## v ##&#39;</span>       Vincent LE TOUX             ( vincent.letoux@gmail.com )
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;#####&#39;</span>        &gt; https<span style="color:#960050;background-color:#1e0010">:</span>//pingcastle.com / https<span style="color:#960050;background-color:#1e0010">:</span>//mysmartlogon.com ***/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mimikatz <span style="color:#75715e"># exit</span>
+</span></span><span style="display:flex;"><span>Bye!
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Tools\SigThief &gt; Get-AuthenticodeSignature .\mimicode.exe
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SignerCertificate                         Status                            Path
+</span></span><span style="display:flex;"><span>-----------------                         ------                            ----
+</span></span><span style="display:flex;"><span>8740DF4ACB749640AD318E4BE842F72EC651AD80  HashMismatch                      mimicode.exe
+</span></span></code></pre></div><p>That’s it. The certificate from <code>code.exe</code> was copied to <code>mimikatz.exe</code> and a new binary was created with a super discrete name.</p>
 <p>Now this file could be uploaded to VT, tested against an AV on your own system, etc. The goal is to see what it can bypass now that a malicious executable is signed from a trusted partner.</p>
 <p>But just because it’s signed from a trusted party doesn’t mean the executable is legit. Similar to HTTPS, just because the site you’re browsing has a lock next to the URL, it just means your connection is private. It doesn’t mean the site you’re visiting is safe.</p>
-<p><img src="/codesign/Untitled.jpeg" alt="Untitled"></p>
+<p><img alt="Untitled" src="/codesign/Untitled.jpeg"></p>
 <p>With <code>mimicode.exe</code> now having a VS Code cert, it <em><strong>sort of</strong></em> looks legitimate. Look at the <code>SignerCertificate</code> of <code>mimicode.exe</code> compared to <code>code.exe</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
-
-    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code
-
-SignerCertificate                         Status                                Path
------------------                         ------                                ----
-8740DF4ACB749640AD318E4BE842F72EC651AD80  Valid                                 Code.exe
-</code></pre></div><p>I say <em><strong>sort of</strong></em> for multiple reasons. As I mentioned before, the tool itself does not append a valid signature to a file. It’s clear in the Digital Signature Details of the file.</p>
-<p><img src="/codesign/Untitled1.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Users\User &gt; Get-AuthenticodeSignature <span style="color:#e6db74">&#34;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Directory<span style="color:#960050;background-color:#1e0010">:</span> C:\Users\User\AppData\Local\Programs\Microsoft VS Code
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SignerCertificate                         Status                                Path
+</span></span><span style="display:flex;"><span>-----------------                         ------                                ----
+</span></span><span style="display:flex;"><span>8740DF4ACB749640AD318E4BE842F72EC651AD80  Valid                                 Code.exe
+</span></span></code></pre></div><p>I say <em><strong>sort of</strong></em> for multiple reasons. As I mentioned before, the tool itself does not append a valid signature to a file. It’s clear in the Digital Signature Details of the file.</p>
+<p><img alt="Untitled" src="/codesign/Untitled1.png"></p>
 <p>The certificate hash matches the <code>code.exe</code> hash, but that’s just pulling a key from a value. Using SigThief, the same can be seen.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Users\User &gt; &amp; <span style="color:#e6db74">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&#34;</span> verify /pa <span style="color:#e6db74">&#34;C:\Tools\SigThief\mimicode.exe&#34;</span>
-File<span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief\mimicode.exe
-Index  Algorithm  Timestamp
-========================================
-SignTool Error<span style="color:#960050;background-color:#1e0010">:</span> WinVerifyTrust returned error<span style="color:#960050;background-color:#1e0010">:</span> 0x80096010
-        The digital signature of the object did not verify.
-
-Number of errors<span style="color:#960050;background-color:#1e0010">:</span> 1
-</code></pre></div><p>Unlike the successful verification from <code>code.exe</code>, an error is thrown mentioning <code>WinVerifyTrust</code>. This is a function within the CryptoAPI that performs a trust verification action on a specified object. This is why SignTool is important as it is actually executing an action, not just getting a value. The data is passed to a trust provider which checks it against the certificate trust list. The reason is the HashMismatch status code when getting the authenticode signature. <strong>The hash of the file does not match the hash stored in the digital signature.</strong> As for a manual way of checking this, I haven’t found one. As for an automated way, this is essentially what the<code>verify</code> command is doing within <code>SignTool</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Users\User &gt; &amp; <span style="color:#e6db74">&#34;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&#34;</span> verify /pa <span style="color:#e6db74">&#34;C:\Tools\SigThief\mimicode.exe&#34;</span>
+</span></span><span style="display:flex;"><span>File<span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief\mimicode.exe
+</span></span><span style="display:flex;"><span>Index  Algorithm  Timestamp
+</span></span><span style="display:flex;"><span>========================================
+</span></span><span style="display:flex;"><span>SignTool Error<span style="color:#960050;background-color:#1e0010">:</span> WinVerifyTrust returned error<span style="color:#960050;background-color:#1e0010">:</span> 0x80096010
+</span></span><span style="display:flex;"><span>        The digital signature of the object did not verify.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Number of errors<span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>Unlike the successful verification from <code>code.exe</code>, an error is thrown mentioning <code>WinVerifyTrust</code>. This is a function within the CryptoAPI that performs a trust verification action on a specified object. This is why SignTool is important as it is actually executing an action, not just getting a value. The data is passed to a trust provider which checks it against the certificate trust list. The reason is the HashMismatch status code when getting the authenticode signature. <strong>The hash of the file does not match the hash stored in the digital signature.</strong> As for a manual way of checking this, I haven’t found one. As for an automated way, this is essentially what the<code>verify</code> command is doing within <code>SignTool</code>.</p>
 <p>In the image above, you might have also noticed the file icon is also the same as Mimikatz.</p>
 <p>The file properties also show a lot of clues:</p>
 <ul>
@@ -362,49 +360,49 @@ Number of errors<span style="color:#960050;background-color:#1e0010">:</span> 1
 <li>Product name</li>
 <li>Original filename</li>
 </ul>
-<p><img src="/codesign/Untitled2.png" alt="Untitled"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\Tools &gt; Get-Item C:\Tools\SigThief\mimicode.exe | select-object -property *
-
-PSPath            <span style="color:#960050;background-color:#1e0010">:</span> Microsoft.PowerShell.Core\FileSystem::C:\Tools\SigThief\mimicode.exe
-PSParentPath      <span style="color:#960050;background-color:#1e0010">:</span> Microsoft.PowerShell.Core\FileSystem::C:\Tools\SigThief
-PSChildName       <span style="color:#960050;background-color:#1e0010">:</span> mimicode.exe
-PSDrive           <span style="color:#960050;background-color:#1e0010">:</span> C
-PSProvider        <span style="color:#960050;background-color:#1e0010">:</span> Microsoft.PowerShell.Core\FileSystem
-PSIsContainer     <span style="color:#960050;background-color:#1e0010">:</span> False
-Mode              <span style="color:#960050;background-color:#1e0010">:</span> -a----
-VersionInfo       <span style="color:#960050;background-color:#1e0010">:</span> File<span style="color:#960050;background-color:#1e0010">:</span>             C:\Tools\SigThief\mimicode.exe
-                    InternalName<span style="color:#960050;background-color:#1e0010">:</span>     mimikatz
-                    OriginalFilename<span style="color:#960050;background-color:#1e0010">:</span> mimikatz.exe
-                    FileVersion<span style="color:#960050;background-color:#1e0010">:</span>      2.2.0.0
-                    FileDescription<span style="color:#960050;background-color:#1e0010">:</span>  mimikatz <span style="color:#66d9ef">for</span> Windows
-                    Product<span style="color:#960050;background-color:#1e0010">:</span>          mimikatz
-                    ProductVersion<span style="color:#960050;background-color:#1e0010">:</span>   2.2.0.0
-                    Debug<span style="color:#960050;background-color:#1e0010">:</span>            False
-                    Patched<span style="color:#960050;background-color:#1e0010">:</span>          False
-                    PreRelease<span style="color:#960050;background-color:#1e0010">:</span>       True
-                    PrivateBuild<span style="color:#960050;background-color:#1e0010">:</span>     True
-                    SpecialBuild<span style="color:#960050;background-color:#1e0010">:</span>     True
-                    Language<span style="color:#960050;background-color:#1e0010">:</span>         English (United States)
-
-BaseName          <span style="color:#960050;background-color:#1e0010">:</span> mimicode
-Target            <span style="color:#960050;background-color:#1e0010">:</span> {}
-LinkType          <span style="color:#960050;background-color:#1e0010">:</span>
-Name              <span style="color:#960050;background-color:#1e0010">:</span> mimicode.exe
-Length            <span style="color:#960050;background-color:#1e0010">:</span> 1365416
-DirectoryName     <span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief
-Directory         <span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief
-IsReadOnly        <span style="color:#960050;background-color:#1e0010">:</span> False
-Exists            <span style="color:#960050;background-color:#1e0010">:</span> True
-FullName          <span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief\mimicode.exe
-Extension         <span style="color:#960050;background-color:#1e0010">:</span> .exe
-CreationTime      <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 10<span style="color:#960050;background-color:#1e0010">:</span>18<span style="color:#960050;background-color:#1e0010">:</span>09 AM
-CreationTimeUtc   <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 6<span style="color:#960050;background-color:#1e0010">:</span>18<span style="color:#960050;background-color:#1e0010">:</span>09 PM
-LastAccessTime    <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 6<span style="color:#960050;background-color:#1e0010">:</span>38<span style="color:#960050;background-color:#1e0010">:</span>31 PM
-LastAccessTimeUtc <span style="color:#960050;background-color:#1e0010">:</span> 2/14/2023 2<span style="color:#960050;background-color:#1e0010">:</span>38<span style="color:#960050;background-color:#1e0010">:</span>31 AM
-LastWriteTime     <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 10<span style="color:#960050;background-color:#1e0010">:</span>18<span style="color:#960050;background-color:#1e0010">:</span>09 AM
-LastWriteTimeUtc  <span style="color:#960050;background-color:#1e0010">:</span> 2/13/2023 6<span style="color:#960050;background-color:#1e0010">:</span>18<span style="color:#960050;background-color:#1e0010">:</span>09 PM
-Attributes        <span style="color:#960050;background-color:#1e0010">:</span> Archive
-</code></pre></div><h2 id="whos-using-this-technique">
+<p><img alt="Untitled" src="/codesign/Untitled2.png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PS C:\Tools &gt; Get-Item C:\Tools\SigThief\mimicode.exe | select-object -property *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PSPath            <span style="color:#960050;background-color:#1e0010">:</span> Microsoft.PowerShell.Core\FileSystem::C:\Tools\SigThief\mimicode.exe
+</span></span><span style="display:flex;"><span>PSParentPath      <span style="color:#960050;background-color:#1e0010">:</span> Microsoft.PowerShell.Core\FileSystem::C:\Tools\SigThief
+</span></span><span style="display:flex;"><span>PSChildName       <span style="color:#960050;background-color:#1e0010">:</span> mimicode.exe
+</span></span><span style="display:flex;"><span>PSDrive           <span style="color:#960050;background-color:#1e0010">:</span> C
+</span></span><span style="display:flex;"><span>PSProvider        <span style="color:#960050;background-color:#1e0010">:</span> Microsoft.PowerShell.Core\FileSystem
+</span></span><span style="display:flex;"><span>PSIsContainer     <span style="color:#960050;background-color:#1e0010">:</span> False
+</span></span><span style="display:flex;"><span>Mode              <span style="color:#960050;background-color:#1e0010">:</span> -a----
+</span></span><span style="display:flex;"><span>VersionInfo       <span style="color:#960050;background-color:#1e0010">:</span> File<span style="color:#960050;background-color:#1e0010">:</span>             C:\Tools\SigThief\mimicode.exe
+</span></span><span style="display:flex;"><span>                    InternalName<span style="color:#960050;background-color:#1e0010">:</span>     mimikatz
+</span></span><span style="display:flex;"><span>                    OriginalFilename<span style="color:#960050;background-color:#1e0010">:</span> mimikatz.exe
+</span></span><span style="display:flex;"><span>                    FileVersion<span style="color:#960050;background-color:#1e0010">:</span>      <span style="color:#ae81ff">2.2</span>.0.0
+</span></span><span style="display:flex;"><span>                    FileDescription<span style="color:#960050;background-color:#1e0010">:</span>  mimikatz <span style="color:#66d9ef">for</span> Windows
+</span></span><span style="display:flex;"><span>                    Product<span style="color:#960050;background-color:#1e0010">:</span>          mimikatz
+</span></span><span style="display:flex;"><span>                    ProductVersion<span style="color:#960050;background-color:#1e0010">:</span>   <span style="color:#ae81ff">2.2</span>.0.0
+</span></span><span style="display:flex;"><span>                    Debug<span style="color:#960050;background-color:#1e0010">:</span>            False
+</span></span><span style="display:flex;"><span>                    Patched<span style="color:#960050;background-color:#1e0010">:</span>          False
+</span></span><span style="display:flex;"><span>                    PreRelease<span style="color:#960050;background-color:#1e0010">:</span>       True
+</span></span><span style="display:flex;"><span>                    PrivateBuild<span style="color:#960050;background-color:#1e0010">:</span>     True
+</span></span><span style="display:flex;"><span>                    SpecialBuild<span style="color:#960050;background-color:#1e0010">:</span>     True
+</span></span><span style="display:flex;"><span>                    Language<span style="color:#960050;background-color:#1e0010">:</span>         English (United States)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>BaseName          <span style="color:#960050;background-color:#1e0010">:</span> mimicode
+</span></span><span style="display:flex;"><span>Target            <span style="color:#960050;background-color:#1e0010">:</span> {}
+</span></span><span style="display:flex;"><span>LinkType          <span style="color:#960050;background-color:#1e0010">:</span>
+</span></span><span style="display:flex;"><span>Name              <span style="color:#960050;background-color:#1e0010">:</span> mimicode.exe
+</span></span><span style="display:flex;"><span>Length            <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">1365416</span>
+</span></span><span style="display:flex;"><span>DirectoryName     <span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief
+</span></span><span style="display:flex;"><span>Directory         <span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief
+</span></span><span style="display:flex;"><span>IsReadOnly        <span style="color:#960050;background-color:#1e0010">:</span> False
+</span></span><span style="display:flex;"><span>Exists            <span style="color:#960050;background-color:#1e0010">:</span> True
+</span></span><span style="display:flex;"><span>FullName          <span style="color:#960050;background-color:#1e0010">:</span> C:\Tools\SigThief\mimicode.exe
+</span></span><span style="display:flex;"><span>Extension         <span style="color:#960050;background-color:#1e0010">:</span> .exe
+</span></span><span style="display:flex;"><span>CreationTime      <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">2</span>/<span style="color:#ae81ff">13</span>/<span style="color:#ae81ff">2023</span> <span style="color:#ae81ff">10</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">18</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">09</span> AM
+</span></span><span style="display:flex;"><span>CreationTimeUtc   <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">2</span>/<span style="color:#ae81ff">13</span>/<span style="color:#ae81ff">2023</span> <span style="color:#ae81ff">6</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">18</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">09</span> PM
+</span></span><span style="display:flex;"><span>LastAccessTime    <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">2</span>/<span style="color:#ae81ff">13</span>/<span style="color:#ae81ff">2023</span> <span style="color:#ae81ff">6</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">38</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">31</span> PM
+</span></span><span style="display:flex;"><span>LastAccessTimeUtc <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">2</span>/<span style="color:#ae81ff">14</span>/<span style="color:#ae81ff">2023</span> <span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">38</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">31</span> AM
+</span></span><span style="display:flex;"><span>LastWriteTime     <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">2</span>/<span style="color:#ae81ff">13</span>/<span style="color:#ae81ff">2023</span> <span style="color:#ae81ff">10</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">18</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">09</span> AM
+</span></span><span style="display:flex;"><span>LastWriteTimeUtc  <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#ae81ff">2</span>/<span style="color:#ae81ff">13</span>/<span style="color:#ae81ff">2023</span> <span style="color:#ae81ff">6</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">18</span><span style="color:#960050;background-color:#1e0010">:</span><span style="color:#ae81ff">09</span> PM
+</span></span><span style="display:flex;"><span>Attributes        <span style="color:#960050;background-color:#1e0010">:</span> Archive
+</span></span></code></pre></div><h2 id="whos-using-this-technique">
   Who’s Using This Technique
   <a href="#whos-using-this-technique" class="h-anchor" aria-hidden="true">#</a>
 </h2>

