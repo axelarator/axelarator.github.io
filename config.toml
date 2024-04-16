@@ -1,6 +1,6 @@
 baseURL = "https://axelarator.github.io/"
 languageCode = "en-us"
-title = "Axelarator Blog"
+title = "Axelarator"
 theme = "hello-friend"
 paginate = 5
 publishDir = "docs"
@@ -29,8 +29,8 @@ publishDir = "docs"
 
 [languages]
   [languages.en.params]
-    title = "Axelarator Blog"
-    subtitle = "A simple theme for Hugo"
+    title = "Axelarator"
+    subtitle = "A CTI Analyst Blog"
     keywords = ""
     copyright = ""
     menuMore = "Show more"

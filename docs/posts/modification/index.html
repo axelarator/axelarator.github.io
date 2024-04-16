@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     
       <title>
         Event Triggered Execution: Unix Shell Configuration Modification (T1546.004) ::
-        Axelarator Blog — A simple theme for Hugo
+        Axelarator — A CTI Analyst Blog
       </title>
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -19,31 +19,29 @@ Adversaries may establish persistence through executing malicious commands trigg
   content=""
 />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://axelarator.github.io/posts/modification/" />
+<link rel="canonical" href="http://localhost:1313/posts/modification/" />
 
 
 
 
 
-<link rel="stylesheet" href="https://axelarator.github.io/assets/style.css" />
-
-<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
 
 
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="144x144"
-  href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png"
-/>
-<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="http://localhost:1313/style.css" />
 
 
-<link href="https://axelarator.github.io/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://localhost:1313/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)"/>
@@ -56,9 +54,9 @@ Adversaries may establish persistence through executing malicious commands trigg
 <meta property="og:description" content="Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
 Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://axelarator.github.io/posts/modification/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://localhost:1313/posts/modification/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-23T20:27:39-04:00" />
-<meta property="article:modified_time" content="2022-06-23T20:27:39-04:00" /><meta property="og:site_name" content="Axelarator Blog" />
+<meta property="article:modified_time" content="2022-06-23T20:27:39-04:00" /><meta property="og:site_name" content="Axelarator" />
 
 
 
@@ -152,13 +150,13 @@ Adversaries may establish persistence through executing malicious commands trigg
   
   
 
-  <div class="post">
+  <article class="post">
     <h1 class="post-title">Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)</h1>
     <div class="post-meta">
       
-        <span class="post-date">
+        <time class="post-date">
           2022-06-23
-        </span>
+        </time>
 
         
           
@@ -234,7 +232,7 @@ into scripts automatically executed by shells. Using bash as an example, the def
           <div class="pagination__buttons">
             
               <span class="button previous">
-                <a href="https://axelarator.github.io/posts/malwarelab/">
+                <a href="http://localhost:1313/posts/malwarelab/">
                   <span class="button__icon">←</span>
                   <span class="button__text">Malware Analysis Homelab</span>
                 </a>
@@ -242,7 +240,7 @@ into scripts automatically executed by shells. Using bash as an example, the def
             
             
               <span class="button next">
-                <a href="https://axelarator.github.io/posts/unixshell/">
+                <a href="http://localhost:1313/posts/unixshell/">
                   <span class="button__text">Command and Scripting Interpreter: Unix Shell (T1059.004)</span>
                   <span class="button__icon">→</span>
                 </a>
@@ -259,7 +257,7 @@ into scripts automatically executed by shells. Using bash as an example, the def
 
       
     
-  </div>
+  </article>
 
       </div>
 
@@ -285,21 +283,18 @@ into scripts automatically executed by shells. Using bash as an example, the def
 </a>
 
       <div class="copyright">
-        <span
-          >© 2024 Powered by
-          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
-        >
-        <span
-          >Theme created by
-          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
-        >
+        <span>© 2024 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span><a href="https://github.com/panr/hugo-theme-hello-friend" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
       </div>
     
   </div>
 </footer>
 
-<script src="https://axelarator.github.io/assets/main.js"></script>
-<script src="https://axelarator.github.io/assets/prism.js"></script>
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
 
 
       

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     
       <title>
         Cloud Recon ::
-        Axelarator Blog — A simple theme for Hugo
+        Axelarator — A CTI Analyst Blog
       </title>
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -19,31 +19,29 @@ Identify Service # Use OSINT to determine the provider and region your target is
   content=""
 />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://axelarator.github.io/posts/cloudrecon/" />
+<link rel="canonical" href="http://localhost:1313/posts/cloudrecon/" />
 
 
 
 
 
-<link rel="stylesheet" href="https://axelarator.github.io/assets/style.css" />
-
-<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
 
 
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="144x144"
-  href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png"
-/>
-<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="http://localhost:1313/style.css" />
 
 
-<link href="https://axelarator.github.io/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
-<link href="https://axelarator.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://localhost:1313/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Cloud Recon"/>
@@ -56,9 +54,9 @@ Identify Service # Use OSINT to determine the provider and region your target is
 <meta property="og:description" content="Identify the cloud perimeter of a target. Thanks to colleagues who are smarter than me.
 Identify Service # Use OSINT to determine the provider and region your target is located in. Shodan for example has a cloud.region filter that lists what region the IP is located in. Some examples: GCP: us-central1 Azure: northeurope AWS: us-east-1 Download corresponding IP ranges based on your target’s provider. https://ip-ranges.amazonaws.com/ip-ranges.json https://www.gstatic.com/ipranges/cloud.json https://www.microsoft.com/en-us/download/details.aspx?id=56519 Filter list # GCP: jq &#39;." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://axelarator.github.io/posts/cloudrecon/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://localhost:1313/posts/cloudrecon/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-03T16:18:42-04:00" />
-<meta property="article:modified_time" content="2022-08-03T16:18:42-04:00" /><meta property="og:site_name" content="Axelarator Blog" />
+<meta property="article:modified_time" content="2022-08-03T16:18:42-04:00" /><meta property="og:site_name" content="Axelarator" />
 
 
 
@@ -152,13 +150,13 @@ Identify Service # Use OSINT to determine the provider and region your target is
   
   
 
-  <div class="post">
+  <article class="post">
     <h1 class="post-title">Cloud Recon</h1>
     <div class="post-meta">
       
-        <span class="post-date">
+        <time class="post-date">
           2022-08-03
-        </span>
+        </time>
 
         
           
@@ -261,7 +259,7 @@ Identify Service # Use OSINT to determine the provider and region your target is
           <div class="pagination__buttons">
             
               <span class="button previous">
-                <a href="https://axelarator.github.io/posts/bumblebee/">
+                <a href="http://localhost:1313/posts/bumblebee/">
                   <span class="button__icon">←</span>
                   <span class="button__text">Bumblebee</span>
                 </a>
@@ -269,7 +267,7 @@ Identify Service # Use OSINT to determine the provider and region your target is
             
             
               <span class="button next">
-                <a href="https://axelarator.github.io/posts/minskdoc/">
+                <a href="http://localhost:1313/posts/minskdoc/">
                   <span class="button__text">Malicious Word Doc</span>
                   <span class="button__icon">→</span>
                 </a>
@@ -286,7 +284,7 @@ Identify Service # Use OSINT to determine the provider and region your target is
 
       
     
-  </div>
+  </article>
 
       </div>
 
@@ -312,21 +310,18 @@ Identify Service # Use OSINT to determine the provider and region your target is
 </a>
 
       <div class="copyright">
-        <span
-          >© 2024 Powered by
-          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
-        >
-        <span
-          >Theme created by
-          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
-        >
+        <span>© 2024 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span><a href="https://github.com/panr/hugo-theme-hello-friend" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
       </div>
     
   </div>
 </footer>
 
-<script src="https://axelarator.github.io/assets/main.js"></script>
-<script src="https://axelarator.github.io/assets/prism.js"></script>
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
 
 
       

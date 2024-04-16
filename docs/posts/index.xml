@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Axelarator Blog</title>
+    <title>Posts on Axelarator</title>
     
     
     
-    <link>https://axelarator.github.io/posts/</link>
-    <description>Recent content in Posts on Axelarator Blog</description>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Axelarator</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 13 Apr 2024 12:43:45 -0600</lastBuildDate>
     
-	<atom:link href="https://axelarator.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>The A in CTI Stands for Actionable</title>
-      <link>https://axelarator.github.io/posts/cti/</link>
+      <link>http://localhost:1313/posts/cti/</link>
       <pubDate>Sat, 13 Apr 2024 12:43:45 -0600</pubDate>
       
-      <guid>https://axelarator.github.io/posts/cti/</guid>
+      <guid>http://localhost:1313/posts/cti/</guid>
       <description>
         
           
@@ -36,10 +36,10 @@
     
     <item>
       <title>A CTI Analyst Homelab</title>
-      <link>https://axelarator.github.io/posts/ctihomelab/</link>
+      <link>http://localhost:1313/posts/ctihomelab/</link>
       <pubDate>Mon, 11 Mar 2024 13:13:39 -0600</pubDate>
       
-      <guid>https://axelarator.github.io/posts/ctihomelab/</guid>
+      <guid>http://localhost:1313/posts/ctihomelab/</guid>
       <description>
         
           
@@ -56,10 +56,10 @@
     
     <item>
       <title>Hunting C2s with Nuclei</title>
-      <link>https://axelarator.github.io/posts/hunt/</link>
+      <link>http://localhost:1313/posts/hunt/</link>
       <pubDate>Mon, 04 Sep 2023 14:55:00 -0600</pubDate>
       
-      <guid>https://axelarator.github.io/posts/hunt/</guid>
+      <guid>http://localhost:1313/posts/hunt/</guid>
       <description>
         
           
@@ -76,10 +76,10 @@
     
     <item>
       <title>Mozi</title>
-      <link>https://axelarator.github.io/posts/mozi/</link>
+      <link>http://localhost:1313/posts/mozi/</link>
       <pubDate>Tue, 11 Apr 2023 18:50:05 -0600</pubDate>
       
-      <guid>https://axelarator.github.io/posts/mozi/</guid>
+      <guid>http://localhost:1313/posts/mozi/</guid>
       <description>
         
           
@@ -96,10 +96,10 @@
     
     <item>
       <title>BLE / NFC Threats</title>
-      <link>https://axelarator.github.io/posts/blenfc/</link>
+      <link>http://localhost:1313/posts/blenfc/</link>
       <pubDate>Fri, 17 Mar 2023 11:22:25 -0600</pubDate>
       
-      <guid>https://axelarator.github.io/posts/blenfc/</guid>
+      <guid>http://localhost:1313/posts/blenfc/</guid>
       <description>
         
           
@@ -116,10 +116,10 @@
     
     <item>
       <title>Abusing Code Signing Certificates</title>
-      <link>https://axelarator.github.io/posts/codesigningcerts/</link>
+      <link>http://localhost:1313/posts/codesigningcerts/</link>
       <pubDate>Wed, 15 Feb 2023 09:09:43 -0700</pubDate>
       
-      <guid>https://axelarator.github.io/posts/codesigningcerts/</guid>
+      <guid>http://localhost:1313/posts/codesigningcerts/</guid>
       <description>
         
           
@@ -136,10 +136,10 @@
     
     <item>
       <title>Bumblebee</title>
-      <link>https://axelarator.github.io/posts/bumblebee/</link>
+      <link>http://localhost:1313/posts/bumblebee/</link>
       <pubDate>Thu, 25 Aug 2022 16:35:18 -0400</pubDate>
       
-      <guid>https://axelarator.github.io/posts/bumblebee/</guid>
+      <guid>http://localhost:1313/posts/bumblebee/</guid>
       <description>
         
           
@@ -160,10 +160,10 @@ LNK Analysis # Using LECmd.exe to analyze the LNK file. If on Linux, Lnkinfo giv
     
     <item>
       <title>Cloud Recon</title>
-      <link>https://axelarator.github.io/posts/cloudrecon/</link>
+      <link>http://localhost:1313/posts/cloudrecon/</link>
       <pubDate>Wed, 03 Aug 2022 16:18:42 -0400</pubDate>
       
-      <guid>https://axelarator.github.io/posts/cloudrecon/</guid>
+      <guid>http://localhost:1313/posts/cloudrecon/</guid>
       <description>
         
           
@@ -181,10 +181,10 @@ Identify Service # Use OSINT to determine the provider and region your target is
     
     <item>
       <title>Malicious Word Doc</title>
-      <link>https://axelarator.github.io/posts/minskdoc/</link>
+      <link>http://localhost:1313/posts/minskdoc/</link>
       <pubDate>Sun, 17 Jul 2022 16:25:20 -0400</pubDate>
       
-      <guid>https://axelarator.github.io/posts/minskdoc/</guid>
+      <guid>http://localhost:1313/posts/minskdoc/</guid>
       <description>
         
           
@@ -209,10 +209,10 @@ Next is to use olevba to get more information about the VBA and view the macro c
     
     <item>
       <title>Malware Analysis Homelab</title>
-      <link>https://axelarator.github.io/posts/malwarelab/</link>
+      <link>http://localhost:1313/posts/malwarelab/</link>
       <pubDate>Sun, 17 Jul 2022 16:24:11 -0400</pubDate>
       
-      <guid>https://axelarator.github.io/posts/malwarelab/</guid>
+      <guid>http://localhost:1313/posts/malwarelab/</guid>
       <description>
         
           
@@ -231,10 +231,10 @@ It was inspired by her KVM Malware Lab Guide but I had to make some changes due 
     
     <item>
       <title>Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)</title>
-      <link>https://axelarator.github.io/posts/modification/</link>
+      <link>http://localhost:1313/posts/modification/</link>
       <pubDate>Thu, 23 Jun 2022 20:27:39 -0400</pubDate>
       
-      <guid>https://axelarator.github.io/posts/modification/</guid>
+      <guid>http://localhost:1313/posts/modification/</guid>
       <description>
         
           
@@ -252,10 +252,10 @@ Adversaries may establish persistence through executing malicious commands trigg
     
     <item>
       <title>Command and Scripting Interpreter: Unix Shell (T1059.004)</title>
-      <link>https://axelarator.github.io/posts/unixshell/</link>
+      <link>http://localhost:1313/posts/unixshell/</link>
       <pubDate>Thu, 23 Jun 2022 20:17:09 -0400</pubDate>
       
-      <guid>https://axelarator.github.io/posts/unixshell/</guid>
+      <guid>http://localhost:1313/posts/unixshell/</guid>
       <description>
         
           
@@ -274,10 +274,10 @@ Invocation # Interactive Shell # An interactive shell is one started without non
     
     <item>
       <title>Hide Artifacts: NTFS File Attributes (T1564.004)</title>
-      <link>https://axelarator.github.io/posts/ntfs/</link>
+      <link>http://localhost:1313/posts/ntfs/</link>
       <pubDate>Thu, 23 Jun 2022 20:11:52 -0400</pubDate>
       
-      <guid>https://axelarator.github.io/posts/ntfs/</guid>
+      <guid>http://localhost:1313/posts/ntfs/</guid>
       <description>
         
           
@@ -296,10 +296,10 @@ Adversaries may use NTFS file attributes to hide their malicious data in order t
     
     <item>
       <title>Honeypot</title>
-      <link>https://axelarator.github.io/posts/honeypot/</link>
+      <link>http://localhost:1313/posts/honeypot/</link>
       <pubDate>Thu, 23 Jun 2022 19:50:38 -0400</pubDate>
       
-      <guid>https://axelarator.github.io/posts/honeypot/</guid>
+      <guid>http://localhost:1313/posts/honeypot/</guid>
       <description>
         
           
@@ -322,10 +322,10 @@ Activity between 10pm 2/9 and 04:32 2/10
     
     <item>
       <title>QakbotMSI</title>
-      <link>https://axelarator.github.io/posts/qakbotmsi/</link>
+      <link>http://localhost:1313/posts/qakbotmsi/</link>
       <pubDate>Tue, 21 Jun 2022 18:11:53 -0400</pubDate>
       
-      <guid>https://axelarator.github.io/posts/qakbotmsi/</guid>
+      <guid>http://localhost:1313/posts/qakbotmsi/</guid>
       <description>
         
           

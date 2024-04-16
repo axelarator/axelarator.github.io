@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Axelarator Blog</title>
+    <title>Tags on Axelarator</title>
     
     
     
-    <link>https://axelarator.github.io/tags/</link>
-    <description>Recent content in Tags on Axelarator Blog</description>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Axelarator</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-	<atom:link href="https://axelarator.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
