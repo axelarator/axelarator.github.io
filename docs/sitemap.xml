@@ -2,65 +2,65 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://axelarator.github.io/</loc>
     <lastmod>2024-04-13T12:43:45-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://axelarator.github.io/posts/</loc>
     <lastmod>2024-04-13T12:43:45-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cti/</loc>
+    <loc>https://axelarator.github.io/posts/cti/</loc>
     <lastmod>2024-04-13T12:43:45-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ctihomelab/</loc>
+    <loc>https://axelarator.github.io/posts/ctihomelab/</loc>
     <lastmod>2024-03-11T13:13:39-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/hunt/</loc>
+    <loc>https://axelarator.github.io/posts/hunt/</loc>
     <lastmod>2023-09-04T14:55:00-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/mozi/</loc>
+    <loc>https://axelarator.github.io/posts/mozi/</loc>
     <lastmod>2023-04-11T18:50:05-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/blenfc/</loc>
+    <loc>https://axelarator.github.io/posts/blenfc/</loc>
     <lastmod>2023-03-17T11:22:25-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/codesigningcerts/</loc>
+    <loc>https://axelarator.github.io/posts/codesigningcerts/</loc>
     <lastmod>2023-02-15T09:09:43-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/bumblebee/</loc>
+    <loc>https://axelarator.github.io/posts/bumblebee/</loc>
     <lastmod>2022-08-25T16:35:18-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cloudrecon/</loc>
+    <loc>https://axelarator.github.io/posts/cloudrecon/</loc>
     <lastmod>2022-08-03T16:18:42-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/minskdoc/</loc>
+    <loc>https://axelarator.github.io/posts/minskdoc/</loc>
     <lastmod>2022-07-17T16:25:20-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/malwarelab/</loc>
+    <loc>https://axelarator.github.io/posts/malwarelab/</loc>
     <lastmod>2022-07-17T16:24:11-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/modification/</loc>
+    <loc>https://axelarator.github.io/posts/modification/</loc>
     <lastmod>2022-06-23T20:27:39-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/unixshell/</loc>
+    <loc>https://axelarator.github.io/posts/unixshell/</loc>
     <lastmod>2022-06-23T20:17:09-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ntfs/</loc>
+    <loc>https://axelarator.github.io/posts/ntfs/</loc>
     <lastmod>2022-06-23T20:11:52-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://axelarator.github.io/projects/</loc>
     <lastmod>2022-06-23T20:01:10-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/honeypot/</loc>
+    <loc>https://axelarator.github.io/posts/honeypot/</loc>
     <lastmod>2022-06-23T19:50:38-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://axelarator.github.io/about/</loc>
     <lastmod>2022-06-21T20:08:55-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/qakbotmsi/</loc>
+    <loc>https://axelarator.github.io/posts/qakbotmsi/</loc>
     <lastmod>2022-06-21T18:11:53-04:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://axelarator.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://axelarator.github.io/tags/</loc>
   </url>
 </urlset>
