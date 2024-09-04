@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     
       <title>
         Event Triggered Execution: Unix Shell Configuration Modification (T1546.004) ::
@@ -11,15 +11,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
-Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment."
+  content=" Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
+Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment. All login shells on a system use /etc/profile when initiated. These configuration scripts run at the permission level of their directory and are often used to set environment variables, create aliases, and customize the user’s environment. When the shell exits or terminates, additional shell scripts are executed to ensure the shell exits appropriately.
+"
 />
 <meta
   name="keywords"
   content=""
 />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://axelarator.github.io/posts/modification/" />
+<link rel="canonical" href="http://localhost:1313/posts/modification/" />
 
 
 
@@ -29,11 +30,11 @@ Adversaries may establish persistence through executing malicious commands trigg
 
 <link rel="stylesheet" href="/css/style.css" />
 
-<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
+<link rel="stylesheet" href="http://localhost:1313/style.css" />
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png" />
-<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://localhost:1313/img/favicon.png" />
 
 
 <link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
@@ -44,19 +45,24 @@ Adversaries may establish persistence through executing malicious commands trigg
 <link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)"/>
-<meta name="twitter:description" content="Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
-Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment."/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)">
+  <meta name="twitter:description" content=" Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
+Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment. All login shells on a system use /etc/profile when initiated. These configuration scripts run at the permission level of their directory and are often used to set environment variables, create aliases, and customize the user’s environment. When the shell exits or terminates, additional shell scripts are executed to ensure the shell exits appropriately.">
 
 
 
-<meta property="og:title" content="Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)" />
-<meta property="og:description" content="Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
-Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://axelarator.github.io/posts/modification/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-06-23T20:27:39-04:00" />
-<meta property="article:modified_time" content="2022-06-23T20:27:39-04:00" /><meta property="og:site_name" content="Axelarator" />
+<meta property="og:url" content="http://localhost:1313/posts/modification/">
+  <meta property="og:site_name" content="Axelarator">
+  <meta property="og:title" content="Event Triggered Execution: Unix Shell Configuration Modification (T1546.004)">
+  <meta property="og:description" content=" Event Triggered Execution: Unix Shell Configuration Modification # T1546.004
+Adversaries may establish persistence through executing malicious commands triggered by a user’s shell. User Unix Shells execute several configuration scripts at different points throughout the session based on events. For example, when a user opens a command-line interface or remotely logs in (such as via SSH) a login shell is initiated. The login shell executes scripts from the system (/etc) and the user’s home directory (~/) to configure the environment. All login shells on a system use /etc/profile when initiated. These configuration scripts run at the permission level of their directory and are often used to set environment variables, create aliases, and customize the user’s environment. When the shell exits or terminates, additional shell scripts are executed to ensure the shell exits appropriately.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-06-23T20:27:39-04:00">
+    <meta property="article:modified_time" content="2022-06-23T20:27:39-04:00">
 
 
 
@@ -232,7 +238,7 @@ into scripts automatically executed by shells. Using bash as an example, the def
           <div class="pagination__buttons">
             
               <span class="button previous">
-                <a href="https://axelarator.github.io/posts/malwarelab/">
+                <a href="http://localhost:1313/posts/malwarelab/">
                   <span class="button__icon">←</span>
                   <span class="button__text">Malware Analysis Homelab</span>
                 </a>
@@ -240,7 +246,7 @@ into scripts automatically executed by shells. Using bash as an example, the def
             
             
               <span class="button next">
-                <a href="https://axelarator.github.io/posts/unixshell/">
+                <a href="http://localhost:1313/posts/unixshell/">
                   <span class="button__text">Command and Scripting Interpreter: Unix Shell (T1059.004)</span>
                   <span class="button__icon">→</span>
                 </a>

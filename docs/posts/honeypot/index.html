@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     
       <title>
         Honeypot ::
@@ -11,20 +11,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
+  content=" Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
 https://www.intezer.com/blog/malware-analysis/how-to-make-malware-honeypot/
 https://medium.com/@riccardo.ancarani94/attacking-docker-exposed-api-3e01ffc3c124
 https://hub.docker.com/_/alpine
 EC2 Instance running Ubuntu Server 18.04 w/ Docker running an Alpine Linux container.
 Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer. Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
-Activity between 10pm 2/9 and 04:32 2/10"
+"
 />
 <meta
   name="keywords"
   content=""
 />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://axelarator.github.io/posts/honeypot/" />
+<link rel="canonical" href="http://localhost:1313/posts/honeypot/" />
 
 
 
@@ -34,11 +34,11 @@ Activity between 10pm 2/9 and 04:32 2/10"
 
 <link rel="stylesheet" href="/css/style.css" />
 
-<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
+<link rel="stylesheet" href="http://localhost:1313/style.css" />
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png" />
-<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://localhost:1313/img/favicon.png" />
 
 
 <link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
@@ -49,29 +49,32 @@ Activity between 10pm 2/9 and 04:32 2/10"
 <link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Honeypot"/>
-<meta name="twitter:description" content="Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Honeypot">
+  <meta name="twitter:description" content=" Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
 https://www.intezer.com/blog/malware-analysis/how-to-make-malware-honeypot/
 https://medium.com/@riccardo.ancarani94/attacking-docker-exposed-api-3e01ffc3c124
 https://hub.docker.com/_/alpine
 EC2 Instance running Ubuntu Server 18.04 w/ Docker running an Alpine Linux container.
-Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer. Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
-Activity between 10pm 2/9 and 04:32 2/10"/>
+Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer. Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.">
 
 
 
-<meta property="og:title" content="Honeypot" />
-<meta property="og:description" content="Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
+<meta property="og:url" content="http://localhost:1313/posts/honeypot/">
+  <meta property="og:site_name" content="Axelarator">
+  <meta property="og:title" content="Honeypot">
+  <meta property="og:description" content=" Honeypot # https://sysdig.com/blog/triaging-malicious-docker-container/
 https://www.intezer.com/blog/malware-analysis/how-to-make-malware-honeypot/
 https://medium.com/@riccardo.ancarani94/attacking-docker-exposed-api-3e01ffc3c124
 https://hub.docker.com/_/alpine
 EC2 Instance running Ubuntu Server 18.04 w/ Docker running an Alpine Linux container.
-Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer. Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.
-Activity between 10pm 2/9 and 04:32 2/10" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://axelarator.github.io/posts/honeypot/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-06-23T19:50:38-04:00" />
-<meta property="article:modified_time" content="2022-06-23T19:50:38-04:00" /><meta property="og:site_name" content="Axelarator" />
+Port 22 is locked to my IP only Port 2375 is exposed which is the Docker API. Useful for tools like Portainer. Got an alert for a masscan command searching for port 2375. Another alert was triggered for 2376 as some APIs expose this instead of 2375.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-06-23T19:50:38-04:00">
+    <meta property="article:modified_time" content="2022-06-23T19:50:38-04:00">
 
 
 
@@ -266,18 +269,18 @@ Activity between 10pm 2/9 and 04:32 2/10" />
 <p><a href="https://www.lacework.com/blog/teamtnt-builds-botnet-from-chinese-cloud-servers/">TeamTNT Builds Botnet from Chinese Cloud Servers - Lacework</a></p>
 <p>Network Connections</p>
 <table>
-<thead>
-<tr>
-<th>Local Address</th>
-<th>Foreign Address</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>172[.]31[.]94[.]144:56862</td>
-<td>159[.]75[.]18[.]13:3667</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Local Address</th>
+          <th style="text-align: left">Foreign Address</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">172[.]31[.]94[.]144:56862</td>
+          <td style="text-align: left">159[.]75[.]18[.]13:3667</td>
+      </tr>
+  </tbody>
 </table>
 <p>Some further attribution tying the Tsunami sample to TeamTNT based on similar strings.</p>
 <p><img alt="Untitled" src="/Honeypot/Untitled%205.png"></p>
@@ -315,7 +318,7 @@ Activity between 10pm 2/9 and 04:32 2/10" />
           <div class="pagination__buttons">
             
               <span class="button previous">
-                <a href="https://axelarator.github.io/posts/ntfs/">
+                <a href="http://localhost:1313/posts/ntfs/">
                   <span class="button__icon">←</span>
                   <span class="button__text">Hide Artifacts: NTFS File Attributes (T1564.004)</span>
                 </a>
@@ -323,7 +326,7 @@ Activity between 10pm 2/9 and 04:32 2/10" />
             
             
               <span class="button next">
-                <a href="https://axelarator.github.io/posts/qakbotmsi/">
+                <a href="http://localhost:1313/posts/qakbotmsi/">
                   <span class="button__text">QakbotMSI</span>
                   <span class="button__icon">→</span>
                 </a>

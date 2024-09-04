@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta name="generator" content="Hugo 0.134.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+      <title>
+        Axelarator —
+        A CTI Analyst Blog
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="A CTI Analyst Blog"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="http://localhost:1313/" />
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="http://localhost:1313/style.css" />
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://localhost:1313/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Axelarator">
+
+
+
+<meta property="og:url" content="http://localhost:1313/">
+  <meta property="og:site_name" content="Axelarator">
+  <meta property="og:title" content="Axelarator">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+
+
+
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Axelarator" />
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  
+  
+    
+  
+  
+
+  
+
+  <div class="posts">
+    
+    <article class="post on-list">
+      <h1 class="post-title"><a href="http://localhost:1313/posts/qakbotmsi/">QakbotMSI</a></h1>
+      <div class="post-meta">
+        
+          <time class="post-date">
+            2022-06-21
+          </time>
+
+          
+        
+
+        
+
+        
+      </div>
+
+      
+
+      
+
+      <div class="post-content">
+        
+          
+            <h3 id="executive-summary">
+  Executive Summary
+  <a href="#executive-summary" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>In mid-April 2022, Mandiant observed UNC2500 campaigns using MSI packages to distribute Qakbot payloads.</li>
+<li>This change comes shortly after Microsoft’s announcement that macros from Office documents downloaded from the internet (ZoneIdentifier ADS) will be blocked by default.</li>
+<li>This new payload uses a botnet ID <strong>AA,</strong> which is unique from previous campaigns that have used <strong>tr</strong>, <strong>cullinan</strong>, and <strong>cullinan01</strong>.</li>
+<li>Distribution came from phishing emails containing a malicious link from either OneDrive or files hosted on compromised websites that downloads a ZIP archive. That archive contains a Windows Installer Package (MSI) file. When the user executes the MSI file, a Qakbot DLL contained within an embedded Windows Cabinet File (CAB)  is executed.</li>
+</ul>
+<h3 id="analysis">
+  Analysis
+  <a href="#analysis" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>This sample was originally published by @pr0xylife.</p>
+          
+        
+      </div>
+      
+        <div><a class="read-more button" href="/posts/qakbotmsi/">Read more →</a></div>
+      
+    </article>
+    
+    <div class="pagination">
+  <div class="pagination__buttons">
+    
+      <span class="button previous">
+        <a href="/page/3/">
+          <span class="button__icon">←</span>
+          <span class="button__text">Newer posts</span>
+        </a>
+      </span>
+    
+    
+  </div>
+</div>
+
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span><a href="https://github.com/panr/hugo-theme-hello-friend" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

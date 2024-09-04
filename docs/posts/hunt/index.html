@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     
       <title>
         Hunting C2s with Nuclei ::
@@ -11,14 +11,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring."
+  content=" Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring. My next goal was to somehow automate these checks.
+"
 />
 <meta
   name="keywords"
   content=""
 />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://axelarator.github.io/posts/hunt/" />
+<link rel="canonical" href="http://localhost:1313/posts/hunt/" />
 
 
 
@@ -28,11 +29,11 @@
 
 <link rel="stylesheet" href="/css/style.css" />
 
-<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
+<link rel="stylesheet" href="http://localhost:1313/style.css" />
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png" />
-<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://localhost:1313/img/favicon.png" />
 
 
 <link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
@@ -43,17 +44,22 @@
 <link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Hunting C2s with Nuclei"/>
-<meta name="twitter:description" content="Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring."/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hunting C2s with Nuclei">
+  <meta name="twitter:description" content=" Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring. My next goal was to somehow automate these checks.">
 
 
 
-<meta property="og:title" content="Hunting C2s with Nuclei" />
-<meta property="og:description" content="Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://axelarator.github.io/posts/hunt/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-09-04T14:55:00-06:00" />
-<meta property="article:modified_time" content="2023-09-04T14:55:00-06:00" /><meta property="og:site_name" content="Axelarator" />
+<meta property="og:url" content="http://localhost:1313/posts/hunt/">
+  <meta property="og:site_name" content="Axelarator">
+  <meta property="og:title" content="Hunting C2s with Nuclei">
+  <meta property="og:description" content=" Overview # For a long time now, I’ve been using Censys/Shodan and DomainTools to look up hosts, attempt to correlate infrastructure to find overlaps and potentially attribute to C2s and other malicious hosts. There are so many data points to look at like JARM signatures, certificate data including historical analysis to watch hosting changes, service commonalities including the same web server hosted across multiple IPs, subdomains, etc. My point is this process almost always requires manual intervention at least first to visualize a pattern, then you can automate the infrastructure hunting for real-time monitoring. My next goal was to somehow automate these checks.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-09-04T14:55:00-06:00">
+    <meta property="article:modified_time" content="2023-09-04T14:55:00-06:00">
 
 
 
@@ -485,7 +491,7 @@
           <div class="pagination__buttons">
             
               <span class="button previous">
-                <a href="https://axelarator.github.io/posts/ctihomelab/">
+                <a href="http://localhost:1313/posts/ctihomelab/">
                   <span class="button__icon">←</span>
                   <span class="button__text">A CTI Analyst Homelab</span>
                 </a>
@@ -493,7 +499,7 @@
             
             
               <span class="button next">
-                <a href="https://axelarator.github.io/posts/mozi/">
+                <a href="http://localhost:1313/posts/mozi/">
                   <span class="button__text">Mozi</span>
                   <span class="button__icon">→</span>
                 </a>

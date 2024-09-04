@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     
       <title>
         BLE / NFC Threats ::
@@ -11,14 +11,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="Bluetooth Low Energy # Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability."
+  content=" Bluetooth Low Energy # Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability.
+"
 />
 <meta
   name="keywords"
   content=""
 />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://axelarator.github.io/posts/blenfc/" />
+<link rel="canonical" href="http://localhost:1313/posts/blenfc/" />
 
 
 
@@ -28,11 +29,11 @@
 
 <link rel="stylesheet" href="/css/style.css" />
 
-<link rel="stylesheet" href="https://axelarator.github.io/style.css" />
+<link rel="stylesheet" href="http://localhost:1313/style.css" />
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://axelarator.github.io/img/apple-touch-icon-144-precomposed.png" />
-<link rel="shortcut icon" href="https://axelarator.github.io/img/favicon.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://localhost:1313/img/favicon.png" />
 
 
 <link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
@@ -43,17 +44,22 @@
 <link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="BLE / NFC Threats"/>
-<meta name="twitter:description" content="Bluetooth Low Energy # Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability."/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BLE / NFC Threats">
+  <meta name="twitter:description" content=" Bluetooth Low Energy # Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability.">
 
 
 
-<meta property="og:title" content="BLE / NFC Threats" />
-<meta property="og:description" content="Bluetooth Low Energy # Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://axelarator.github.io/posts/blenfc/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-03-17T11:22:25-06:00" />
-<meta property="article:modified_time" content="2023-03-17T11:22:25-06:00" /><meta property="og:site_name" content="Axelarator" />
+<meta property="og:url" content="http://localhost:1313/posts/blenfc/">
+  <meta property="og:site_name" content="Axelarator">
+  <meta property="og:title" content="BLE / NFC Threats">
+  <meta property="og:description" content=" Bluetooth Low Energy # Bluetooth Low Energy (BLE) is a wireless communication technology specially designed to prolong battery life of devices with different power consumption and usage capabilities. BLE started in Bluetooth version 4.2 with the latest being 5.x. It’s known as “Bluetooth Smart” whereas previous versions are referred to as “Bluetooth Classic”. Bluetooth operates at 2.4GHz with a max distance of 100 meters. Version 5 is backwards compatible and provides double the speed, four times the distance, lower power requirement, better security, and higher reliability.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-03-17T11:22:25-06:00">
+    <meta property="article:modified_time" content="2023-03-17T11:22:25-06:00">
 
 
 
@@ -524,75 +530,75 @@
 <p>SweynTooth is a vulnerability family consisting of 12 vulnerabilities. They expose flaws in BLE SoC implementations that allow attackers in radio range to trigger deadlocks, crashes, buffer overflows, or bypass security.</p>
 <p>A PoC is available here: <a href="https://asset-group.github.io/disclosures/sweyntooth/">https://asset-group.github.io/disclosures/sweyntooth/</a></p>
 <table>
-<thead>
-<tr>
-<th>Vulnerability Type</th>
-<th>Exploitable Remotely</th>
-<th>Impact</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Crash from Link Layer Length Overflow CVE-2019-16336</td>
-<td>No</td>
-<td>An attacker can crash the device by triggering hard faults. If crash occurs, device may restart. The capability to restart depends on correct hard-fault handling mechanisms being implemented in the product using devices with the vulnerable BLE System on Chip (SoC).</td>
-</tr>
-<tr>
-<td>Crash from Link Layer Length Overflow CVE-2019-17519</td>
-<td>No</td>
-<td>An attacker can crash the device by triggering hard faults. This could initially result in a denial-of-service condition.</td>
-</tr>
-<tr>
-<td>Crash from Truncated L2CAP CVE-2019-17517</td>
-<td>No</td>
-<td>An attacker in radio range can use this attack to cause a denial-of-service condition and crash the device.</td>
-</tr>
-<tr>
-<td>Crash from Silent Length Overflow CVE-2019-17518</td>
-<td>No</td>
-<td>An attacker in radio range can use this attack to cause a denial-of-service condition and crash the device.</td>
-</tr>
-<tr>
-<td>Unexpected Public Key Crash CVE-2019-17520</td>
-<td>No</td>
-<td>An attacker in radio range can exploit this vulnerability to cause a denial-of-service condition. The product may not properly handle hard faults and enter a deadlock state. This may require a manual restart.</td>
-</tr>
-<tr>
-<td>Crash from Invalid L2CAP Fragment CVE-2019-19195</td>
-<td>No</td>
-<td>An attacker can crash the device by triggering hard faults. If crash occurs, device may restart. The capability to restart depends on correct hard-fault handling mechanisms being implemented in the product using the vulnerable BLE SoC.</td>
-</tr>
-<tr>
-<td>Crash from Key Size Overflow CVE-2019-19196</td>
-<td>No</td>
-<td>This vulnerability allows an attacker in radio range to perform buffer overflow and crash products with pairing support enabled, which is common practice in several BLE products. In the worst case, it could be possible to overwrite buffers that store encryption nonce, which could allow the attacker to bypass encryption and leak user information.</td>
-</tr>
-<tr>
-<td>Link Layer LLID deadlock CVE-2019-17061</td>
-<td>No</td>
-<td>The availability of the BLE connection can be affected without causing a hard fault or memory corruption and can result in deadlock. Crashes originating from hard faults, if not properly handled, can become a deadlock if the device is not automatically restarted. In most cases, when a deadlock occurs, the user is required to manually power off and power on the device to re-establish proper BLE communication.</td>
-</tr>
-<tr>
-<td>Link Layer LLID deadlock CVE-2019-17060</td>
-<td>No</td>
-<td>The availability of BLE products could be critically impaired, likely requiring the user to manually perform a power cycle on the product to re-establish BLE communication.</td>
-</tr>
-<tr>
-<td>Sequential ATT Deadlock CVE-2019-19192</td>
-<td>No</td>
-<td>This vulnerability can leave the product in a deadlock state and would require a restart either manually or by mechanisms built into the firmware.</td>
-</tr>
-<tr>
-<td>Deadlock from Invalid Connection Request CVE-2019-19193</td>
-<td>No</td>
-<td>An attacker in radio range can cause a denial-of-service condition in the affected products using the vulnerable SoCs. Crashes originating from hard faults, if not properly handled, can become a deadlock if the device is not automatically restarted. In most cases, when a deadlock occurs, the user is required to manually power off and power on the device to re-establish proper BLE communication.</td>
-</tr>
-<tr>
-<td>Security bypass from Zero LTK Installation CVE-2019-19194</td>
-<td>No</td>
-<td>Allows attackers in radio range to bypass the latest secure pairing mode of BLE, i.e., the Secure Connections pairing mode. An attacker in radio range may have arbitrary read or write access to the device’s functions.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Vulnerability Type</th>
+          <th style="text-align: left">Exploitable Remotely</th>
+          <th style="text-align: left">Impact</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Crash from Link Layer Length Overflow CVE-2019-16336</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">An attacker can crash the device by triggering hard faults. If crash occurs, device may restart. The capability to restart depends on correct hard-fault handling mechanisms being implemented in the product using devices with the vulnerable BLE System on Chip (SoC).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Crash from Link Layer Length Overflow CVE-2019-17519</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">An attacker can crash the device by triggering hard faults. This could initially result in a denial-of-service condition.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Crash from Truncated L2CAP CVE-2019-17517</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">An attacker in radio range can use this attack to cause a denial-of-service condition and crash the device.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Crash from Silent Length Overflow CVE-2019-17518</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">An attacker in radio range can use this attack to cause a denial-of-service condition and crash the device.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Unexpected Public Key Crash CVE-2019-17520</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">An attacker in radio range can exploit this vulnerability to cause a denial-of-service condition. The product may not properly handle hard faults and enter a deadlock state. This may require a manual restart.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Crash from Invalid L2CAP Fragment CVE-2019-19195</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">An attacker can crash the device by triggering hard faults. If crash occurs, device may restart. The capability to restart depends on correct hard-fault handling mechanisms being implemented in the product using the vulnerable BLE SoC.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Crash from Key Size Overflow CVE-2019-19196</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">This vulnerability allows an attacker in radio range to perform buffer overflow and crash products with pairing support enabled, which is common practice in several BLE products. In the worst case, it could be possible to overwrite buffers that store encryption nonce, which could allow the attacker to bypass encryption and leak user information.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Link Layer LLID deadlock CVE-2019-17061</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">The availability of the BLE connection can be affected without causing a hard fault or memory corruption and can result in deadlock. Crashes originating from hard faults, if not properly handled, can become a deadlock if the device is not automatically restarted. In most cases, when a deadlock occurs, the user is required to manually power off and power on the device to re-establish proper BLE communication.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Link Layer LLID deadlock CVE-2019-17060</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">The availability of BLE products could be critically impaired, likely requiring the user to manually perform a power cycle on the product to re-establish BLE communication.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Sequential ATT Deadlock CVE-2019-19192</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">This vulnerability can leave the product in a deadlock state and would require a restart either manually or by mechanisms built into the firmware.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Deadlock from Invalid Connection Request CVE-2019-19193</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">An attacker in radio range can cause a denial-of-service condition in the affected products using the vulnerable SoCs. Crashes originating from hard faults, if not properly handled, can become a deadlock if the device is not automatically restarted. In most cases, when a deadlock occurs, the user is required to manually power off and power on the device to re-establish proper BLE communication.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Security bypass from Zero LTK Installation CVE-2019-19194</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">Allows attackers in radio range to bypass the latest secure pairing mode of BLE, i.e., the Secure Connections pairing mode. An attacker in radio range may have arbitrary read or write access to the device’s functions.</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="tools">
   Tools
@@ -642,7 +648,7 @@
           <div class="pagination__buttons">
             
               <span class="button previous">
-                <a href="https://axelarator.github.io/posts/mozi/">
+                <a href="http://localhost:1313/posts/mozi/">
                   <span class="button__icon">←</span>
                   <span class="button__text">Mozi</span>
                 </a>
@@ -650,7 +656,7 @@
             
             
               <span class="button next">
-                <a href="https://axelarator.github.io/posts/codesigningcerts/">
+                <a href="http://localhost:1313/posts/codesigningcerts/">
                   <span class="button__text">Abusing Code Signing Certificates</span>
                   <span class="button__icon">→</span>
                 </a>

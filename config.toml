@@ -2,7 +2,7 @@ baseURL = "https://axelarator.github.io/"
 languageCode = "en-us"
 title = "Axelarator"
 theme = "hello-friend"
-paginate = 5
+pagination.pagerSize = 5
 publishDir = "docs"
 
 [params]
