@@ -10,7 +10,7 @@ This [PoC provided by Elastic](https://github.com/joe-desimone/rep-research) is 
 A quick primer on MotW from Elastic:
 > When a user downloads a file, the browser will create an associated “Zone.Identifier” file in an [alternate data stream](https://www.digital-detective.net/forensic-analysis-of-zone-identifier-stream/) (ADS) known as the Mark of the Web (MotW). This lets other software (including AV and EDR) on the system know that the file is more risky. SmartScreen only scans files with the Mark of the Web. SAC completely blocks certain file types if they have it. This makes MotW bypasses an interesting research target, as it can usually lead to bypassing these security systems. Financially motivated threat groups have discovered and leveraged [multiple vulnerabilities](https://blog.google/threat-analysis-group/magniber-ransomware-actors-used-a-variant-of-microsoft-smartscreen-bypass/) to bypass MotW checks. These techniques involved appending crafted and invalid code signing signatures to javascript or MSI files.
 
-I explained what an ADS is in a previous post [T1564.004](https://axelarator.github.io/ntfs)
+I explained what an ADS is in a previous post [T1564.004](https://axelarator.github.io/posts/ntfs)
 > A data stream that is alternate to the normal data stream. The data attribute (`$DATA`) is called the “normal” data stream or “unnamed” data stream since it can be left blank.
 >     - A normal data stream looks like `$DATA:""`
 >     - An alternate data stream can be `$DATA:"SecondStream"`
