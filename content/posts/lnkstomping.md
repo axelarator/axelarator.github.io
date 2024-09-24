@@ -7,6 +7,8 @@ draft: false
 
 This [PoC provided by Elastic](https://github.com/joe-desimone/rep-research) is about LNK Stomping. Currently Microsoft has not provided a CVE for this method; however, they did release CVE-2024-38212, a MotW bypass vulnerability, but only included SmartScreen, not Smart App Control (SAC). As this testing is done on Windows 10 with build number 19045, I won't be dealing with SAC anyway. The PoC can bypass both.
 
+*Update: This vulnerability is now tagged as CVE-2024-38217
+
 A quick primer on MotW from Elastic:
 > When a user downloads a file, the browser will create an associated “Zone.Identifier” file in an [alternate data stream](https://www.digital-detective.net/forensic-analysis-of-zone-identifier-stream/) (ADS) known as the Mark of the Web (MotW). This lets other software (including AV and EDR) on the system know that the file is more risky. SmartScreen only scans files with the Mark of the Web. SAC completely blocks certain file types if they have it. This makes MotW bypasses an interesting research target, as it can usually lead to bypassing these security systems. Financially motivated threat groups have discovered and leveraged [multiple vulnerabilities](https://blog.google/threat-analysis-group/magniber-ransomware-actors-used-a-variant-of-microsoft-smartscreen-bypass/) to bypass MotW checks. These techniques involved appending crafted and invalid code signing signatures to javascript or MSI files.
 
